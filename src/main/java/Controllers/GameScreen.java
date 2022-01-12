@@ -141,7 +141,7 @@ public class GameScreen {
             Banana banana = new Banana(playerOneVelocity, 9.82, playerOneAngle);
             list = makeCurve(banana);
             for (int i = 0; i < list.size(); i++) {
-                bananaImg.setLayoutY(world.getHeight() - monkeyOneImg.getFitHeight() - list.get(i));
+                bananaImg.setLayoutY(world.getHeight() - (800 - monkey1.getStart_y()) - list.get(i));
                 bananaImg.setLayoutX(monkey1.getEnd_x() + i);
                 //System.out.println(bananaImg.getLayoutY());
                 //bananaImg.setX(monkey1.getStart_x() - (monkey1.getEnd_x() / 2) + i);
@@ -160,7 +160,7 @@ public class GameScreen {
             Banana banana = new Banana(playerTwoVelocity, 9.82, playerTwoAngle);
             list = makeCurve(banana);
             for (int i = 0; i < list.size(); i++) {
-                bananaImg.setLayoutY(world.getHeight() - monkeyTwoImg.getFitHeight() - (list.get(i)));
+                bananaImg.setLayoutY(world.getHeight() - (800 - monkey2.getStart_y()) - (list.get(i)));
                 //System.out.println(bananaImg.getLayoutY());
                 bananaImg.setLayoutX(world.getWidth() - monkeyTwoImg.getFitWidth() - i);
                 explosion.setLayoutX(bananaImg.getLayoutX() - (explosion.getFitWidth()/2));
@@ -252,8 +252,8 @@ public class GameScreen {
                         bananaImg.setVisible(false);
                         explosion.setVisible(true);
                         if (bananaImg.getLayoutX() > monkey2.getStart_x() - 50) {
-                            poof.setLayoutX(monkey2.getStart_x());
-                            poof.setLayoutY(world.getHeight() - poof.getFitHeight());
+                            poof.setLayoutX(monkey2.getStart_x() - 25);
+                            poof.setLayoutY(monkey2.getStart_y() - 35);
                             monkey.setVisible(false);
                             poof.setVisible(true);
                             flag = true;
@@ -267,8 +267,8 @@ public class GameScreen {
                         bananaImg.setVisible(false);
                         explosion.setVisible(true);
                         if (bananaImg.getLayoutX() < monkey1.getEnd_x() + 50){
-                            poof.setLayoutX(monkey1.getStart_x());
-                            poof.setLayoutY(world.getHeight() - poof.getFitHeight());
+                            poof.setLayoutX(monkey1.getStart_x() - 20);
+                            poof.setLayoutY(monkey1.getStart_y() - 35);
                             monkey.setVisible(false);
                             poof.setVisible(true);
                             flag = true;
