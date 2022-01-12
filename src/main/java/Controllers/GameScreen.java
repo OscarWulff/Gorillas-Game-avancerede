@@ -25,7 +25,8 @@ public class GameScreen {
     public Button throwButton;
     public ImageView monkeyOneImg; public ImageView monkeyTwoImg;
     public Label score1; public Label score2;
-    public ImageView poof;
+    public ImageView poof1;
+    public ImageView poof2;
     public ImageView explosion;
     public ImageView barLeft; public ImageView barLower;
     public ImageView barUpper; public ImageView barRight;
@@ -274,7 +275,8 @@ public class GameScreen {
         }
         monkeyOneImg.setVisible(true);
         monkeyTwoImg.setVisible(true);
-        poof.setVisible(false);
+        poof1.setVisible(false);
+        poof2.setVisible(false);
         bananaImg.setVisible(true);
         explosion.setVisible(false);
         throwButton.setVisible(true);
@@ -318,10 +320,8 @@ public class GameScreen {
                         bananaImg.setVisible(false);
                         explosion.setVisible(true);
                         if (bananaImg.getLayoutX() > monkey2.getStart_x() - 50) {
-                            poof.setLayoutX(monkey2.getStart_x() - 25);
-                            poof.setLayoutY(monkey2.getStart_y() - 35);
                             monkey.setVisible(false);
-                            poof.setVisible(true);
+                            poof2.setVisible(true);
                             flag = true;
                         }
                     } else{
@@ -333,10 +333,8 @@ public class GameScreen {
                         bananaImg.setVisible(false);
                         explosion.setVisible(true);
                         if (bananaImg.getLayoutX() < monkey1.getEnd_x() + 50){
-                            poof.setLayoutX(monkey1.getStart_x() - 20);
-                            poof.setLayoutY(monkey1.getStart_y() - 35);
                             monkey.setVisible(false);
-                            poof.setVisible(true);
+                            poof1.setVisible(true);
                             flag = true;
                         }
                     } else{
