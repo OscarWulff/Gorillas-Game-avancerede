@@ -129,27 +129,52 @@
          <Image url="@images/tree1.png" />
       </image>
    </ImageView>
-   <ImageView fitHeight="102.0" fitWidth="200.0" layoutX="52.0" layoutY="150.0">
+   <ImageView fx:id="healt100_pl1" fitHeight="92.0" fitWidth="184.0" layoutX="200.0" layoutY="27.0">
       <image>
          <Image url="@images/100%25.png" />
       </image>
    </ImageView>
-   <ImageView fitHeight="102.0" fitWidth="200.0" layoutX="108.0" layoutY="312.0">
+   <ImageView fx:id="healt100_pl2" fitHeight="92.0" fitWidth="184.0" layoutX="898.0" layoutY="25.0">
+      <image>
+         <Image url="@images/100%25.png" />
+      </image>
+   </ImageView>
+   <ImageView fx:id="healt75_pl1" fitHeight="92.0" fitWidth="184.0" layoutX="200.0" layoutY="27.0" visible="false">
       <image>
          <Image url="@images/75%25.png" />
       </image>
    </ImageView>
-   <ImageView fitHeight="102.0" fitWidth="200.0" layoutX="266.0" layoutY="108.0">
+   <ImageView fx:id="healt50_pl1" fitHeight="92.0" fitWidth="184.0" layoutX="200.0" layoutY="27.0" visible="false">
       <image>
          <Image url="@images/50%25.png" />
       </image>
    </ImageView>
-   <ImageView fitHeight="102.0" fitWidth="200.0" layoutX="897.0" layoutY="97.0">
+   <ImageView fx:id="healt25_pl1" fitHeight="92.0" fitWidth="184.0" layoutX="200.0" layoutY="27.0" visible="false">
       <image>
          <Image url="@images/25%25.png" />
       </image>
    </ImageView>
-   <ImageView fitHeight="102.0" fitWidth="200.0" layoutX="1053.0" layoutY="233.0">
+   <ImageView fx:id="healt0_pl1" fitHeight="92.0" fitWidth="184.0" layoutX="200.0" layoutY="27.0" visible="false">
+      <image>
+         <Image url="@images/0%25.png" />
+      </image>
+   </ImageView>
+   <ImageView fx:id="healt75_pl2" fitHeight="92.0" fitWidth="184.0" layoutX="898.0" layoutY="25.0" visible="false">
+      <image>
+         <Image url="@images/75%25.png" />
+      </image>
+   </ImageView>
+   <ImageView fx:id="healt50_pl2" fitHeight="92.0" fitWidth="184.0" layoutX="898.0" layoutY="25.0" visible="false">
+      <image>
+         <Image url="@images/50%25.png" />
+      </image>
+   </ImageView>
+   <ImageView fx:id="healt25_pl2" fitHeight="92.0" fitWidth="184.0" layoutX="898.0" layoutY="25.0" visible="false">
+      <image>
+         <Image url="@images/25%25.png" />
+      </image>
+   </ImageView>
+   <ImageView fx:id="healt0_pl2" fitHeight="92.0" fitWidth="184.0" layoutX="898.0" layoutY="25.0" visible="false">
       <image>
          <Image url="@images/0%25.png" />
       </image>
