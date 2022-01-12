@@ -78,9 +78,9 @@ public class GameScreen {
         nameLabel1.setText(player1.getName());
         nameLabel2.setText(player2.getName());
         monkeyOneImg.setLayoutX(monkey1.getStart_x());
-        monkeyOneImg.setLayoutY(world.getHeight() - monkeyTwoImg.getFitHeight());
-        monkeyTwoImg.setLayoutX(world.getWidth() - monkeyTwoImg.getFitWidth());
-        monkeyTwoImg.setLayoutY(world.getHeight() - monkeyTwoImg.getFitHeight());
+        monkeyOneImg.setLayoutY(monkey1.getStart_y());
+        monkeyTwoImg.setLayoutX(monkey2.getStart_x());
+        monkeyTwoImg.setLayoutY(monkey2.getStart_y());
         barLeft.setLayoutY(0);
         barLeft.setFitHeight(world.getHeight());
         barLeft.isSmooth();

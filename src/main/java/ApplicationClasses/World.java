@@ -10,8 +10,8 @@ public class World {
     public World(int height, int width) {
         this.height = height;
         this.width = width;
-        this.monkey1 = new Monkey(203, 321, height - 181, height);
-        this.monkey2 = new Monkey(width - 118, width, height - 92, height);
+        this.monkey1 = new Monkey(203, 321, height - 273, height);
+        this.monkey2 = new Monkey(width - 118, width, height - 282, height);
         canHitGrid = new boolean[height][width];
         makeGround();
     }
