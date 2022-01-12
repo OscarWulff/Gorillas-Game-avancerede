@@ -8,24 +8,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.GameScreen">
-   <ImageView fx:id="banebox" fitHeight="815.0" fitWidth="1300.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@images/lightblue_background.jpg" />
-      </image>
-   </ImageView>
-   <Button fx:id="btnBack" onAction="#goToMainScene" text="Let's go back to Main Screen" AnchorPane.rightAnchor="0">Let's go back to scene 1</Button>
-   <ImageView fx:id="monkeyOneImg" fitHeight="92.0" fitWidth="118.0" layoutY="708.0" pickOnBounds="true" preserveRatio="true" visible="false">
+<AnchorPane prefHeight="800.0" prefWidth="1300.0" style="-fx-background-color: #5fCde4;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.GameScreen">
+   <Button fx:id="btnBack" layoutX="1131.0" layoutY="10.0" onAction="#goToMainScene" text="Let's go back to Main Screen" AnchorPane.rightAnchor="10.0">Let's go back to scene 1</Button>
+   <ImageView fx:id="monkeyOneImg" fitHeight="92.0" fitWidth="118.0" layoutX="203.0" layoutY="527.0" pickOnBounds="true" preserveRatio="true" visible="false">
       <image>
          <Image url="@images/monkey.jpg" />
       </image>
    </ImageView>
-   <ImageView fx:id="monkeyTwoImg" fitHeight="92.0" fitWidth="118.0" layoutX="1182.0" layoutY="708.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" visible="false">
+   <ImageView fx:id="monkeyTwoImg" fitHeight="92.0" fitWidth="118.0" layoutX="1182.0" layoutY="518.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" visible="false">
       <image>
          <Image url="@images/monkey.jpg" />
       </image>
    </ImageView>
-   <ImageView fx:id="bananaImg" fitHeight="50.0" fitWidth="50.0" layoutX="57.0" layoutY="657.0" pickOnBounds="true" preserveRatio="true" visible="false">
+   <ImageView fx:id="bananaImg" fitHeight="30.0" fitWidth="30.0" layoutX="296.0" layoutY="512.0" pickOnBounds="true" preserveRatio="true" visible="false">
       <image>
          <Image url="@images/banana_animation.gif" />
       </image>
@@ -70,11 +65,11 @@
          <Font size="18.0" />
       </font>
    </Label>
-   <ImageView fx:id="explosion" fitHeight="150.0" fitWidth="200.0" layoutX="9.0" layoutY="607.0" pickOnBounds="true" preserveRatio="true" visible="false">
+   <ImageView fx:id="explosion" fitHeight="120.0" fitWidth="72.0" layoutX="275.0" layoutY="490.0" pickOnBounds="true" preserveRatio="true" visible="false">
       <image>
          <Image url="@images/png-pixel-art-explosion.png" />
       </image></ImageView>
-   <ImageView fx:id="poof" fitHeight="143.0" fitWidth="180.0" layoutY="657.0" visible="false">
+   <ImageView fx:id="poof" fitHeight="134.0" fitWidth="158.0" layoutX="180.0" layoutY="497.0" visible="false">
       <image>
          <Image url="@images/pixel-poof.png" />
       </image>
@@ -97,6 +92,41 @@
    <ImageView fx:id="barRight" fitHeight="800.0" fitWidth="30.0" layoutX="1300.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@images/bar_height.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="409.0" fitWidth="195.0" layoutX="400.0" layoutY="392.0">
+      <image>
+         <Image url="@images/tree1.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="200.0" fitWidth="195.0" layoutX="205.0" layoutY="608.0">
+      <image>
+         <Image url="@images/tree2.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="290.0" fitWidth="195.0" layoutX="8.0" layoutY="519.0">
+      <image>
+         <Image url="@images/tree3.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="200.0" fitWidth="195.0" layoutX="1103.0" layoutY="608.0">
+      <image>
+         <Image url="@images/tree4.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="290.0" fitWidth="158.0" layoutX="938.0" layoutY="512.0" nodeOrientation="RIGHT_TO_LEFT">
+      <image>
+         <Image url="@images/tree3.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="538.0" fitWidth="246.0" layoutX="695.0" layoutY="270.0" nodeOrientation="RIGHT_TO_LEFT">
+      <image>
+         <Image url="@images/tree2.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="251.0" fitWidth="229.0" layoutX="570.0" layoutY="555.0">
+      <image>
+         <Image url="@images/tree1.png" />
       </image>
    </ImageView>
 </AnchorPane>

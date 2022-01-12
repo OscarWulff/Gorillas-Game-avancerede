@@ -11,10 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class GameScreen {
     private static Game game;
@@ -24,7 +21,8 @@ public class GameScreen {
     public Label pl2AngLabel; public Label pl2VelLabel; public Label pl1AngLabel;
     public Label pl1VelLabel; public Label nameLabel1; public Label nameLabel2;
     public Button pl1start; public Button pl2start;
-    public Label pl2NameLabel; public Label pl1NameLabel; public Label whoWantsLabel; public Button throwButton;
+    public Label pl2NameLabel; public Label pl1NameLabel; public Label whoWantsLabel;
+    public Button throwButton;
     public ImageView monkeyOneImg; public ImageView monkeyTwoImg;
     public Label score1; public Label score2;
     public ImageView poof;
@@ -41,8 +39,6 @@ public class GameScreen {
     private List<Integer> list = new ArrayList<>();
     public boolean canHitGrid[][];
     private int[] bananaArr;
-    Map<String, Integer> monkeyOneDimensions = new HashMap<String, Integer>();
-    Map<String, Integer> monkeyTwoDimensions = new HashMap<String, Integer>();
     private int point1 = 0;
     private int point2 = 0;
     private Monkey monkey1;
@@ -52,175 +48,6 @@ public class GameScreen {
 
     public void goToMainScene() throws IOException {
         SceneManager.changeScene("fxml/MainScene.fxml");
-    }
-
-    public void hitBox() {
-        if (!player1.getTurn()) {
-            for (int i = monkeyOneDimensions.get("start_y"); i < monkeyOneDimensions.get("end_y"); i++) {
-                for (int k = monkeyOneDimensions.get("start_x"); k < monkeyOneDimensions.get("end_x"); k++) {
-                    if (i >= 0 && k >= 0 && i < world.getHeight() && k < world.getWidth()) {
-                        canHitGrid[i][k] = true;
-                    }
-                }
-            }
-        } else {
-            for (int i = monkeyTwoDimensions.get("start_y"); i < monkeyTwoDimensions.get("end_y"); i++) {
-                for (int k = monkeyTwoDimensions.get("start_x"); k < monkeyTwoDimensions.get("end_x"); k++) {
-                    if(i >= 0 && k >= 0 && i < world.getHeight() && k < world.getWidth()) {
-                        canHitGrid[i][k] = true;
-                    }
-                }
-            }
-        }
-    }
-
-    public void doThrow(ActionEvent event) throws IOException {
-        if (player1.getTurn()) {
-            this.playerOneAngle = Integer.parseInt(pl1ang.getText());
-            this.playerOneVelocity = Integer.parseInt(pl1vec.getText());
-        } else {
-            this.playerTwoAngle = Integer.parseInt(pl2ang.getText());
-            this.playerTwoVelocity = Integer.parseInt(pl2vec.getText());
-        }
-        Thread thread = new Thread(this::runThread);
-        thread.start();
-    }
-
-    public void makeMonkeys() {
-        monkeyOneDimensions.put("start_x", (int) monkeyOneImg.getLayoutX());
-        monkeyOneDimensions.put("end_x", (int) monkeyOneImg.getLayoutX() + (int) monkeyOneImg.getFitWidth());
-        monkeyOneDimensions.put("start_y", (int) monkeyOneImg.getLayoutY());
-        monkeyOneDimensions.put("end_y", (int) monkeyOneImg.getLayoutY() + (int) monkeyOneImg.getFitHeight());
-
-        monkeyTwoDimensions.put("start_x", (int) monkeyTwoImg.getLayoutX());
-        monkeyTwoDimensions.put("end_x", (int) monkeyTwoImg.getLayoutX() + (int) monkeyTwoImg.getFitWidth());
-        monkeyTwoDimensions.put("start_y", (int) monkeyTwoImg.getLayoutY());
-        monkeyTwoDimensions.put("end_y", (int) monkeyTwoImg.getLayoutY() + (int) monkeyTwoImg.getFitHeight());
-    }
-
-    public void makeBanana() {
-        bananaArr = new int[4];
-        bananaArr[0] = (int) bananaImg.getFitHeight();
-        bananaArr[1] = (int) bananaImg.getFitWidth();
-        bananaArr[2] = (int) bananaImg.getLayoutX();
-        bananaArr[3] = (int) bananaImg.getLayoutY();
-    }
-
-    public void bananaHit(ImageView monkey) {
-        flag = false;
-        for (int j = world.getHeight() - (int) bananaImg.getY(); j < world.getHeight() - (int) bananaImg.getY() + bananaArr[0]; j++) {
-            for (int k = (int) bananaImg.getX(); k < (int) bananaImg.getX() + bananaArr[1]; k++) {
-                if (player1.getTurn() && j >= 0 && k >= monkey1.getEnd_x() && j < world.getHeight() && k < world.getWidth()) {
-                    if(canHitGrid[j][k] || bananaExplosion(j, k)) {
-                        bananaImg.setVisible(false);
-                        poof.setLayoutX(monkey2.getStart_x());
-                        poof.setLayoutY(world.getHeight() - poof.getFitHeight());
-                        monkey.setVisible(false);
-                        poof.setVisible(true);
-                        flag = true;
-                    }
-                } else if (!player1.getTurn() && j >= 0 && k >= 0 && j <
-                        world.getHeight() && k < monkeyOneDimensions.get("end_x")) {
-                    if(canHitGrid[j][k] || bananaExplosion(j, k)) {
-                        bananaImg.setVisible(false);
-                        poof.setLayoutX(monkey1.getStart_x());
-                        poof.setLayoutY(world.getHeight() - poof.getFitHeight());
-                        monkey.setVisible(false);
-                        poof.setVisible(true);
-                        flag = true;
-                    }
-                }
-            }
-        }
-    }
-
-    public boolean bananaExplosion(int y, int x) {
-        if(world.getWidth() / 10 + x < world.getWidth()) {
-            return y == world.getHeight() - 1 && (canHitGrid[y][x - world.getWidth() / 10]) ||
-                    canHitGrid[y][(world.getWidth() / 10) + x];
-        }
-        return false;
-    }
-
-
-    public void restart() {
-        if(player1.getTurn()) {
-            bananaImg.setX(monkeyOneImg.getX());
-        } else {
-            bananaImg.setX(monkeyTwoImg.getX());
-        }
-        monkeyOneImg.setVisible(true);
-        monkeyTwoImg.setVisible(true);
-        poof.setVisible(false);
-        bananaImg.setVisible(true);
-    }
-
-    public void runThread() {
-        makeMonkeys();
-        hitBox();
-        restart();
-        list = new ArrayList<>();
-        if (player1.getTurn()) {
-            Banana banana = new Banana(playerOneVelocity, 9.82, playerOneAngle);
-            list = makeCurve(banana);
-            for (int i = 0; i < list.size(); i++) {
-                bananaImg.setX(monkey1.getStart_x() - (monkey1.getEnd_x() / 2) + i);
-                bananaImg.setY(-bananaImg.getFitHeight() + list.get(i));
-                bananaImg.isSmooth();
-                makeBanana();
-                simulateSlow(1);
-                bananaHit(monkeyTwoImg);
-            }
-            player1.setTurn(false);
-
-        } else {
-            Banana banana = new Banana(playerTwoVelocity, 9.82, playerTwoAngle);
-            list = makeCurve(banana);
-            for (int i = 0; i < list.size(); i++) {
-                bananaImg.setX(world.getWidth() - 100 - i);
-                bananaImg.setY(list.get(list.size() - 1 - i));
-                bananaImg.isSmooth();
-                makeBanana();
-                simulateSlow(0);
-                bananaHit(monkeyOneImg);
-            }
-            player1.setTurn(true);
-        }
-        if(flag) point();
-        switchVisibility();
-        restart();
-        simulateSlow(0);
-        bananaImg.setVisible(false);
-    }
-
-
-    public void simulateSlow(int x) {
-        try {
-            Thread.sleep(x + 3);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public List<Integer> makeCurve(Banana banana) {
-        int x = 1;
-        while (banana.trajectory(x) > -1) {
-            this.list.add(100 - banana.trajectory(x));
-            x++;
-        }
-        return this.list;
-    }
-
-    public void switchVisibility() {
-        pl1ang.setVisible(!pl1ang.isVisible());
-        pl1vec.setVisible(!pl1vec.isVisible());
-        pl1AngLabel.setVisible(!pl1AngLabel.isVisible());
-        pl1VelLabel.setVisible(!pl1VelLabel.isVisible());
-
-        pl2ang.setVisible(!pl2ang.isVisible());
-        pl2vec.setVisible(!pl2vec.isVisible());
-        pl2AngLabel.setVisible(!pl2AngLabel.isVisible());
-        pl2VelLabel.setVisible(!pl2VelLabel.isVisible());
     }
 
     public static void setGame(Game game) {
@@ -250,11 +77,10 @@ public class GameScreen {
         this.canHitGrid = world.getCantHitGrid();
         nameLabel1.setText(player1.getName());
         nameLabel2.setText(player2.getName());
-        monkeyOneImg.setLayoutX(0);
+        monkeyOneImg.setLayoutX(monkey1.getStart_x());
         monkeyOneImg.setLayoutY(world.getHeight() - monkeyTwoImg.getFitHeight());
         monkeyTwoImg.setLayoutX(world.getWidth() - monkeyTwoImg.getFitWidth());
         monkeyTwoImg.setLayoutY(world.getHeight() - monkeyTwoImg.getFitHeight());
-        barLeft.setLayoutX(monkey1.getStart_x());
         barLeft.setLayoutY(0);
         barLeft.setFitHeight(world.getHeight());
         barLeft.isSmooth();
@@ -267,11 +93,9 @@ public class GameScreen {
         barRight.setLayoutX(monkey2.getEnd_x());
         barRight.setLayoutY(0);
         barRight.setFitHeight(world.getHeight());
-
         monkeyOneImg.setVisible(true);
         monkeyTwoImg.setVisible(true);
         monkeyOneImg.isSmooth();
-
     }
 
     public void makeBoardVisible() {
@@ -294,6 +118,193 @@ public class GameScreen {
             pl2ang.setVisible(true);
             pl2vec.setVisible(true);
         }
+    }
+
+    public void doThrow(ActionEvent event) throws IOException {
+        bananaImg.setVisible(true);
+        throwButton.setVisible(false);
+        if (player1.getTurn()) {
+            this.playerOneAngle = Integer.parseInt(pl1ang.getText());
+            this.playerOneVelocity = Integer.parseInt(pl1vec.getText());
+        } else {
+            this.playerTwoAngle = Integer.parseInt(pl2ang.getText());
+            this.playerTwoVelocity = Integer.parseInt(pl2vec.getText());
+        }
+        Thread thread = new Thread(this::runThread);
+        thread.start();
+    }
+
+    public void runThread() {
+        hitBox();
+        list = new ArrayList<>();
+        if (player1.getTurn()) {
+            Banana banana = new Banana(playerOneVelocity, 9.82, playerOneAngle);
+            list = makeCurve(banana);
+            for (int i = 0; i < list.size(); i++) {
+                bananaImg.setLayoutY(world.getHeight() - monkeyOneImg.getFitHeight() - list.get(i));
+                bananaImg.setLayoutX(monkey1.getEnd_x() + i);
+                //System.out.println(bananaImg.getLayoutY());
+                //bananaImg.setX(monkey1.getStart_x() - (monkey1.getEnd_x() / 2) + i);
+                explosion.setLayoutX(bananaImg.getLayoutX() - (explosion.getFitWidth()/2));
+                //bananaImg.setY(-bananaImg.getFitHeight() + list.get(i));
+                explosion.setLayoutY(bananaImg.getLayoutY() - (explosion.getFitHeight()/2));
+                bananaImg.isSmooth();
+                makeBanana();
+                simulateSlow(-1);
+                bananaHit(monkeyTwoImg);
+            }
+            simulateSlow(200);
+            player1.setTurn(false);
+
+        } else {
+            Banana banana = new Banana(playerTwoVelocity, 9.82, playerTwoAngle);
+            list = makeCurve(banana);
+            for (int i = 0; i < list.size(); i++) {
+                bananaImg.setLayoutY(world.getHeight() - monkeyTwoImg.getFitHeight() - (list.get(i)));
+                //System.out.println(bananaImg.getLayoutY());
+                bananaImg.setLayoutX(world.getWidth() - monkeyTwoImg.getFitWidth() - i);
+                explosion.setLayoutX(bananaImg.getLayoutX() - (explosion.getFitWidth()/2));
+                explosion.setLayoutY(bananaImg.getLayoutY() - (explosion.getFitHeight()/2));
+                bananaImg.isSmooth();
+                makeBanana();
+                simulateSlow(-1);
+                bananaHit(monkeyOneImg);
+            }
+            simulateSlow(200);
+            player1.setTurn(true);
+        }
+        if(flag) point();
+        switchVisibility();
+        restart();
+        simulateSlow(0);
+        bananaImg.setVisible(false);
+    }
+
+    public void hitBox() {
+        if (!player1.getTurn()) {
+            for (int i = monkey1.getStart_y(); i < monkey1.getEnd_y(); i++) {
+                for (int k = monkey1.getStart_x(); k < monkey1.getEnd_x(); k++) {
+                    if (i >= 0 && k >= 0 && i < world.getHeight() && k < world.getWidth()) {
+                        canHitGrid[i][k] = true;
+                    }
+                }
+            }
+        } else {
+            for (int i = monkey2.getStart_y(); i < monkey2.getEnd_y(); i++) {
+                for (int k = monkey2.getStart_x(); k < monkey2.getEnd_x(); k++) {
+                    if(i >= 0 && k >= 0 && i < world.getHeight() && k < world.getWidth()) {
+                        canHitGrid[i][k] = true;
+                    }
+                }
+            }
+        }
+    }
+
+    public void restart() {
+        if(player1.getTurn()) {
+            bananaImg.setLayoutX(monkey1.getEnd_x());
+        } else {
+            bananaImg.setLayoutX(world.getWidth() - monkeyTwoImg.getFitWidth());
+        }
+        monkeyOneImg.setVisible(true);
+        monkeyTwoImg.setVisible(true);
+        poof.setVisible(false);
+        bananaImg.setVisible(true);
+        explosion.setVisible(false);
+        throwButton.setVisible(true);
+    }
+
+    public List<Integer> makeCurve(Banana banana) {
+        int x = 1;
+        while (banana.trajectory(x) > - monkeyOneImg.getFitHeight()) {
+            this.list.add(banana.trajectory(x));
+            x++;
+            //System.out.println(banana.trajectory(x));
+        }
+        return this.list;
+    }
+
+    public void makeBanana() {
+        bananaArr = new int[4];
+        bananaArr[0] = (int) bananaImg.getFitHeight();
+        bananaArr[1] = (int) bananaImg.getFitWidth();
+        bananaArr[2] = (int) bananaImg.getLayoutX();
+        bananaArr[3] = (int) bananaImg.getLayoutY();
+    }
+
+    public void simulateSlow(int x) {
+        try {
+            bananaImg.getX();
+            Thread.sleep(x + 3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void bananaHit(ImageView monkey) {
+        explosion.setVisible(false);
+        flag = false;
+        for (int j = (int) bananaImg.getLayoutY(); j < (int) bananaImg.getLayoutY() + bananaArr[0]; j++) {
+            for (int k = (int) bananaImg.getLayoutX(); k < (int) bananaImg.getLayoutX() + bananaArr[1]; k++) {
+                if (player1.getTurn() && j >= 0 && k >= monkey1.getEnd_x() && j <
+                        world.getHeight() && k < world.getWidth()) {
+                    if(canHitGrid[j][k] || bananaExplosion(j, k)) {
+                        bananaImg.setVisible(false);
+                        explosion.setVisible(true);
+                        if (bananaImg.getLayoutX() > monkey2.getStart_x() - 50) {
+                            poof.setLayoutX(monkey2.getStart_x());
+                            poof.setLayoutY(world.getHeight() - poof.getFitHeight());
+                            monkey.setVisible(false);
+                            poof.setVisible(true);
+                            flag = true;
+                        }
+                    } else{
+                        noHit();
+                    }
+                } else if (!player1.getTurn() && j >= 0 && k >= 0 && j <
+                        world.getHeight() && k < (world.getWidth()) - monkeyTwoImg.getFitWidth()) {
+                    if(canHitGrid[j][k] || bananaExplosion(j, k)) {
+                        bananaImg.setVisible(false);
+                        explosion.setVisible(true);
+                        if (bananaImg.getLayoutX() < monkey1.getEnd_x() + 50){
+                            poof.setLayoutX(monkey1.getStart_x());
+                            poof.setLayoutY(world.getHeight() - poof.getFitHeight());
+                            monkey.setVisible(false);
+                            poof.setVisible(true);
+                            flag = true;
+                        }
+                    } else{
+                        noHit();
+                    }
+                }
+            }
+        }
+    }
+
+    public void noHit(){
+        if (bananaImg.getLayoutY() >= world.getHeight()) {
+            explosion.setVisible(true);
+        }
+    }
+
+    public boolean bananaExplosion(int y, int x) {
+        if((x + (world.getWidth() / 10)) < world.getWidth() && (x - (world.getWidth() / 10)) > 0) {
+            return y > world.getHeight() - 3 && ((canHitGrid[y][(x - (world.getWidth() / 10))]) ||
+                    (canHitGrid[y][(x + (world.getWidth() / 10))]));
+        }
+        return false;
+    }
+
+    public void switchVisibility() {
+        pl1ang.setVisible(!pl1ang.isVisible());
+        pl1vec.setVisible(!pl1vec.isVisible());
+        pl1AngLabel.setVisible(!pl1AngLabel.isVisible());
+        pl1VelLabel.setVisible(!pl1VelLabel.isVisible());
+
+        pl2ang.setVisible(!pl2ang.isVisible());
+        pl2vec.setVisible(!pl2vec.isVisible());
+        pl2AngLabel.setVisible(!pl2AngLabel.isVisible());
+        pl2VelLabel.setVisible(!pl2VelLabel.isVisible());
     }
 
     public void point(){
