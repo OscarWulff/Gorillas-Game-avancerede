@@ -129,4 +129,9 @@
          <Image url="@images/tree1.png" />
       </image>
    </ImageView>
+   <ImageView fitHeight="102.0" fitWidth="200.0" layoutX="52.0" layoutY="150.0">
+      <image>
+         <Image url="@images/100%25.png" />
+      </image>
+   </ImageView>
 </AnchorPane>
