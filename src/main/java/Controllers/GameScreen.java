@@ -30,16 +30,16 @@ public class GameScreen {
     public ImageView explosion;
     public ImageView barLeft; public ImageView barLower;
     public ImageView barUpper; public ImageView barRight;
-    public ImageView healt100_pl1;
-    public ImageView healt100_pl2;
-    public ImageView healt75_pl1;
-    public ImageView healt50_pl1;
-    public ImageView healt25_pl1;
-    public ImageView healt0_pl1;
-    public ImageView healt75_pl2;
-    public ImageView healt50_pl2;
-    public ImageView healt25_pl2;
-    public ImageView healt0_pl2;
+    public ImageView health100_pl1;
+    public ImageView health100_pl2;
+    public ImageView health75_pl1;
+    public ImageView health50_pl1;
+    public ImageView health25_pl1;
+    public ImageView health0_pl1;
+    public ImageView health75_pl2;
+    public ImageView health50_pl2;
+    public ImageView health25_pl2;
+    public ImageView health0_pl2;
 
 
     private Player player1; private Player player2;
@@ -138,24 +138,24 @@ public class GameScreen {
             pl1_hits++;
             switch (pl1_hits) {
                 case 1:
-                    healt100_pl2.setVisible(false);
-                    healt75_pl2.setVisible(true);
+                    health100_pl2.setVisible(false);
+                    health75_pl2.setVisible(true);
                     break;
                 case 2:
-                    healt75_pl2.setVisible(false);
-                    healt50_pl2.setVisible(true);
+                    health75_pl2.setVisible(false);
+                    health50_pl2.setVisible(true);
                     break;
                 case 3:
-                    healt50_pl2.setVisible(false);
-                    healt25_pl2.setVisible(true);
+                    health50_pl2.setVisible(false);
+                    health25_pl2.setVisible(true);
                     break;
                 case 4:
-                    healt25_pl2.setVisible(false);
-                    healt0_pl2.setVisible(true);
+                    health25_pl2.setVisible(false);
+                    health0_pl2.setVisible(true);
                     point();
                     simulateSlow(1000);
-                    healt0_pl2.setVisible(false);
-                    healt100_pl2.setVisible(true);
+                    health0_pl2.setVisible(false);
+                    health100_pl2.setVisible(true);
                     pl1_hits = 0;
                     break;
             }
@@ -163,24 +163,24 @@ public class GameScreen {
             pl2_hits++;
             switch (pl2_hits) {
                 case 1:
-                    healt100_pl1.setVisible(false);
-                    healt75_pl1.setVisible(true);
+                    health100_pl1.setVisible(false);
+                    health75_pl1.setVisible(true);
                     break;
                 case 2:
-                    healt75_pl1.setVisible(false);
-                    healt50_pl1.setVisible(true);
+                    health75_pl1.setVisible(false);
+                    health50_pl1.setVisible(true);
                     break;
                 case 3:
-                    healt50_pl1.setVisible(false);
-                    healt25_pl1.setVisible(true);
+                    health50_pl1.setVisible(false);
+                    health25_pl1.setVisible(true);
                     break;
                 case 4:
-                    healt25_pl1.setVisible(false);
-                    healt0_pl1.setVisible(true);
+                    health25_pl1.setVisible(false);
+                    health0_pl1.setVisible(true);
                     point();
                     simulateSlow(1000);
-                    healt0_pl1.setVisible(false);
-                    healt100_pl1.setVisible(true);
+                    health0_pl1.setVisible(false);
+                    health100_pl1.setVisible(true);
                     pl2_hits = 0;
                     break;
             }
