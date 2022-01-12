@@ -29,6 +29,16 @@ public class GameScreen {
     public ImageView explosion;
     public ImageView barLeft; public ImageView barLower;
     public ImageView barUpper; public ImageView barRight;
+    public ImageView healt100_pl1;
+    public ImageView healt100_pl2;
+    public ImageView healt75_pl1;
+    public ImageView healt50_pl1;
+    public ImageView healt25_pl1;
+    public ImageView healt0_pl1;
+    public ImageView healt75_pl2;
+    public ImageView healt50_pl2;
+    public ImageView healt25_pl2;
+    public ImageView healt0_pl2;
 
 
     private Player player1; private Player player2;
@@ -44,6 +54,8 @@ public class GameScreen {
     private Monkey monkey1;
     private Monkey monkey2;
     private boolean flag;
+    private int pl1_hits = 0;
+    private int pl2_hits = 0;
 
 
     public void goToMainScene() throws IOException {
@@ -120,6 +132,60 @@ public class GameScreen {
         }
     }
 
+    public void setHeart() {
+        if(!player1.getTurn()) {
+            pl1_hits++;
+            switch (pl1_hits) {
+                case 1:
+                    healt100_pl2.setVisible(false);
+                    healt75_pl2.setVisible(true);
+                    break;
+                case 2:
+                    healt75_pl2.setVisible(false);
+                    healt50_pl2.setVisible(true);
+                    break;
+                case 3:
+                    healt50_pl2.setVisible(false);
+                    healt25_pl2.setVisible(true);
+                    break;
+                case 4:
+                    healt25_pl2.setVisible(false);
+                    healt0_pl2.setVisible(true);
+                    point();
+                    simulateSlow(1000);
+                    healt0_pl2.setVisible(false);
+                    healt100_pl2.setVisible(true);
+                    pl1_hits = 0;
+                    break;
+            }
+        } else if(player1.getTurn()) {
+            pl2_hits++;
+            switch (pl2_hits) {
+                case 1:
+                    healt100_pl1.setVisible(false);
+                    healt75_pl1.setVisible(true);
+                    break;
+                case 2:
+                    healt75_pl1.setVisible(false);
+                    healt50_pl1.setVisible(true);
+                    break;
+                case 3:
+                    healt50_pl1.setVisible(false);
+                    healt25_pl1.setVisible(true);
+                    break;
+                case 4:
+                    healt25_pl1.setVisible(false);
+                    healt0_pl1.setVisible(true);
+                    point();
+                    simulateSlow(1000);
+                    healt0_pl1.setVisible(false);
+                    healt100_pl1.setVisible(true);
+                    pl2_hits = 0;
+                    break;
+            }
+        }
+    }
+
     public void doThrow(ActionEvent event) throws IOException {
         bananaImg.setVisible(true);
         throwButton.setVisible(false);
@@ -173,7 +239,7 @@ public class GameScreen {
             simulateSlow(200);
             player1.setTurn(true);
         }
-        if(flag) point();
+        if(flag) setHeart();
         switchVisibility();
         restart();
         simulateSlow(0);
