@@ -257,12 +257,12 @@ public class GameScreen {
         bananaImg.setVisible(false);
     }
     public void direction(){
-        if (MainScene.modstand < 0){
-            luftLabel.setText("-> " + Math.abs(MainScene.modstand) + " m/s");
+        if (MainScene.modstand < 0 && MainScene.luftFlag){
+            luftLabel.setText("\u2192 " + Math.abs(MainScene.modstand) + " m/s");
 
 
-        } else {
-            luftLabel.setText("<- " + Math.abs(MainScene.modstand) + " m/s");
+        } else if(MainScene.luftFlag) {
+            luftLabel.setText("\u2190" + Math.abs(MainScene.modstand) + " m/s");
         }
     }
 

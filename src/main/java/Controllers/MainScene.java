@@ -34,7 +34,7 @@ public class MainScene {
     public String playerOneName;
     public String playerTwoName;
     private Game game;
-    private boolean luftFlag = false;
+    public static boolean luftFlag = false;
     public static int modstand = 0;
 
     public void goToGameScreen() throws IOException, IllegalInputException {

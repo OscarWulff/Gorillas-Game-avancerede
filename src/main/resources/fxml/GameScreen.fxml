@@ -184,7 +184,7 @@
          <Image url="@images/pixel-poof.png" />
       </image>
    </ImageView>
-   <Label fx:id="luftLabel" layoutX="629.0" layoutY="126.0" text="Label" textAlignment="CENTER" visible="false">
+   <Label fx:id="luftLabel" layoutX="600.0" layoutY="126.0" prefHeight="36.0" prefWidth="118.0" text="" textAlignment="CENTER" visible="false">
       <font>
          <Font name="System Bold" size="25.0" />
       </font>
