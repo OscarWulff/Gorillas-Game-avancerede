@@ -8,8 +8,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainScene">
-   <Button fx:id="btnChange" layoutX="589.0" layoutY="544.0" onAction="#goToGameScreen" prefHeight="43.0" prefWidth="122.0" text="Start">
+<AnchorPane prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainScene">
+   <Button fx:id="btnChange" layoutX="725.0" layoutY="552.0" onAction="#goToGameScreen" prefHeight="43.0" prefWidth="122.0" text="Start">
       <font>
          <Font size="20.0" />
       </font></Button>
@@ -20,22 +20,7 @@
    </Label>
    <Label layoutX="670.0" layoutY="471.0" text="Width:" />
    <Label layoutX="433.0" layoutY="471.0" text="Height:" />
-   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@images/banana.gif" />
-      </image>
-   </ImageView>
-   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="1150.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@images/banana.gif" />
-      </image>
-   </ImageView>
-   <ImageView fitHeight="150.0" fitWidth="200.0" layoutY="650.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@images/banana.gif" />
-      </image>
-   </ImageView>
-   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="1150.0" layoutY="650.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="114.0" fitWidth="110.0" layoutX="596.0" layoutY="307.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@images/banana.gif" />
       </image>
@@ -46,5 +31,11 @@
    <TextField fx:id="length" layoutX="718.0" layoutY="467.0" />
    <Label layoutX="506.0" layoutY="197.0" prefHeight="17.0" prefWidth="63.0" text="Player 1" />
    <Label layoutX="506.0" layoutY="246.0" prefHeight="17.0" prefWidth="63.0" text="Player 2" />
+   <Button fx:id="luftKnap" layoutX="498.0" layoutY="552.0" onAction="#switchAirSpeed" prefHeight="43.0" prefWidth="122.0" text="No">
+      <font>
+         <Font size="20.0" />
+      </font>
+   </Button>
+   <Label layoutX="532.0" layoutY="528.0" text="Air speed:" />
 
 </AnchorPane>

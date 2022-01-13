@@ -1,13 +1,20 @@
 package Controllers;
 
+import ApplicationClasses.Banana;
 import ApplicationClasses.Game;
 import Exceptions.IllegalInputException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 
+import java.awt.*;
 import java.io.IOException;
-
+import java.util.Random;
 
 
 public class MainScene {
@@ -19,6 +26,7 @@ public class MainScene {
     public TextField height;
     public TextField playerID1;
     public TextField playerID2;
+    public Button luftKnap;
 
 
     private int length_i;
@@ -26,6 +34,8 @@ public class MainScene {
     public String playerOneName;
     public String playerTwoName;
     private Game game;
+    private boolean luftFlag = false;
+    public static int modstand = 0;
 
     public void goToGameScreen() throws IOException, IllegalInputException {
         /*
@@ -51,4 +61,34 @@ public class MainScene {
         GameScreen.setGame(game);
         SceneManager.changeScene("fxml/GameScreen.fxml");
     }
+
+    public void switchAirSpeed(ActionEvent actionEvent) {
+
+        if(!luftFlag){
+            luftKnap.setText("Yes");
+            luftFlag = true;
+            airResistance();
+            System.out.println(modstand);
+
+        } else if (luftFlag) {
+            luftKnap.setText("No");
+            luftFlag = false;
+        }
+
+    }
+
+    public void airResistance(){
+
+        Random rand = new Random();
+        int spanMax = 30;
+        int spanMin = -30;
+
+        this.modstand = rand.nextInt(spanMax - spanMin) + spanMin;
+        GameScreen.setAirresistance(modstand);
+    }
+
+
+
+
+
 }

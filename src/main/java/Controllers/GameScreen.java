@@ -36,6 +36,7 @@ public class GameScreen {
 
     public ImageView tree1; public ImageView tree2; public ImageView tree3; public ImageView tree4;
     public ImageView tree5; public ImageView tree6; public ImageView tree7;
+    public Label luftLabel;
 
 
     private Player player1; private Player player2;
@@ -53,6 +54,7 @@ public class GameScreen {
     private boolean flag;
     private int pl1_hits = 0;
     private int pl2_hits = 0;
+    private static int airResistance;
 
 
     public void goToMainScene() throws IOException {
@@ -61,6 +63,12 @@ public class GameScreen {
 
     public static void setGame(Game game) {
         GameScreen.game = game;
+    }
+
+    public static void setAirresistance(int airResistance){
+
+        GameScreen.airResistance = airResistance;
+
     }
 
     public void pl1Start(ActionEvent actionEvent) {
@@ -78,6 +86,7 @@ public class GameScreen {
     }
 
     public void initGameValues(){
+        direction();
         this.player1 = game.getPlayer1();
         this.player2 = game.getPlayer2();
         this.world = game.getWorld();
@@ -110,6 +119,7 @@ public class GameScreen {
     }
 
     public void makeBoardVisible() {
+        luftLabel.setVisible(true);
         whoWantsLabel.setVisible(false);
         pl1start.setVisible(false);
         pl2start.setVisible(false);
@@ -246,6 +256,15 @@ public class GameScreen {
         simulateSlow(0);
         bananaImg.setVisible(false);
     }
+    public void direction(){
+        if (MainScene.modstand < 0){
+            luftLabel.setText("-> " + Math.abs(MainScene.modstand) + " m/s");
+
+
+        } else {
+            luftLabel.setText("<- " + Math.abs(MainScene.modstand) + " m/s");
+        }
+    }
 
     public void hitBox() {
         if (!player1.getTurn()) {
@@ -283,6 +302,10 @@ public class GameScreen {
     }
 
     public List<Integer> makeCurve(Banana banana) {
+
+        MainScene.modstand = MainScene.modstand*(-1);
+        System.out.println(MainScene.modstand);
+
         int x = 1;
         while (banana.trajectory(x) > - monkeyOneImg.getFitHeight()) {
             this.list.add(banana.trajectory(x));
