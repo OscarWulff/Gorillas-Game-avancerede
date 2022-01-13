@@ -68,10 +68,10 @@ public class MainScene {
             luftKnap.setText("Yes");
             luftFlag = true;
             airResistance();
-            System.out.println(modstand);
 
         } else if (luftFlag) {
             luftKnap.setText("No");
+            modstand=0;
             luftFlag = false;
         }
 
