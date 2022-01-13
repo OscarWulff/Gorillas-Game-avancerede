@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.util.*;
@@ -40,6 +41,7 @@ public class GameScreen {
     public Label luftLabel;
     public Label minutes;
     public Label seconds;
+    public ImageView pauseButton;
 
 
     private Player player1; private Player player2;
@@ -465,5 +467,9 @@ public class GameScreen {
                 }
             });
         }
+    }
+
+    public void pauseButtonClicked(MouseEvent mouseEvent) {
+        System.out.println("hej");
     }
 }
