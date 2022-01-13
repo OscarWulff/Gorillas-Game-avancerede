@@ -17,13 +17,13 @@ public class Jungle{
         this.height = height;
         this.width = width;
 
-        this.tree1 = new Tree(8,203,height - 281, height);
-        this.tree2 = new Tree(205,400,height - 192, height);
-        this.tree3 = new Tree(400,595,height - 408,height);
-        this.tree4 = new Tree(570,799,height - 245, height);
-        this.tree5 = new Tree(695,941,height - 530, height);
-        this.tree6 = new Tree(938,1096,height - 288, height);
-        this.tree7 = new Tree(1103,1303,height - 192, height);
+        this.tree1 = new Tree(8,203,height - 256, height); // height - 281 + 25 hele vejen ned.
+        this.tree2 = new Tree(205,400,height - 167, height);
+        this.tree3 = new Tree(400,595,height - 383,height);
+        this.tree4 = new Tree(570,799,height - 220, height);
+        this.tree5 = new Tree(695,941,height - 505, height);
+        this.tree6 = new Tree(938,1096,height - 263, height);
+        this.tree7 = new Tree(1103,1303,height - 167, height);
 
         canHitGrid = new boolean[height][width];
         makeGround();
