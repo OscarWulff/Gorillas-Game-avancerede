@@ -35,8 +35,8 @@ public class GameScreen {
     public ImageView health100_pl1; public ImageView health100_pl2; public ImageView health75_pl1; public ImageView health50_pl1; public ImageView health25_pl1;
     public ImageView health0_pl1; public ImageView health75_pl2; public ImageView health50_pl2; public ImageView health25_pl2; public ImageView health0_pl2;
 
-    public ImageView tree1; public ImageView tree2; public ImageView tree3; public ImageView tree4;
-    public ImageView tree5; public ImageView tree6; public ImageView tree7;
+    public ImageView Tre1; public ImageView Tre2; public ImageView Tre3; public ImageView Tre4;
+    public ImageView Tre5; public ImageView Tre6; public ImageView Tre7;
     public Label luftLabel;
     public Label minutes;
     public Label seconds;
@@ -47,6 +47,8 @@ public class GameScreen {
     private int playerOneAngle; private int playerOneVelocity;
     private int playerTwoAngle; private int playerTwoVelocity;
 
+    private Jungle jungle;
+
     private List<Integer> list = new ArrayList<>();
     public boolean canHitGrid[][];
     private int[] bananaArr;
@@ -54,6 +56,13 @@ public class GameScreen {
     private int point2 = 0;
     private Monkey monkey1;
     private Monkey monkey2;
+    private Tree tree1;
+    private Tree tree2;
+    private Tree tree3;
+    private Tree tree4;
+    private Tree tree5;
+    private Tree tree6;
+    private Tree tree7;
     private boolean flag;
     private int pl1_hits = 0;
     private int pl2_hits = 0;
@@ -134,6 +143,18 @@ public class GameScreen {
         this.monkey1 = world.getMonkey1();
         this.monkey2 = world.getMonkey2();
         this.canHitGrid = world.getCantHitGrid();
+
+        this.jungle = game.getJungle();
+        this.tree1 = jungle.getTree1();
+        this.tree2 = jungle.getTree2();
+        this.tree3 = jungle.getTree3();
+        this.tree4 = jungle.getTree4();
+        this.tree5 = jungle.getTree5();
+        this.tree6 = jungle.getTree6();
+        this.tree7 = jungle.getTree7();
+        this.canHitGrid = jungle.getCantHitGrid();
+
+
         nameLabel1.setText(player1.getName());
         nameLabel2.setText(player2.getName());
         monkeyOneImg.setLayoutX(monkey1.getStart_x());
@@ -155,8 +176,8 @@ public class GameScreen {
         monkeyOneImg.setVisible(true);
         monkeyTwoImg.setVisible(true);
         monkeyOneImg.isSmooth();
-        tree1.setVisible(true); tree2.setVisible(true); tree3.setVisible(true); tree4.setVisible(true);
-        tree5.setVisible(true); tree6.setVisible(true); tree7.setVisible(true);
+        Tre1.setVisible(true); Tre2.setVisible(true); Tre3.setVisible(true); Tre4.setVisible(true);
+        Tre5.setVisible(true); Tre6.setVisible(true); Tre7.setVisible(true);
         timer();
     }
 
@@ -254,7 +275,8 @@ public class GameScreen {
     }
 
     public void runThread() {
-        hitBox();
+        world.hitBox(player1);
+        jungle.hitBoxtrees();
         list = new ArrayList<>();
         if (player1.getTurn()) {
             Banana banana = new Banana(playerOneVelocity, 9.82, playerOneAngle);
@@ -305,26 +327,6 @@ public class GameScreen {
 
         } else if(MainScene.luftFlag) {
             luftLabel.setText("\u2190" + Math.abs(MainScene.modstand) + " m/s");
-        }
-    }
-
-    public void hitBox() {
-        if (!player1.getTurn()) {
-            for (int i = monkey1.getStart_y(); i < monkey1.getEnd_y(); i++) {
-                for (int k = monkey1.getStart_x(); k < monkey1.getEnd_x(); k++) {
-                    if (i >= 0 && k >= 0 && i < world.getHeight() && k < world.getWidth()) {
-                        canHitGrid[i][k] = true;
-                    }
-                }
-            }
-        } else {
-            for (int i = monkey2.getStart_y(); i < monkey2.getEnd_y(); i++) {
-                for (int k = monkey2.getStart_x(); k < monkey2.getEnd_x(); k++) {
-                    if(i >= 0 && k >= 0 && i < world.getHeight() && k < world.getWidth()) {
-                        canHitGrid[i][k] = true;
-                    }
-                }
-            }
         }
     }
 
