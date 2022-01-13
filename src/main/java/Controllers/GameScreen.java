@@ -50,7 +50,8 @@ public class GameScreen {
     private Jungle jungle;
 
     private List<Integer> list = new ArrayList<>();
-    public boolean canHitGrid[][];
+    public boolean canHitGrid_world[][];
+    public boolean canHitGrid_jungle[][];
     private int[] bananaArr;
     private int point1 = 0;
     private int point2 = 0;
@@ -69,6 +70,7 @@ public class GameScreen {
     private static int airResistance;
     public Timer timer;
     public TimeAdder timeAdder;
+    public boolean stop = false;
 
     public void timer() {
         timer = new Timer();
@@ -142,7 +144,7 @@ public class GameScreen {
         this.world = game.getWorld();
         this.monkey1 = world.getMonkey1();
         this.monkey2 = world.getMonkey2();
-        this.canHitGrid = world.getCantHitGrid();
+        this.canHitGrid_world = world.getCantHitGrid();
 
         this.jungle = game.getJungle();
         this.tree1 = jungle.getTree1();
@@ -152,7 +154,7 @@ public class GameScreen {
         this.tree5 = jungle.getTree5();
         this.tree6 = jungle.getTree6();
         this.tree7 = jungle.getTree7();
-        this.canHitGrid = jungle.getCantHitGrid();
+        this.canHitGrid_jungle = jungle.getCantHitGrid();
 
 
         nameLabel1.setText(player1.getName());
@@ -293,6 +295,9 @@ public class GameScreen {
                 makeBanana();
                 simulateSlow(-1);
                 bananaHit(monkeyTwoImg);
+                if(stop) {
+                    break;
+                }
             }
             simulateSlow(200);
             player1.setTurn(false);
@@ -310,6 +315,9 @@ public class GameScreen {
                 makeBanana();
                 simulateSlow(-1);
                 bananaHit(monkeyOneImg);
+                if(stop) {
+                    break;
+                }
             }
             simulateSlow(200);
             player1.setTurn(true);
@@ -320,11 +328,10 @@ public class GameScreen {
         simulateSlow(0);
         bananaImg.setVisible(false);
     }
+
     public void direction(){
         if (MainScene.modstand < 0 && MainScene.luftFlag){
             luftLabel.setText("\u2192 " + Math.abs(MainScene.modstand) + " m/s");
-
-
         } else if(MainScene.luftFlag) {
             luftLabel.setText("\u2190" + Math.abs(MainScene.modstand) + " m/s");
         }
@@ -348,13 +355,11 @@ public class GameScreen {
     public List<Integer> makeCurve(Banana banana) {
 
         MainScene.modstand = MainScene.modstand*(-1);
-        System.out.println(MainScene.modstand);
 
         int x = 1;
         while (banana.trajectory(x) > - monkeyOneImg.getFitHeight()) {
             this.list.add(banana.trajectory(x));
             x++;
-            //System.out.println(banana.trajectory(x));
         }
         return this.list;
     }
@@ -379,11 +384,13 @@ public class GameScreen {
     public void bananaHit(ImageView monkey) {
         explosion.setVisible(false);
         flag = false;
+        stop = false;
+        STOP:
         for (int j = (int) bananaImg.getLayoutY(); j < (int) bananaImg.getLayoutY() + bananaArr[0]; j++) {
             for (int k = (int) bananaImg.getLayoutX(); k < (int) bananaImg.getLayoutX() + bananaArr[1]; k++) {
                 if (player1.getTurn() && j >= 0 && k >= monkey1.getEnd_x() && j <
                         world.getHeight() && k < world.getWidth()) {
-                    if(canHitGrid[j][k] || bananaExplosion(j, k)) {
+                    if(canHitGrid_world[j][k] || bananaExplosion(j, k) || canHitGrid_jungle[j][k]) {
                         bananaImg.setVisible(false);
                         explosion.setVisible(true);
                         if (bananaImg.getLayoutX() > monkey2.getStart_x() - 50) {
@@ -391,12 +398,14 @@ public class GameScreen {
                             poof2.setVisible(true);
                             flag = true;
                         }
+                        stop = true;
+                        break STOP;
                     } else{
                         noHit();
                     }
                 } else if (!player1.getTurn() && j >= 0 && k >= 0 && j <
                         world.getHeight() && k < (world.getWidth()) - monkeyTwoImg.getFitWidth()) {
-                    if(canHitGrid[j][k] || bananaExplosion(j, k)) {
+                    if(canHitGrid_world[j][k] || bananaExplosion(j, k) || canHitGrid_jungle[j][k]) {
                         bananaImg.setVisible(false);
                         explosion.setVisible(true);
                         if (bananaImg.getLayoutX() < monkey1.getEnd_x() + 50){
@@ -404,6 +413,8 @@ public class GameScreen {
                             poof1.setVisible(true);
                             flag = true;
                         }
+                        stop = true;
+                        break STOP;
                     } else{
                         noHit();
                     }
@@ -420,8 +431,8 @@ public class GameScreen {
 
     public boolean bananaExplosion(int y, int x) {
         if((x + (world.getWidth() / 10)) < world.getWidth() && (x - (world.getWidth() / 10)) > 0) {
-            return y > world.getHeight() - 3 && ((canHitGrid[y][(x - (world.getWidth() / 10))]) ||
-                    (canHitGrid[y][(x + (world.getWidth() / 10))]));
+            return y > world.getHeight() - 3 && ((canHitGrid_jungle[y][(x - (world.getWidth() / 10))]) ||
+                    (canHitGrid_jungle[y][(x + (world.getWidth() / 10))]));
         }
         return false;
     }
