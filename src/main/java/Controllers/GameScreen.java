@@ -107,8 +107,6 @@ public class GameScreen {
         monkeyOneImg.isSmooth();
         tree1.setVisible(true); tree2.setVisible(true); tree3.setVisible(true); tree4.setVisible(true);
         tree5.setVisible(true); tree6.setVisible(true); tree7.setVisible(true);
-        health100_pl1.setVisible(true);
-        health100_pl2.setVisible(true);
     }
 
     public void makeBoardVisible() {
@@ -120,6 +118,8 @@ public class GameScreen {
         pl2NameLabel.setVisible(true);
         nameLabel1.setVisible(true);
         nameLabel2.setVisible(true);
+        health100_pl1.setVisible(true);
+        health100_pl2.setVisible(true);
         if (player1.getTurn()){
             pl1AngLabel.setVisible(true);
             pl1VelLabel.setVisible(true);
