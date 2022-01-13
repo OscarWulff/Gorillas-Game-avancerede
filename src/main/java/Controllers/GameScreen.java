@@ -30,16 +30,12 @@ public class GameScreen {
     public ImageView explosion;
     public ImageView barLeft; public ImageView barLower;
     public ImageView barUpper; public ImageView barRight;
-    public ImageView health100_pl1;
-    public ImageView health100_pl2;
-    public ImageView health75_pl1;
-    public ImageView health50_pl1;
-    public ImageView health25_pl1;
-    public ImageView health0_pl1;
-    public ImageView health75_pl2;
-    public ImageView health50_pl2;
-    public ImageView health25_pl2;
-    public ImageView health0_pl2;
+
+    public ImageView health100_pl1; public ImageView health100_pl2; public ImageView health75_pl1; public ImageView health50_pl1; public ImageView health25_pl1;
+    public ImageView health0_pl1; public ImageView health75_pl2; public ImageView health50_pl2; public ImageView health25_pl2; public ImageView health0_pl2;
+
+    public ImageView tree1; public ImageView tree2; public ImageView tree3; public ImageView tree4;
+    public ImageView tree5; public ImageView tree6; public ImageView tree7;
 
 
     private Player player1; private Player player2;
@@ -109,6 +105,10 @@ public class GameScreen {
         monkeyOneImg.setVisible(true);
         monkeyTwoImg.setVisible(true);
         monkeyOneImg.isSmooth();
+        tree1.setVisible(true); tree2.setVisible(true); tree3.setVisible(true); tree4.setVisible(true);
+        tree5.setVisible(true); tree6.setVisible(true); tree7.setVisible(true);
+        health100_pl1.setVisible(true);
+        health100_pl2.setVisible(true);
     }
 
     public void makeBoardVisible() {
