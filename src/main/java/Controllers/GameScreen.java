@@ -42,6 +42,7 @@ public class GameScreen {
     public Label minutes;
     public Label seconds;
     public ImageView pauseButton;
+    public ImageView playButton;
 
 
     private Player player1; private Player player2;
@@ -73,6 +74,7 @@ public class GameScreen {
     public Timer timer;
     public TimeAdder timeAdder;
     public boolean stop = false;
+    public boolean pauseOn = false;
 
     public void timer() {
         timer = new Timer();
@@ -470,6 +472,12 @@ public class GameScreen {
     }
 
     public void pauseButtonClicked(MouseEvent mouseEvent) {
-        System.out.println("hej");
+        pauseButton.setVisible(false);
+        playButton.setVisible(true);
+    }
+
+    public void playButtonClicked(MouseEvent mouseEvent) {
+        playButton.setVisible(false);
+        pauseButton.setVisible(true);
     }
 }

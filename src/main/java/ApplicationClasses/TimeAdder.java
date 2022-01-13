@@ -1,6 +1,8 @@
 package ApplicationClasses;
 
 import ApplicationClasses.*;
+import Controllers.GameScreen;
+
 import java.util.TimerTask;
 
 
