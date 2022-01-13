@@ -74,7 +74,6 @@ public class GameScreen {
     public Timer timer;
     public TimeAdder timeAdder;
     public boolean stop = false;
-    public boolean pauseOn = false;
 
     public void timer() {
         timer = new Timer();
@@ -472,12 +471,10 @@ public class GameScreen {
     }
 
     public void pauseButtonClicked(MouseEvent mouseEvent) {
-        pauseButton.setVisible(false);
-        playButton.setVisible(true);
+        Platform.enterNestedEventLoop(pauseButton);
     }
 
     public void playButtonClicked(MouseEvent mouseEvent) {
-        playButton.setVisible(false);
-        pauseButton.setVisible(true);
+        Platform.exitNestedEventLoop(playButton, null);
     }
 }
