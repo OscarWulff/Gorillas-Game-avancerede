@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import java.io.IOException;
 import java.util.*;
 
+
 public class GameScreen {
     private static Game game;
     @FXML
@@ -37,6 +38,8 @@ public class GameScreen {
     public ImageView tree1; public ImageView tree2; public ImageView tree3; public ImageView tree4;
     public ImageView tree5; public ImageView tree6; public ImageView tree7;
     public Label luftLabel;
+    public Label minutes;
+    public Label seconds;
 
 
     private Player player1; private Player player2;
@@ -55,6 +58,44 @@ public class GameScreen {
     private int pl1_hits = 0;
     private int pl2_hits = 0;
     private static int airResistance;
+    public Timer timer;
+    public TimeAdder timeAdder;
+
+    public void timer() {
+        timer = new Timer();
+        timeAdder = new TimeAdder();
+        timer.schedule(timeAdder, 1000, 1000);
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                setTimer();
+            }
+        }, 1000, 1000);
+    }
+
+    public void setTimer() {
+        Platform.runLater(new Runnable(){
+            @Override
+            public void run() {
+                if(timeAdder.getTime() < 10) {
+                    seconds.setText(String.valueOf("0" + timeAdder.getTime()));
+                } else if(timeAdder.getTime() < 60) {
+                    seconds.setText(String.valueOf(timeAdder.getTime()));
+                } else {
+                    if(timeAdder.getTime()/60 < 10) {
+                        minutes.setText(String.valueOf("0" + timeAdder.getTime()/60));
+                    } else {
+                        minutes.setText(String.valueOf(timeAdder.getTime()/60));
+                    }
+                    if(timeAdder.getTime()%60 < 10) {
+                        seconds.setText(String.valueOf("0" + timeAdder.getTime()%60));
+                    } else {
+                        seconds.setText(String.valueOf(timeAdder.getTime()%60));
+                    }
+                }
+            }
+        });
+    }
 
 
     public void goToMainScene() throws IOException {
@@ -116,6 +157,7 @@ public class GameScreen {
         monkeyOneImg.isSmooth();
         tree1.setVisible(true); tree2.setVisible(true); tree3.setVisible(true); tree4.setVisible(true);
         tree5.setVisible(true); tree6.setVisible(true); tree7.setVisible(true);
+        timer();
     }
 
     public void makeBoardVisible() {
