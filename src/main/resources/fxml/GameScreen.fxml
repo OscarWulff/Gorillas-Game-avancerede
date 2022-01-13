@@ -94,87 +94,87 @@
          <Image url="@images/bar_height.png" />
       </image>
    </ImageView>
-   <ImageView fitHeight="409.0" fitWidth="195.0" layoutX="400.0" layoutY="392.0">
+   <ImageView fx:id="tree3" fitHeight="409.0" fitWidth="195.0" layoutX="400.0" layoutY="392.0" visible="false">
       <image>
          <Image url="@images/tree1.png" />
       </image>
    </ImageView>
-   <ImageView fitHeight="200.0" fitWidth="195.0" layoutX="205.0" layoutY="608.0">
+   <ImageView fx:id="tree2" fitHeight="200.0" fitWidth="195.0" layoutX="205.0" layoutY="608.0" visible="false">
       <image>
          <Image url="@images/tree2.png" />
       </image>
    </ImageView>
-   <ImageView fitHeight="290.0" fitWidth="195.0" layoutX="8.0" layoutY="519.0">
+   <ImageView fx:id="tree1" fitHeight="290.0" fitWidth="195.0" layoutX="8.0" layoutY="519.0" visible="false">
       <image>
          <Image url="@images/tree3.png" />
       </image>
    </ImageView>
-   <ImageView fitHeight="200.0" fitWidth="195.0" layoutX="1103.0" layoutY="608.0">
+   <ImageView fx:id="tree7" fitHeight="200.0" fitWidth="195.0" layoutX="1103.0" layoutY="608.0" visible="false">
       <image>
          <Image url="@images/tree4.png" />
       </image>
    </ImageView>
-   <ImageView fitHeight="290.0" fitWidth="158.0" layoutX="938.0" layoutY="512.0" nodeOrientation="RIGHT_TO_LEFT">
+   <ImageView fx:id="tree6" fitHeight="290.0" fitWidth="158.0" layoutX="938.0" layoutY="512.0" nodeOrientation="RIGHT_TO_LEFT" visible="false">
       <image>
          <Image url="@images/tree3.png" />
       </image>
    </ImageView>
-   <ImageView fitHeight="538.0" fitWidth="246.0" layoutX="695.0" layoutY="270.0" nodeOrientation="RIGHT_TO_LEFT">
+   <ImageView fx:id="tree5" fitHeight="538.0" fitWidth="246.0" layoutX="695.0" layoutY="270.0" nodeOrientation="RIGHT_TO_LEFT" visible="false">
       <image>
          <Image url="@images/tree2.png" />
       </image>
    </ImageView>
-   <ImageView fitHeight="251.0" fitWidth="229.0" layoutX="570.0" layoutY="555.0">
+   <ImageView fx:id="tree4" fitHeight="251.0" fitWidth="229.0" layoutX="570.0" layoutY="555.0" visible="false">
       <image>
          <Image url="@images/tree1.png" />
       </image>
    </ImageView>
-   <ImageView fx:id="healt100_pl1" fitHeight="92.0" fitWidth="184.0" layoutX="200.0" layoutY="27.0">
+   <ImageView fx:id="health100_pl1" fitHeight="92.0" fitWidth="184.0" layoutX="200.0" layoutY="27.0" visible="false">
       <image>
          <Image url="@images/100%25.png" />
       </image>
    </ImageView>
-   <ImageView fx:id="healt100_pl2" fitHeight="92.0" fitWidth="184.0" layoutX="898.0" layoutY="25.0">
+   <ImageView fx:id="health100_pl2" fitHeight="92.0" fitWidth="184.0" layoutX="898.0" layoutY="25.0" visible="false">
       <image>
          <Image url="@images/100%25.png" />
       </image>
    </ImageView>
-   <ImageView fx:id="healt75_pl1" fitHeight="92.0" fitWidth="184.0" layoutX="200.0" layoutY="27.0" visible="false">
+   <ImageView fx:id="health75_pl1" fitHeight="92.0" fitWidth="184.0" layoutX="200.0" layoutY="27.0" visible="false">
       <image>
          <Image url="@images/75%25.png" />
       </image>
    </ImageView>
-   <ImageView fx:id="healt50_pl1" fitHeight="92.0" fitWidth="184.0" layoutX="200.0" layoutY="27.0" visible="false">
+   <ImageView fx:id="health50_pl1" fitHeight="92.0" fitWidth="184.0" layoutX="200.0" layoutY="27.0" visible="false">
       <image>
          <Image url="@images/50%25.png" />
       </image>
    </ImageView>
-   <ImageView fx:id="healt25_pl1" fitHeight="92.0" fitWidth="184.0" layoutX="200.0" layoutY="27.0" visible="false">
+   <ImageView fx:id="health25_pl1" fitHeight="92.0" fitWidth="184.0" layoutX="200.0" layoutY="27.0" visible="false">
       <image>
          <Image url="@images/25%25.png" />
       </image>
    </ImageView>
-   <ImageView fx:id="healt0_pl1" fitHeight="92.0" fitWidth="184.0" layoutX="200.0" layoutY="27.0" visible="false">
+   <ImageView fx:id="health0_pl1" fitHeight="92.0" fitWidth="184.0" layoutX="200.0" layoutY="27.0" visible="false">
       <image>
          <Image url="@images/0%25.png" />
       </image>
    </ImageView>
-   <ImageView fx:id="healt75_pl2" fitHeight="92.0" fitWidth="184.0" layoutX="898.0" layoutY="25.0" visible="false">
+   <ImageView fx:id="health75_pl2" fitHeight="92.0" fitWidth="184.0" layoutX="898.0" layoutY="25.0" visible="false">
       <image>
          <Image url="@images/75%25.png" />
       </image>
    </ImageView>
-   <ImageView fx:id="healt50_pl2" fitHeight="92.0" fitWidth="184.0" layoutX="898.0" layoutY="25.0" visible="false">
+   <ImageView fx:id="health50_pl2" fitHeight="92.0" fitWidth="184.0" layoutX="898.0" layoutY="25.0" visible="false">
       <image>
          <Image url="@images/50%25.png" />
       </image>
    </ImageView>
-   <ImageView fx:id="healt25_pl2" fitHeight="92.0" fitWidth="184.0" layoutX="898.0" layoutY="25.0" visible="false">
+   <ImageView fx:id="health25_pl2" fitHeight="92.0" fitWidth="184.0" layoutX="898.0" layoutY="25.0" visible="false">
       <image>
          <Image url="@images/25%25.png" />
       </image>
    </ImageView>
-   <ImageView fx:id="healt0_pl2" fitHeight="92.0" fitWidth="184.0" layoutX="898.0" layoutY="25.0" visible="false">
+   <ImageView fx:id="health0_pl2" fitHeight="92.0" fitWidth="184.0" layoutX="898.0" layoutY="25.0" visible="false">
       <image>
          <Image url="@images/0%25.png" />
       </image>
@@ -184,4 +184,9 @@
          <Image url="@images/pixel-poof.png" />
       </image>
    </ImageView>
+   <Label fx:id="luftLabel" layoutX="600.0" layoutY="126.0" prefHeight="36.0" prefWidth="118.0" text="" textAlignment="CENTER" visible="false">
+      <font>
+         <Font name="System Bold" size="25.0" />
+      </font>
+   </Label>
 </AnchorPane>
