@@ -54,7 +54,6 @@ public class MainScene {
             throw new IllegalInputException("Height must be between 0 and 1000, " +
                     "and width between 0 and 1700");
         }
-
         GameScreen.setGame(game);
         SceneManager.changeScene("fxml/GameScreen.fxml");
     }
@@ -76,7 +75,6 @@ public class MainScene {
         Random rand = new Random();
         int spanMax = 30;
         int spanMin = -30;
-
         this.modstand = rand.nextInt(spanMax - spanMin) + spanMin;
         GameScreen.setAirresistance(modstand);
     }

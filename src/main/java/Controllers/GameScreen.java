@@ -137,6 +137,7 @@ public class GameScreen {
         player1.setTurn(false);
         player2.setTurn(true);
         makeBoardVisible();
+        MainScene.modstand *= -1;
     }
 
     public void initGameValues(){
@@ -148,10 +149,13 @@ public class GameScreen {
         this.monkey2 = world.getMonkey2();
         this.canHitGrid_world = world.getCantHitGrid();
 
+        poof1.setLayoutX(monkey1.getStart_x());
+        poof1.setLayoutY(monkey1.getStart_y());
+
+        poof2.setLayoutX(monkey2.getStart_x());
+        poof2.setLayoutY(monkey2.getStart_y());
+
         this.jungle = game.getJungle();
-
-
-
         this.tree1 = jungle.getTree1();
         this.tree2 = jungle.getTree2();
         this.tree3 = jungle.getTree3();
@@ -161,11 +165,7 @@ public class GameScreen {
         this.tree7 = jungle.getTree7();
         this.tree8 = jungle.getTree8();
 
-
-
-
         this.canHitGrid_jungle = jungle.getCantHitGrid();
-
         nameLabel1.setText(player1.getName());
         nameLabel2.setText(player2.getName());
         monkeyOneImg.setLayoutX(monkey1.getStart_x());
@@ -354,6 +354,7 @@ public class GameScreen {
     }
 
     public List<Integer> makeCurve(Banana banana) {
+        MainScene.modstand *= -1;
         int x = 0;
         while (banana.trajectory(x) > - 1000
                 && (x < (monkey2.getStart_x() - monkey1.getStart_x()) + (bananaImg.getFitWidth() / 2))) {
@@ -388,13 +389,13 @@ public class GameScreen {
             for (int k = (int) bananaImg.getLayoutX(); k < (int) bananaImg.getLayoutX() + bananaArr[1]; k++) {
                 if (player1.getTurn() && j >= 0 && k >= monkey1.getEnd_x() && j <
                         1000 && k < 1700) {
-                    if(canHitGrid_world[j][k] || canHitGrid_jungle[j][k]) {
+                    if(canHitGrid_world[j][k] || bananaExplosion(j, k) || canHitGrid_jungle[j][k]) {
                         bananaImg.setVisible(false);
                         explosion.setVisible(true);
-                        System.out.println("j: " + j);
-                        System.out.println("k: " + k);
                         if (bananaImg.getLayoutX() > monkey2.getStart_x() - bananaImg.getFitWidth() &&
-                                bananaImg.getLayoutX() < monkey2.getEnd_x() + bananaImg.getFitWidth() && bananaExplosion(j, k)) {
+                                bananaImg.getLayoutX() < monkey2.getEnd_x() + bananaImg.getFitWidth() &&
+                                bananaImg.getLayoutY() > monkey2.getStart_y() - bananaImg.getFitWidth() &&
+                                bananaImg.getLayoutY() < monkey2.getEnd_y() + bananaImg.getFitWidth()) {
                             monkey.setVisible(false);
                             poof2.setVisible(true);
                             flag = true;
@@ -410,7 +411,9 @@ public class GameScreen {
                         bananaImg.setVisible(false);
                         explosion.setVisible(true);
                         if (bananaImg.getLayoutX() < monkey1.getEnd_x() + bananaImg.getFitWidth() &&
-                                bananaImg.getLayoutX() > monkey1.getStart_x() - bananaImg.getFitWidth()){
+                                bananaImg.getLayoutX() > monkey1.getStart_x() - bananaImg.getFitWidth() &&
+                                bananaImg.getLayoutY() > monkey1.getStart_y() - bananaImg.getFitWidth() &&
+                                bananaImg.getLayoutY() < monkey1.getEnd_y() + bananaImg.getFitWidth()){
                             monkey.setVisible(false);
                             poof1.setVisible(true);
                             flag = true;
