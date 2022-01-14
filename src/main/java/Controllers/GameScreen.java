@@ -37,7 +37,7 @@ public class GameScreen {
     public ImageView health0_pl1; public ImageView health75_pl2; public ImageView health50_pl2; public ImageView health25_pl2; public ImageView health0_pl2;
 
     public ImageView Tre1; public ImageView Tre2; public ImageView Tre3; public ImageView Tre4;
-    public ImageView Tre5; public ImageView Tre6; public ImageView Tre7;
+    public ImageView Tre5; public ImageView Tre6; public ImageView Tre7; public ImageView Tre8;
     public Label luftLabel;
     public Label minutes;
     public Label seconds;
@@ -67,6 +67,7 @@ public class GameScreen {
     private Tree tree5;
     private Tree tree6;
     private Tree tree7;
+    private Tree tree8;
     private boolean flag;
     private int pl1_hits = 0;
     private int pl2_hits = 0;
@@ -158,41 +159,9 @@ public class GameScreen {
         this.tree5 = jungle.getTree5();
         this.tree6 = jungle.getTree6();
         this.tree7 = jungle.getTree7();
+        this.tree8 = jungle.getTree8();
 
-        tree1.setStart_x((int)Tre1.getLayoutX());
-        tree1.setEnd_x((int) (Tre1.getLayoutX() + Tre1.getFitWidth()));
-        tree1.setStart_y((int)Tre1.getLayoutY());
-        tree1.setEnd_y((int) (Tre1.getLayoutX() + Tre1.getFitHeight()));
 
-        tree2.setStart_x((int)Tre2.getLayoutX());
-        tree2.setEnd_x((int) (Tre2.getLayoutX() + Tre2.getFitWidth()));
-        tree2.setStart_y((int)Tre2.getLayoutY());
-        tree2.setEnd_y((int) (Tre2.getLayoutX() + Tre2.getFitHeight()));
-
-        tree3.setStart_x((int)Tre3.getLayoutX());
-        tree3.setEnd_x((int) (Tre3.getLayoutX() + Tre3.getFitWidth()));
-        tree3.setStart_y((int)Tre3.getLayoutY());
-        tree3.setEnd_y((int) (Tre3.getLayoutX() + Tre3.getFitHeight()));
-
-        tree4.setStart_x((int)Tre4.getLayoutX());
-        tree4.setEnd_x((int) (Tre4.getLayoutX() + Tre4.getFitWidth()));
-        tree4.setStart_y((int)Tre4.getLayoutY());
-        tree4.setEnd_y((int) (Tre4.getLayoutX() + Tre4.getFitHeight()));
-
-        tree5.setStart_x((int)Tre5.getLayoutX());
-        tree5.setEnd_x((int) (Tre5.getLayoutX() + Tre5.getFitWidth()));
-        tree5.setStart_y((int)Tre5.getLayoutY());
-        tree5.setEnd_y((int) (Tre5.getLayoutX() + Tre5.getFitHeight()));
-
-        tree6.setStart_x((int)Tre6.getLayoutX());
-        tree6.setEnd_x((int) (Tre6.getLayoutX() + Tre6.getFitWidth()));
-        tree6.setStart_y((int)Tre6.getLayoutY());
-        tree6.setEnd_y((int) (Tre6.getLayoutX() + Tre6.getFitHeight()));
-
-        tree7.setStart_x((int)Tre7.getLayoutX());
-        tree7.setEnd_x((int) (Tre7.getLayoutX() + Tre7.getFitWidth()));
-        tree7.setStart_y((int)Tre7.getLayoutY());
-        tree7.setEnd_y((int) (Tre7.getLayoutX() + Tre7.getFitHeight()));
 
 
         this.canHitGrid_jungle = jungle.getCantHitGrid();
@@ -215,7 +184,7 @@ public class GameScreen {
         monkeyOneImg.setVisible(true);
         monkeyTwoImg.setVisible(true);
         Tre1.setVisible(true); Tre2.setVisible(true); Tre3.setVisible(true); Tre4.setVisible(true);
-        Tre5.setVisible(true); Tre6.setVisible(true); Tre7.setVisible(true);
+        Tre5.setVisible(true); Tre6.setVisible(true); Tre7.setVisible(true); Tre8.setVisible(true);
         timer();
     }
 

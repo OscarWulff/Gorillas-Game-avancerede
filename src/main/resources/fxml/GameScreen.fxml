@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="1000.0" prefWidth="1700.0" style="-fx-background-color: #5fCde4;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.GameScreen">
+<AnchorPane prefHeight="1000.0" prefWidth="1700.0" style="-fx-background-color: #5fCde4;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.GameScreen">
    <Button fx:id="btnBack" layoutX="1536.0" onAction="#goToMainScene" text="Let's go back to Main Screen" AnchorPane.rightAnchor="0.0">Let's go back to scene 1</Button>
    <ImageView fx:id="monkeyOneImg" fitHeight="92.0" fitWidth="118.0" layoutY="708.0" pickOnBounds="true" preserveRatio="true" visible="false">
       <image>
@@ -95,27 +95,27 @@
          <Image url="@images/tree1.png" />
       </image>
    </ImageView>
-   <ImageView fx:id="Tre2" fitHeight="200.0" fitWidth="195.0" layoutX="205.0" layoutY="800.0" visible="false">
+   <ImageView fx:id="Tre2" fitHeight="214.0" fitWidth="203.0" layoutX="206.0" layoutY="785.0" visible="false">
       <image>
          <Image url="@images/tree2.png" />
       </image>
    </ImageView>
-   <ImageView fx:id="Tre1" fitHeight="290.0" fitWidth="195.0" layoutX="8.0" layoutY="710.0" visible="false">
+   <ImageView fx:id="Tre1" fitHeight="290.0" fitWidth="229.0" layoutX="8.0" layoutY="710.0" visible="false">
       <image>
          <Image url="@images/tree3.png" />
       </image>
    </ImageView>
-   <ImageView fx:id="Tre7" fitHeight="200.0" fitWidth="195.0" layoutX="1103.0" layoutY="800.0" visible="false">
+   <ImageView fx:id="Tre7" fitHeight="200.0" fitWidth="184.0" layoutX="1154.0" layoutY="800.0" visible="false">
       <image>
          <Image url="@images/tree4.png" />
       </image>
    </ImageView>
-   <ImageView fx:id="Tre6" fitHeight="290.0" fitWidth="158.0" layoutX="938.0" layoutY="710.0" nodeOrientation="RIGHT_TO_LEFT" visible="false">
+   <ImageView fx:id="Tre6" fitHeight="304.0" fitWidth="158.0" layoutX="992.0" layoutY="696.0" nodeOrientation="RIGHT_TO_LEFT" visible="false">
       <image>
          <Image url="@images/tree3.png" />
       </image>
    </ImageView>
-   <ImageView fx:id="Tre5" fitHeight="538.0" fitWidth="246.0" layoutX="695.0" layoutY="462.0" nodeOrientation="RIGHT_TO_LEFT" visible="false">
+   <ImageView fx:id="Tre5" fitHeight="526.0" fitWidth="277.0" layoutX="726.0" layoutY="474.0" nodeOrientation="RIGHT_TO_LEFT" visible="false">
       <image>
          <Image url="@images/tree2.png" />
       </image>
@@ -213,6 +213,11 @@
    <ImageView fx:id="explosion" fitHeight="100.0" fitWidth="150.0" layoutX="9.0" layoutY="607.0" pickOnBounds="true" preserveRatio="true" visible="false">
       <image>
          <Image url="@images/png-pixel-art-explosion.png" />
+      </image>
+   </ImageView>
+   <ImageView fx:id="Tre8" fitHeight="431.0" fitWidth="403.0" layoutX="1297.0" layoutY="569.0" visible="false">
+      <image>
+         <Image url="@images/tree2.png" />
       </image>
    </ImageView>
 </AnchorPane>

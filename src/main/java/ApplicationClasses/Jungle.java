@@ -1,9 +1,8 @@
 package ApplicationClasses;
 
-public class Jungle{
+public class Jungle {
     private int width;
     private int height;
-    private Player player1;
     private Tree tree1;
     private Tree tree2;
     private Tree tree3;
@@ -11,19 +10,21 @@ public class Jungle{
     private Tree tree5;
     private Tree tree6;
     private Tree tree7;
+    private Tree tree8;
     private boolean[][] canHitGrid;
 
     public Jungle(int height, int width) {
-        this.height = height;
-        this.width = width;
+        this.height = 1000;
+        this.width = 1700;
 
-        this.tree1 = new Tree(8,203,height - 256, height); // height - 281 + 25 hele vejen ned.
-        this.tree2 = new Tree(205,400,height - 167, height);
-        this.tree3 = new Tree(400,595,height - 383,height);
-        this.tree4 = new Tree(570,799,height - 220, height);
-        this.tree5 = new Tree(695,941,height - 505, height);
-        this.tree6 = new Tree(938,1096,height - 263, height);
-        this.tree7 = new Tree(1103,1303,height - 167, height);
+        this.tree1 = new Tree(8, 237, height - 265, height); // height - 281 + 25 hele vejen ned.
+        this.tree2 = new Tree(206, 399, height - 189, height);
+        this.tree3 = new Tree(400, 595, height - 384, height);
+        this.tree4 = new Tree(570, 799, height - 226, height);
+        this.tree5 = new Tree(726, 1003, height - 501, height);
+        this.tree6 = new Tree(992, 1150, height - 279, height);
+        this.tree7 = new Tree(1154, 1338, height - 184, height);
+        this.tree8 = new Tree(1297, 1728, height - 406, height);
 
         canHitGrid = new boolean[1000][1700];
         makeGround();
@@ -32,17 +33,42 @@ public class Jungle{
     public int getHeight() {
         return height;
     }
+
     public int getWidth() {
         return width;
     }
 
-    public Tree getTree1() { return tree1; }
-    public Tree getTree2() { return tree2; }
-    public Tree getTree3() { return tree3; }
-    public Tree getTree4() { return tree4; }
-    public Tree getTree5() { return tree5; }
-    public Tree getTree6() { return tree6; }
-    public Tree getTree7() { return tree7; }
+    public Tree getTree1() {
+        return tree1;
+    }
+
+    public Tree getTree2() {
+        return tree2;
+    }
+
+    public Tree getTree3() {
+        return tree3;
+    }
+
+    public Tree getTree4() {
+        return tree4;
+    }
+
+    public Tree getTree5() {
+        return tree5;
+    }
+
+    public Tree getTree6() {
+        return tree6;
+    }
+
+    public Tree getTree7() {
+        return tree7;
+    }
+
+    public Tree getTree8() {
+        return tree8;
+    }
 
     public boolean[][] getCantHitGrid() {
         return canHitGrid;
@@ -58,20 +84,20 @@ public class Jungle{
 
 
     public void hitBoxtrees() {
-            for (int i = tree1.getStart_y(); i < tree1.getEnd_y(); i++) {
-                for (int k = tree1.getStart_x(); k < tree1.getEnd_x(); k++) {
-                    if (i >= 0 && k >= 0 && i < height && k < width) {
-                        canHitGrid[i][k] = true;
-                    }
+        for (int i = tree1.getStart_y(); i < tree1.getEnd_y(); i++) {
+            for (int k = tree1.getStart_x(); k < tree1.getEnd_x(); k++) {
+                if (i >= 0 && k >= 0 && i < height && k < width) {
+                    canHitGrid[i][k] = true;
                 }
             }
-            for (int i = tree2.getStart_y(); i < tree2.getEnd_y(); i++) {
-                for (int k = tree2.getStart_x(); k < tree2.getEnd_x(); k++) {
-                    if (i >= 0 && k >= 0 && i < height && k < width) {
-                        canHitGrid[i][k] = true;
-                    }
+        }
+        for (int i = tree2.getStart_y(); i < tree2.getEnd_y(); i++) {
+            for (int k = tree2.getStart_x(); k < tree2.getEnd_x(); k++) {
+                if (i >= 0 && k >= 0 && i < height && k < width) {
+                    canHitGrid[i][k] = true;
                 }
             }
+        }
         for (int i = tree3.getStart_y(); i < tree3.getEnd_y(); i++) {
             for (int k = tree3.getStart_x(); k < tree3.getEnd_x(); k++) {
                 if (i >= 0 && k >= 0 && i < height && k < width) {
@@ -102,6 +128,13 @@ public class Jungle{
         }
         for (int i = tree7.getStart_y(); i < tree7.getEnd_y(); i++) {
             for (int k = tree7.getStart_x(); k < tree7.getEnd_x(); k++) {
+                if (i >= 0 && k >= 0 && i < height && k < width) {
+                    canHitGrid[i][k] = true;
+                }
+            }
+        }
+        for (int i = tree8.getStart_y(); i < tree8.getEnd_y(); i++) {
+            for (int k = tree8.getStart_x(); k < tree8.getEnd_x(); k++) {
                 if (i >= 0 && k >= 0 && i < height && k < width) {
                     canHitGrid[i][k] = true;
                 }
