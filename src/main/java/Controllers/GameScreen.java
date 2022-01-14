@@ -149,11 +149,11 @@ public class GameScreen {
         this.monkey2 = world.getMonkey2();
         this.canHitGrid_world = world.getCantHitGrid();
 
-        poof1.setLayoutX(monkey1.getStart_x());
-        poof1.setLayoutY(monkey1.getStart_y());
+        poof1.setLayoutX(monkey1.getStart_x() - 50);
+        poof1.setLayoutY(monkey1.getStart_y() - 50);
 
-        poof2.setLayoutX(monkey2.getStart_x());
-        poof2.setLayoutY(monkey2.getStart_y());
+        poof2.setLayoutX(monkey2.getStart_x() - 50);
+        poof2.setLayoutY(monkey2.getStart_y() - 50);
 
         this.jungle = game.getJungle();
         this.tree1 = jungle.getTree1();
