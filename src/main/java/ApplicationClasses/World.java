@@ -1,5 +1,7 @@
 package ApplicationClasses;
 
+import Exceptions.IllegalInputException;
+
 public class World {
     private int height;
     private int width;
@@ -8,14 +10,16 @@ public class World {
     private boolean[][] canHitGrid;
 
 
-    public World(int height, int width) {
+    public World(int height, int width) throws IllegalInputException {
         this.height = height;
         this.width = width;
-        this.monkey1 = new Monkey(203, 321, height - 273, height);
-        this.monkey2 = new Monkey(width - 118, width, height - 282, height);
-
-        canHitGrid = new boolean[height][width];
+        this.monkey1 = new Monkey(calculatePosition(1), calculatePosition(2),
+                591 - 92, 591);
+        this.monkey2 = new Monkey(calculatePosition(3),
+                calculatePosition(4) , 800 - 92, 800);
+        canHitGrid = new boolean[1000][1700];
         makeGround();
+        makeWorld();
     }
 
     public int getHeight() {
@@ -46,21 +50,46 @@ public class World {
         }
     }
 
-    public void hitBox(Player player) {
-        if (!player.getTurn()) {
-            for (int i = monkey1.getStart_y(); i < monkey1.getEnd_y(); i++) {
-                for (int k = monkey1.getStart_x(); k < monkey1.getEnd_x(); k++) {
-                    if (i >= 0 && k >= 0 && i < height && k < width) {
-                        canHitGrid[i][k] = true;
-                    }
+    public void makeWorld(){
+        for (int i = 0; i < 1000; i++) {
+            for (int j = 0; j < 1700; j++) {
+                if (j < monkey1.getStart_x()) {
+                    canHitGrid[i][j] = true;
+                }
+                if (j > monkey2.getEnd_x()) {
+                    canHitGrid[i][j] = true;
                 }
             }
+        }
+    }
+
+    public int calculatePosition(int x) throws IllegalInputException{
+        switch (x) {
+            case 1:
+                return (1700 - width) / 2;
+            case 2:
+                return ((1700 - width) / 2) + 118;
+            case 3:
+                return 1700 - 118 - (1700 - width) / 2;
+            case 4:
+                return 1700 - (1700 - width) / 2;
+        }
+        throw new IllegalInputException("Only takes values from 1 to 4");
+    }
+
+    public void hitBox(Player player) {
+        if (!player.getTurn()) {
+            whichMonkey(monkey1);
         } else {
-            for (int i = monkey2.getStart_y(); i < monkey2.getEnd_y(); i++) {
-                for (int k = monkey2.getStart_x(); k < monkey2.getEnd_x(); k++) {
-                    if (i >= 0 && k >= 0 && i < height && k < width) {
-                        canHitGrid[i][k] = true;
-                    }
+            whichMonkey(monkey2);
+        }
+    }
+
+    public void whichMonkey(Monkey monkey) {
+        for (int i = monkey.getStart_y(); i < monkey.getEnd_y(); i++) {
+            for (int k = monkey.getStart_x(); k < monkey.getEnd_x(); k++) {
+                if (i >= 0 && k >= 0 && i < height && k < width) {
+                    canHitGrid[i][k] = true;
                 }
             }
         }

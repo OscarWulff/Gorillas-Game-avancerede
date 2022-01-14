@@ -25,7 +25,7 @@ public class Jungle{
         this.tree6 = new Tree(938,1096,height - 263, height);
         this.tree7 = new Tree(1103,1303,height - 167, height);
 
-        canHitGrid = new boolean[height][width];
+        canHitGrid = new boolean[1000][1700];
         makeGround();
     }
 

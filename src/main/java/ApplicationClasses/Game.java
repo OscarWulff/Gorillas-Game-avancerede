@@ -1,5 +1,7 @@
 package ApplicationClasses;
 
+import Exceptions.IllegalInputException;
+
 public class Game {
     private Player player1;
     private Player player2;
@@ -7,7 +9,7 @@ public class Game {
     private Jungle jungle;
 
 
-    public Game(String player1Name, String player2Name, int height, int length){
+    public Game(String player1Name, String player2Name, int height, int length) throws IllegalInputException {
         player1 = new Player(player1Name);
         player2 = new Player(player2Name);
         world = new World(height, length);

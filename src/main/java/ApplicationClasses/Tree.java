@@ -29,4 +29,19 @@ public class Tree{
     public int getEnd_y() {
         return end_y;
     }
+    public void setStart_x(int x) {
+        start_x = x;
+    }
+
+    public void setEnd_x(int x) {
+        end_x = x;
+    }
+
+    public void setStart_y(int y) {
+        start_y = y;
+    }
+
+    public void setEnd_y(int y) {
+        end_y = y;
+    }
 }
