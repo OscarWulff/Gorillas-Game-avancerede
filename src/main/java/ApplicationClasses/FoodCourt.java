@@ -1,5 +1,6 @@
 package ApplicationClasses;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class FoodCourt {
@@ -10,21 +11,38 @@ public class FoodCourt {
     private boolean[][] canHitGrid;
 
     public FoodCourt(int height, int width){
+        food = new HashMap<>();
+
         this.height = 1000;
         this.width = 1700;
 
-        food.put("burger", new Food(4, 281, 1000 - 207+25, 1000));
-        food.put("fries", new Food(273, 488, 1000 - 267+25, 1000));
-        food.put("donut", new Food(488, 688, 1000 - 200+25, 1000));
-        food.put("cupNoodle", new Food(665, 886, 1000 - 330+25, 1000));
-        food.put("cola",new Food(889, 1104, 1000 - 455+25, 1000));
-        food.put("kfc",new Food(1104, 1360, 1000 - 297+25, 1000));
-        food.put("sushi1",new Food(1322, 1502, 1000 - 72+25, 1000));
-        food.put("sushi2", new Food(1502, 1697, 1000 - 207+25, 1000));
+        food.put("burger", new Food(4, 281, 1000 - 207 + 25, 1000));
+        food.put("fries", new Food(273, 488, 1000 - 267 + 25, 1000));
+        food.put("donut", new Food(488, 688, 1000 - 200 + 25, 1000));
+        food.put("cupNoodle", new Food(665, 886, 1000 - 330 + 25, 1000));
+        food.put("cola",new Food(889, 1104, 1000 - 455 + 25, 1000));
+        food.put("kfc",new Food(1104, 1360, 1000 - 297 + 25, 1000));
+        food.put("sushi1",new Food(1322, 1502, 1000 - 72 + 25, 1000));
+        food.put("sushi2", new Food(1502, 1697, 1000 - 207 + 25, 1000));
 
         canHitGrid = new boolean[1000][1700];
         makeGround();
+    }
 
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public Map<String, Food> food() {
+        return food;
+    }
+
+    public boolean[][] getCantHitGrid() {
+        return canHitGrid;
     }
 
     public void makeGround() {
@@ -34,6 +52,8 @@ public class FoodCourt {
             }
         }
     }
+
+
 
 
     public void hitBoxFood() {
@@ -72,7 +92,7 @@ public class FoodCourt {
                 }
             }
         }
-        for (int i = food.get("kfc").getStart_y(); i <food.get("kfc").getEnd_y(); i++) {
+        for (int i = food.get("kfc").getStart_y(); i < food.get("kfc").getEnd_y(); i++) {
             for (int k = food.get("kfc").getStart_x(); k < food.get("kfc").getEnd_x(); k++) {
                 if (i >= 0 && k >= 0 && i < height && k < width) {
                     canHitGrid[i][k] = true;

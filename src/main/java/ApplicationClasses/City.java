@@ -53,7 +53,7 @@ public class City {
         }
 
 
-        public void hitBoxtrees() {
+        public void hitBoxbuildings() {
             for (int i = buildings.get(0).getStart_y(); i < buildings.get(0).getEnd_y(); i++) {
                 for (int k = buildings.get(0).getStart_x(); k < buildings.get(0).getEnd_x(); k++) {
                     if (i >= 0 && k >= 0 && i < height && k < width) {

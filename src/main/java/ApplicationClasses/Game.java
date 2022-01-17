@@ -7,6 +7,8 @@ public class Game {
     private Player player2;
     private World world;
     private Jungle jungle;
+    private City city;
+    private FoodCourt foodCourt;
 
 
     public Game(String player1Name, String player2Name, int height, int length) throws IllegalInputException {
@@ -14,6 +16,8 @@ public class Game {
         player2 = new Player(player2Name);
         world = new World(height, length);
         jungle = new Jungle(height, length);
+        city = new City(height, length);
+        foodCourt = new FoodCourt(height, length);
     }
 
     public Player getPlayer1(){
@@ -31,4 +35,8 @@ public class Game {
     public Jungle getJungle() {
         return jungle;
     }
+
+    public City getCity() { return city; }
+
+    public FoodCourt getfoodCourt() { return foodCourt; }
 }

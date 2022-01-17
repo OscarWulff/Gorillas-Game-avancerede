@@ -39,6 +39,13 @@ public class GameScreen {
 
     public ImageView Tre1; public ImageView Tre2; public ImageView Tre3; public ImageView Tre4;
     public ImageView Tre5; public ImageView Tre6; public ImageView Tre7; public ImageView Tre8;
+
+    public ImageView building1; public ImageView building2; public ImageView building3; public ImageView building4;
+    public ImageView building5; public ImageView building6; public ImageView building7; public ImageView building8;
+
+    public ImageView food1; public ImageView food2; public ImageView food3; public ImageView food4;
+    public ImageView food5; public ImageView food6; public ImageView food7; public ImageView food8;
+
     public Label luftLabel;
     public Label minutes;
     public Label seconds;
@@ -49,20 +56,28 @@ public class GameScreen {
 
     private Player player1; private Player player2;
     private World world;
+    private Jungle jungle;
+    private City city;
+    private FoodCourt foodCourt;
+    private ArrayList<Tree> trees;
+    private ArrayList<Building> buildings;
+    private Map<String, Food> food;
+
+    public boolean canHitGrid_world[][];
+    public boolean canHitGrid_jungle[][];
+    public boolean canHitGrid_city[][];
+    public boolean canHitGrid_foodCourt[][];
+
     private int playerOneAngle; private int playerOneVelocity;
     private int playerTwoAngle; private int playerTwoVelocity;
 
-    private Jungle jungle;
-
     private List<Integer> list = new ArrayList<>();
-    public boolean canHitGrid_world[][];
-    public boolean canHitGrid_jungle[][];
     private int[] bananaArr;
     private int point1 = 0;
     private int point2 = 0;
     private Monkey monkey1;
     private Monkey monkey2;
-    private ArrayList<Tree> trees;
+
     private boolean flag;
     private int pl1_hits = 0;
     private int pl2_hits = 0;
@@ -153,9 +168,11 @@ public class GameScreen {
         poof2.setLayoutY(monkey2.getStart_y() - 50);
 
         this.jungle = game.getJungle();
-        this.trees= jungle.Trees();
-
+        this.trees = jungle.Trees();
         this.canHitGrid_jungle = jungle.getCantHitGrid();
+        jungle.hitBoxtrees();
+
+
         nameLabel1.setText(player1.getName());
         nameLabel2.setText(player2.getName());
         monkeyOneImg.setLayoutX(monkey1.getStart_x());
@@ -255,6 +272,29 @@ public class GameScreen {
                     break;
             }
         }
+        if ((point1 == 1 && point2 == 0) || (point1 == 0 && point2 == 1)){
+            Tre1.setVisible(false); Tre2.setVisible(false); Tre3.setVisible(false); Tre4.setVisible(false);
+            Tre5.setVisible(false); Tre6.setVisible(false); Tre7.setVisible(false); Tre8.setVisible(false);
+
+            building1.setVisible(true); building2.setVisible(true); building3.setVisible(true); building4.setVisible(true);
+            building5.setVisible(true); building6.setVisible(true); building7.setVisible(true); building8.setVisible(true);
+
+            this.city = game.getCity();
+            this.buildings = city.buildings();
+            this.canHitGrid_city = city.getCantHitGrid();
+            city.hitBoxbuildings();
+        } else if ((point1 == 1 && point2 == 1) || (point1 == 2 && point2 == 0) || (point1 == 0 && point2 == 2)){
+            building1.setVisible(false); building2.setVisible(false); building3.setVisible(false); building4.setVisible(false);
+            building5.setVisible(false); building6.setVisible(false); building7.setVisible(false); building8.setVisible(false);
+
+            food1.setVisible(true); food2.setVisible(true); food3.setVisible(true); food4.setVisible(true);
+            food5.setVisible(true); food6.setVisible(true); food7.setVisible(true); food8.setVisible(true);
+
+            this.foodCourt = game.getfoodCourt();
+            this.food = foodCourt.food();
+            this.canHitGrid_foodCourt = foodCourt.getCantHitGrid();
+            foodCourt.hitBoxFood();
+        }
     }
 
     public void doThrow(ActionEvent event) throws IOException {
@@ -277,7 +317,6 @@ public class GameScreen {
 
     public void runThread() {
         world.hitBox(player1);
-        jungle.hitBoxtrees();
         list = new ArrayList<>();
         if (player1.getTurn()) {
             Banana banana = new Banana(playerOneVelocity, 9.82, playerOneAngle);
