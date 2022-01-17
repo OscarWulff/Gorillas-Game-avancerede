@@ -93,11 +93,12 @@ public class GameScreen {
     private static int savedWind = MainScene.modstand;
     public static final int maxHeight = 1000;
     public static final int maxWidth = 1700;
+    public int currentTime;
 
 
-    public void timer() {
+    public void timer(int time) {
         timer = new Timer();
-        timeAdder = new TimeAdder();
+        timeAdder = new TimeAdder(time);
         timer.schedule(timeAdder, 1000, 1000);
         timer.schedule(new TimerTask() {
             @Override
@@ -199,7 +200,7 @@ public class GameScreen {
         monkeyTwoImg.setVisible(true);
         Tre1.setVisible(true); Tre2.setVisible(true); Tre3.setVisible(true); Tre4.setVisible(true);
         Tre5.setVisible(true); Tre6.setVisible(true); Tre7.setVisible(true); Tre8.setVisible(true);
-        timer();
+        timer(0);
     }
 
     public void makeBoardVisible() {
@@ -334,11 +335,12 @@ public class GameScreen {
                 explosion.setLayoutX(bananaImg.getLayoutX() - (explosion.getFitWidth()/2));
                 explosion.setLayoutY(bananaImg.getLayoutY() - (explosion.getFitHeight()/2));
                 bananaImg.isSmooth();
-                makeBanana();
                 simulateSlow(-1);
                 bananaHit(monkeyTwoImg);
                 if(stop) {
                     break;
+                }
+                while (!pauseButton.isVisible()) {
                 }
             }
             simulateSlow(200);
@@ -353,11 +355,12 @@ public class GameScreen {
                 explosion.setLayoutX(bananaImg.getLayoutX() - (explosion.getFitWidth()/2));
                 explosion.setLayoutY(bananaImg.getLayoutY() - (explosion.getFitHeight()/2));
                 bananaImg.isSmooth();
-                makeBanana();
                 simulateSlow(-1);
                 bananaHit(monkeyOneImg);
                 if(stop) {
                     break;
+                }
+                while (!pauseButton.isVisible()) {
                 }
             }
             simulateSlow(200);
@@ -398,8 +401,6 @@ public class GameScreen {
         int spanMax = 5;
         int spanMin = -5;
         this.fluctuatingVelocity = adder.nextInt(spanMax - spanMin) + spanMin;
-
-
     }
 
     public List<Integer> makeCurve(Banana banana) {
@@ -414,13 +415,6 @@ public class GameScreen {
         return this.list;
     }
 
-    public void makeBanana() {
-        bananaArr = new int[4];
-        bananaArr[0] = (int) bananaImg.getFitHeight();
-        bananaArr[1] = (int) bananaImg.getFitWidth();
-        bananaArr[2] = (int) bananaImg.getLayoutX();
-        bananaArr[3] = (int) bananaImg.getLayoutY();
-    }
 
     public void simulateSlow(int x) {
         try {
@@ -435,8 +429,8 @@ public class GameScreen {
         flag = false;
         stop = false;
         STOP:
-        for (int j = (int) bananaImg.getLayoutY(); j < (int) bananaImg.getLayoutY() + bananaArr[0]; j++) {
-            for (int k = (int) bananaImg.getLayoutX(); k < (int) bananaImg.getLayoutX() + bananaArr[1]; k++) {
+        for (int j = (int) bananaImg.getLayoutY(); j < (int) bananaImg.getLayoutY() + bananaImg.getFitHeight(); j++) {
+            for (int k = (int) bananaImg.getLayoutX(); k < (int) bananaImg.getLayoutX() + bananaImg.getFitWidth(); k++) {
                 if (player1.getTurn() && j >= 0 && k >= monkey1.getEnd_x() && j <
                         1000 && k < maxWidth) {
                     if(canHitGrid_world[j][k] || bananaExplosion(j, k) || canHitGrid_jungle[j][k]) {
@@ -526,11 +520,16 @@ public class GameScreen {
         }
     }
 
-    public void pauseButtonClicked(MouseEvent mouseEvent) {
-        Platform.enterNestedEventLoop(pauseButton);
+    public void pauseButtonClicked(MouseEvent mouseEvent) { //actionevent når pausebutton er klikket
+        pauseButton.setVisible(false);
+        playButton.setVisible(true);
+        currentTime = timeAdder.getTime(); //gemmer tiden i variablen currentTime
+        timer.cancel(); //stopper tiden
     }
 
-    public void playButtonClicked(MouseEvent mouseEvent) {
-        Platform.exitNestedEventLoop(playButton, null);
+    public void playButtonClicked(MouseEvent mouseEvent) { //actioevent når playbutton er klikket
+        playButton.setVisible(false);
+        pauseButton.setVisible(true);
+        timer(currentTime); //opretter tiden ved start for currentTime
     }
 }

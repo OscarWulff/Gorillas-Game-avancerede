@@ -7,7 +7,11 @@ import java.util.TimerTask;
 
 
 public class TimeAdder extends TimerTask{
-    int i = 0;
+    int i;
+
+    public TimeAdder(int time) {
+        i = time;
+    }
 
     public void run() {
         i++;
