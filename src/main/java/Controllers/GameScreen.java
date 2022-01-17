@@ -12,8 +12,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+
+import java.net.URL;
 import java.util.Random;
 
 import java.io.IOException;
@@ -56,7 +59,7 @@ public class GameScreen {
     public ImageView pauseButton; public ImageView playButton; public ImageView burger;
     public ImageView cola; public ImageView donut; public ImageView kfc;
     public ImageView cupNoodle; public ImageView sushi2; public ImageView sushi1;
-
+    public ImageView erosionCircle;
 
     private Player player1; private Player player2;
     private World world;

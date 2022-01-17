@@ -73,14 +73,14 @@ public class World {
                 else if(width >= 1200) return 250;
                 else if(width >= 900) return 450;
                 else if(width >= 720) return 585;
-                return 590;
+                return 580;
             case 2:
                 if(width >= 1450) return maxWidth - 300;
                 else if(width >= 1200) return maxWidth - 515;
                 else if(width >= 820) return maxWidth - 645;
                 return maxWidth - 750;
         }
-        throw new IllegalInputException("Only takes values from 1 to 4");
+        throw new IllegalInputException("Only takes values from 1 to 2");
     }
 
     public int calculatePositionY(int y) throws IllegalInputException{
