@@ -220,45 +220,85 @@
          <Image url="@images/tree2.png" />
       </image>
    </ImageView>
-   <ImageView fx:id="burger" fitHeight="207.0" fitWidth="277.0" layoutX="4.0" layoutY="798.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fx:id="burger" fitHeight="207.0" fitWidth="277.0" layoutX="4.0" layoutY="798.0" pickOnBounds="true" preserveRatio="true" visible="false">
       <image>
          <Image url="@images/pixel_mad/beskårede%20kopier/pixel_burger%20(kopi).png" />
       </image>
    </ImageView>
-   <ImageView fx:id="cola" fitHeight="455.0" fitWidth="215.0" layoutX="889.0" layoutY="546.0">
+   <ImageView fx:id="cola" fitHeight="455.0" fitWidth="215.0" layoutX="889.0" layoutY="546.0" visible="false">
       <image>
          <Image url="@images/pixel_mad/beskårede%20kopier/pixel_cola%20(kopi).png" />
       </image>
    </ImageView>
-   <ImageView fx:id="donut" fitHeight="200.0" fitWidth="200.0" layoutX="488.0" layoutY="802.0">
+   <ImageView fx:id="donut" fitHeight="200.0" fitWidth="200.0" layoutX="488.0" layoutY="802.0" visible="false">
       <image>
          <Image url="@images/pixel_mad/beskårede%20kopier/pixel_donut%20(kopi).png" />
       </image>
    </ImageView>
-   <ImageView fx:id="kfc" fitHeight="297.0" fitWidth="256.0" layoutX="1104.0" layoutY="703.0">
+   <ImageView fx:id="kfc" fitHeight="297.0" fitWidth="256.0" layoutX="1104.0" layoutY="703.0" visible="false">
       <image>
          <Image url="@images/pixel_mad/beskårede%20kopier/pixel_kfc%20(kopi).png" />
       </image>
    </ImageView>
-   <ImageView fx:id="cupNoodle" fitHeight="330.0" fitWidth="221.0" layoutX="665.0" layoutY="672.0">
+   <ImageView fx:id="cupNoodle" fitHeight="330.0" fitWidth="221.0" layoutX="665.0" layoutY="672.0" visible="false">
       <image>
          <Image url="@images/pixel_mad/beskårede%20kopier/pixel_noodle%20(kopi).png" />
       </image>
    </ImageView>
-   <ImageView fx:id="sushi2" fitHeight="207.0" fitWidth="195.0" layoutX="1502.0" layoutY="788.0">
+   <ImageView fx:id="sushi2" fitHeight="207.0" fitWidth="195.0" layoutX="1502.0" layoutY="788.0" visible="false">
       <image>
          <Image url="@images/pixel_mad/beskårede%20kopier/pixel_sushi1%20(kopi).png" />
       </image>
    </ImageView>
-   <ImageView fx:id="sushi1" fitHeight="72.0" fitWidth="180.0" layoutX="1322.0" layoutY="927.0">
+   <ImageView fx:id="sushi1" fitHeight="72.0" fitWidth="180.0" layoutX="1322.0" layoutY="927.0" visible="false">
       <image>
          <Image url="@images/pixel_mad/beskårede%20kopier/pixel_sushi2%20(kopi).png" />
       </image>
    </ImageView>
    <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="341.0" layoutY="721.0" pickOnBounds="true" preserveRatio="true" />
-   <ImageView fx:id="fries" fitHeight="267.0" fitWidth="215.0" layoutX="273.0" layoutY="733.0">
+   <ImageView fx:id="fries" fitHeight="267.0" fitWidth="215.0" layoutX="273.0" layoutY="733.0" visible="false">
       <image>
          <Image url="@images/pixel_mad/beskårede%20kopier/pixel_fries%20(kopi).png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="340.0" fitWidth="262.0" layoutX="1243.0" layoutY="665.0">
+      <image>
+         <Image url="@images/bygning1.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="310.0" fitWidth="221.0" layoutX="9.0" layoutY="690.0">
+      <image>
+         <Image url="@images/bygning2.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="340.0" fitWidth="221.0" layoutX="388.0" layoutY="662.0">
+      <image>
+         <Image url="@images/bygning3.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="468.0" fitWidth="158.0" layoutX="230.0" layoutY="534.0">
+      <image>
+         <Image url="@images/bygning4.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="690.0" fitWidth="229.0" layoutX="604.0" layoutY="311.0">
+      <image>
+         <Image url="@images/bygning5.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="569.0" fitWidth="248.0" layoutX="1000.0" layoutY="432.0">
+      <image>
+         <Image url="@images/bygning6.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="501.0" fitWidth="195.0" layoutX="1505.0" layoutY="501.0">
+      <image>
+         <Image url="@images/bygning7.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="431.0" fitWidth="169.0" layoutX="833.0" layoutY="569.0">
+      <image>
+         <Image url="@images/bygning8.png" />
       </image>
    </ImageView>
 </AnchorPane>
