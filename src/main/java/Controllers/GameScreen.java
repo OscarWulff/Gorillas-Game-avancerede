@@ -61,14 +61,7 @@ public class GameScreen {
     private int point2 = 0;
     private Monkey monkey1;
     private Monkey monkey2;
-    private Tree tree1;
-    private Tree tree2;
-    private Tree tree3;
-    private Tree tree4;
-    private Tree tree5;
-    private Tree tree6;
-    private Tree tree7;
-    private Tree tree8;
+    private ArrayList<Tree> trees;
     private boolean flag;
     private int pl1_hits = 0;
     private int pl2_hits = 0;
@@ -160,14 +153,7 @@ public class GameScreen {
         poof2.setLayoutY(monkey2.getStart_y() - 50);
 
         this.jungle = game.getJungle();
-        this.tree1 = jungle.getTree1();
-        this.tree2 = jungle.getTree2();
-        this.tree3 = jungle.getTree3();
-        this.tree4 = jungle.getTree4();
-        this.tree5 = jungle.getTree5();
-        this.tree6 = jungle.getTree6();
-        this.tree7 = jungle.getTree7();
-        this.tree8 = jungle.getTree8();
+        this.trees= jungle.Trees();
 
         this.canHitGrid_jungle = jungle.getCantHitGrid();
         nameLabel1.setText(player1.getName());
