@@ -12,11 +12,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-
-import java.net.URL;
 import java.util.Random;
 
 import java.io.IOException;
@@ -56,10 +53,7 @@ public class GameScreen {
     public Label luftLabel;
     public Label minutes;
     public Label seconds;
-    public ImageView pauseButton; public ImageView playButton; public ImageView burger;
-    public ImageView cola; public ImageView donut; public ImageView kfc;
-    public ImageView cupNoodle; public ImageView sushi2; public ImageView sushi1;
-    public ImageView erosionCircle;
+    public ImageView pauseButton; public ImageView playButton;
 
     private Player player1; private Player player2;
     private World world;
@@ -96,11 +90,12 @@ public class GameScreen {
     private static int savedWind = MainScene.modstand;
     public static final int maxHeight = 1000;
     public static final int maxWidth = 1700;
+    public int currentTime;
 
 
-    public void timer() {
+    public void timer(int time) {
         timer = new Timer();
-        timeAdder = new TimeAdder();
+        timeAdder = new TimeAdder(time);
         timer.schedule(timeAdder, 1000, 1000);
         timer.schedule(new TimerTask() {
             @Override
@@ -147,13 +142,14 @@ public class GameScreen {
         GameScreen.airResistance = airResistance;
     }
 
+    /* if this method is called by pressing a button in the gamescreen, player 1 starts */
     public void pl1Start(ActionEvent actionEvent) {
         initGameValues();
         player1.setTurn(true);
         player2.setTurn(false);
         makeBoardVisible();
     }
-
+    /* if this method is called by pressing a button in the gamescreen, player 2 starts */
     public void pl2Start(ActionEvent actionEvent) {
         initGameValues();
         player1.setTurn(false);
@@ -161,6 +157,8 @@ public class GameScreen {
         makeBoardVisible();
         MainScene.modstand *= -1;
     }
+
+    /* initGameValues() initializes game values eg. assigning the variables with their desired values  */
 
     public void initGameValues(){
         direction();
@@ -202,9 +200,11 @@ public class GameScreen {
         monkeyTwoImg.setVisible(true);
         Tre1.setVisible(true); Tre2.setVisible(true); Tre3.setVisible(true); Tre4.setVisible(true);
         Tre5.setVisible(true); Tre6.setVisible(true); Tre7.setVisible(true); Tre8.setVisible(true);
-        timer();
+        timer(0);
     }
 
+    /* makes all elements of the gamescreen visible. The if/else statement is checking which player goes first,
+       and displaying their respectable elements */
     public void makeBoardVisible() {
         luftLabel.setVisible(true);
         whoWantsLabel.setVisible(false);
@@ -230,6 +230,8 @@ public class GameScreen {
         }
     }
 
+    /* this method sets the healthbars to the correct health, eg. which case is being displayed, depending on how many times each monkey
+    * has been hit. */
     public void setHeart() {
         if(!player1.getTurn()) {
             pl1_hits++;
@@ -282,6 +284,8 @@ public class GameScreen {
                     break;
             }
         }
+
+        /*  */
         if ((point1 == 1 && point2 == 0) || (point1 == 0 && point2 == 1)){
             Tre1.setVisible(false); Tre2.setVisible(false); Tre3.setVisible(false); Tre4.setVisible(false);
             Tre5.setVisible(false); Tre6.setVisible(false); Tre7.setVisible(false); Tre8.setVisible(false);
@@ -306,6 +310,14 @@ public class GameScreen {
             foodCourt.hitBoxFood();
         }
     }
+
+    /* this actionevent executes when the throw button is pressed
+     * firstly the randomAdder() generates a random number
+     * secondly direction is executed, which displays and arrow and windspeed on the gamescreen.
+     * then the banana is set to visible and the throwbutton is set to invisible.
+     * The angle and velocity is then assigned to the variables depending on which turn it is.
+     * the thread is then run and MainScene.modstand is restored to its original value
+     *  */
 
     public void doThrow(ActionEvent event) throws IOException {
         randomAdder();
@@ -337,11 +349,12 @@ public class GameScreen {
                 explosion.setLayoutX(bananaImg.getLayoutX() - (explosion.getFitWidth()/2));
                 explosion.setLayoutY(bananaImg.getLayoutY() - (explosion.getFitHeight()/2));
                 bananaImg.isSmooth();
-                makeBanana();
                 simulateSlow(-1);
                 bananaHit(monkeyTwoImg);
                 if(stop) {
                     break;
+                }
+                while (!pauseButton.isVisible()) {
                 }
             }
             simulateSlow(200);
@@ -356,11 +369,12 @@ public class GameScreen {
                 explosion.setLayoutX(bananaImg.getLayoutX() - (explosion.getFitWidth()/2));
                 explosion.setLayoutY(bananaImg.getLayoutY() - (explosion.getFitHeight()/2));
                 bananaImg.isSmooth();
-                makeBanana();
                 simulateSlow(-1);
                 bananaHit(monkeyOneImg);
                 if(stop) {
                     break;
+                }
+                while (!pauseButton.isVisible()) {
                 }
             }
             simulateSlow(200);
@@ -373,6 +387,12 @@ public class GameScreen {
         bananaImg.setVisible(false);
     }
 
+    /* direction() is used to display the direction of the wind
+     * this is done with an if/else if statement if MainScene.modstand
+     * is lesser than 0 and luftflag is true then the arrow will turn right, otherwise
+     * it will turn left - this all depends on luftflag which is assigned af boolean value in
+     * MainScene*/
+
     public void direction(){
         if (MainScene.modstand < 0 && MainScene.luftFlag){
             luftLabel.setText("\u2192 " + Math.abs(MainScene.modstand) + " m/s");
@@ -381,6 +401,8 @@ public class GameScreen {
         }
     }
 
+    /* restart() restarts the position of the banana, as well as resetting the
+     * visibility of the elements to the original */
     public void restart() {
         if(player1.getTurn()) {
             bananaImg.setLayoutX(monkey1.getEnd_x());
@@ -396,14 +418,17 @@ public class GameScreen {
         throwButton.setVisible(true);
     }
 
+    /* randomAdder() generates a number between -5 and 5 */
     public void randomAdder(){
         Random adder = new Random();
         int spanMax = 5;
         int spanMin = -5;
         this.fluctuatingVelocity = adder.nextInt(spanMax - spanMin) + spanMin;
-
-
     }
+
+    /* makecurve generates the values of the curve, so they can be used to update the location of the banana
+     * line 390 makes the wind go the correct direction for both players and line 391 makes the wind
+     * fluctuate (see RandomAdder() line 381) */
 
     public List<Integer> makeCurve(Banana banana) {
         MainScene.modstand *= -1;
@@ -417,14 +442,7 @@ public class GameScreen {
         return this.list;
     }
 
-    public void makeBanana() {
-        bananaArr = new int[4];
-        bananaArr[0] = (int) bananaImg.getFitHeight();
-        bananaArr[1] = (int) bananaImg.getFitWidth();
-        bananaArr[2] = (int) bananaImg.getLayoutX();
-        bananaArr[3] = (int) bananaImg.getLayoutY();
-    }
-
+    /* simulateSlow() is a method that can be called for slowing down the code */
     public void simulateSlow(int x) {
         try {
             Thread.sleep(x + 3);
@@ -433,13 +451,19 @@ public class GameScreen {
         }
     }
 
+    /* the bananaHit method checks if the banana hit a monkey or building/Tree/Food
+     * this is done with boolean grids. If the banana hits, the monkey will disappear
+     * for a couple of milliseconds and an explosion and a poof will appear instead.
+     * This counts for both players, depending on the if/else staments. If none of the
+     * statements are true noHit() wil get executed. */
+
     public void bananaHit(ImageView monkey) {
         explosion.setVisible(false);
         flag = false;
         stop = false;
         STOP:
-        for (int j = (int) bananaImg.getLayoutY(); j < (int) bananaImg.getLayoutY() + bananaArr[0]; j++) {
-            for (int k = (int) bananaImg.getLayoutX(); k < (int) bananaImg.getLayoutX() + bananaArr[1]; k++) {
+        for (int j = (int) bananaImg.getLayoutY(); j < (int) bananaImg.getLayoutY() + bananaImg.getFitHeight(); j++) {
+            for (int k = (int) bananaImg.getLayoutX(); k < (int) bananaImg.getLayoutX() + bananaImg.getFitWidth(); k++) {
                 if (player1.getTurn() && j >= 0 && k >= monkey1.getEnd_x() && j <
                         1000 && k < maxWidth) {
                     if(canHitGrid_world[j][k] || bananaExplosion(j, k) || canHitGrid_jungle[j][k]) {
@@ -480,7 +504,7 @@ public class GameScreen {
             }
         }
     }
-
+    /* if the banana is not hitting anything the explosion will stil happen*/
     public void noHit(){
         if (bananaImg.getLayoutY() >= 1000 - 1
                 || bananaImg.getLayoutX() < monkey1.getStart_x()
@@ -497,6 +521,8 @@ public class GameScreen {
         return false;
     }
 
+    /* switchVisibility() switches the visibilty of the action-boxes of each player */
+
     public void switchVisibility() {
         pl1ang.setVisible(!pl1ang.isVisible());
         pl1vec.setVisible(!pl1vec.isVisible());
@@ -509,6 +535,8 @@ public class GameScreen {
         pl2VelLabel.setVisible(!pl2VelLabel.isVisible());
     }
 
+    /* the point() method adds a point to a players score and updates the label on the gamescreen
+    if the method is run */
     public void point(){
         if (!player1.getTurn()){
             this.point1++;
@@ -529,11 +557,16 @@ public class GameScreen {
         }
     }
 
-    public void pauseButtonClicked(MouseEvent mouseEvent) {
-        Platform.enterNestedEventLoop(pauseButton);
+    public void pauseButtonClicked(MouseEvent mouseEvent) { //actionevent når pausebutton er klikket
+        pauseButton.setVisible(false);
+        playButton.setVisible(true);
+        currentTime = timeAdder.getTime(); //gemmer tiden i variablen currentTime
+        timer.cancel(); //stopper tiden
     }
 
-    public void playButtonClicked(MouseEvent mouseEvent) {
-        Platform.exitNestedEventLoop(playButton, null);
+    public void playButtonClicked(MouseEvent mouseEvent) { //actioevent når playbutton er klikket
+        playButton.setVisible(false);
+        pauseButton.setVisible(true);
+        timer(currentTime); //opretter tiden ved start for currentTime
     }
 }
