@@ -1,6 +1,9 @@
 package ApplicationClasses;
 
 import ApplicationClasses.Biomes.Jungle.Jungle;
+import ApplicationClasses.Biomes.City.City;
+import ApplicationClasses.Biomes.FoodCourt.FoodCourt;
+
 import Exceptions.IllegalInputException;
 
 public class Game {

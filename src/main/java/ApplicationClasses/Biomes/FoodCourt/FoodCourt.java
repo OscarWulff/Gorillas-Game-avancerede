@@ -1,4 +1,4 @@
-package ApplicationClasses;
+package ApplicationClasses.Biomes.FoodCourt;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;

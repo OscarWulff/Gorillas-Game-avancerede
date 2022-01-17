@@ -1,4 +1,4 @@
-package ApplicationClasses.Biomes.Food;
+package ApplicationClasses.Biomes.FoodCourt;
 
 public class Food{
 

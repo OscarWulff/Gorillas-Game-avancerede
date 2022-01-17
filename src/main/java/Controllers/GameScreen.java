@@ -2,8 +2,10 @@ package Controllers;
 
 
 import ApplicationClasses.*;
-import ApplicationClasses.Biomes.Jungle.Jungle;
-import ApplicationClasses.Biomes.Jungle.Tree;
+import ApplicationClasses.Biomes.Jungle.*;
+import ApplicationClasses.Biomes.FoodCourt.*;
+import ApplicationClasses.Biomes.City.*;
+
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
