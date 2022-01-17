@@ -138,7 +138,6 @@ public class GameScreen {
     }
 
     public void initGameValues(){
-        randomAdder();
         direction();
         this.player1 = game.getPlayer1();
         this.player2 = game.getPlayer2();
@@ -163,14 +162,14 @@ public class GameScreen {
         monkeyOneImg.setLayoutY(monkey1.getStart_y());
         monkeyTwoImg.setLayoutX(monkey2.getStart_x());
         monkeyTwoImg.setLayoutY(monkey2.getStart_y());
-        barLeft.setLayoutX(monkey1.getStart_x());
+        barLeft.setLayoutX((int)((1700 - world.getWidth()) / 2));
         barLeft.setLayoutY(0);
         barLeft.setFitHeight(world.getHeight());
         barLeft.isSmooth();
         barLower.setLayoutX(monkey1.getStart_x());
         barLower.setLayoutY(1000);
         barLower.setFitWidth(world.getWidth());
-        barRight.setLayoutX(monkey2.getEnd_x());
+        barRight.setLayoutX((int)(1700 - ((1700 - world.getWidth()) / 2)));
         barRight.setLayoutY(0);
         monkeyOneImg.setVisible(true);
         monkeyTwoImg.setVisible(true);

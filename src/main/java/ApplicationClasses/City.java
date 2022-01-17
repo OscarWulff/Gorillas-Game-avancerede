@@ -15,7 +15,7 @@ public class City {
             this.height = 1000;
             this.width = 1700;
 
-            buildings.add(new Building(9, 230, 1000 - 310 + 25, 1000)); // height - 281 + 25 hele vejen ned.
+            buildings.add(new Building(9, 230, 1000 - 310 + 25, 1000));
             buildings.add(new Building(230, 388, 1000 - 468 + 25, 1000));
             buildings.add(new Building(388, 609, 1000 - 340 + 25, 1000));
             buildings.add(new Building(604, 833, 1000 - 690 + 25, 1000));
