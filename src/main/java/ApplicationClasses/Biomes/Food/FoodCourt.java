@@ -1,6 +1,10 @@
-package ApplicationClasses;
-import java.util.ArrayList;
+package ApplicationClasses.Biomes.Food;
+import ApplicationClasses.Biomes.Food.Food;
+
 import java.util.Map;
+
+import static Controllers.GameScreen.maxHeight;
+import static Controllers.GameScreen.maxWidth;
 
 public class FoodCourt {
     private Map<String, Food> food;
@@ -10,26 +14,25 @@ public class FoodCourt {
     private boolean[][] canHitGrid;
 
     public FoodCourt(int height, int width){
-        this.height = 1000;
-        this.width = 1700;
+        this.height = maxHeight;
+        this.width = maxWidth;
+        food.put("burger", new Food(4, 281, maxHeight - 207 + 25, maxHeight));
+        food.put("fries", new Food(273, 488, maxHeight - 267 + 25, maxHeight));
+        food.put("donut", new Food(488, 688, maxHeight - 200 + 25, maxHeight));
+        food.put("cupNoodle", new Food(665, 886, maxHeight - 330 + 25, maxHeight));
+        food.put("cola",new Food(889, 1104, maxHeight - 455 + 25, maxHeight));
+        food.put("kfc",new Food(1104, 1360, maxHeight - 297 + 25, maxHeight));
+        food.put("sushi1",new Food(1322, 1502, maxHeight - 72 + 25, maxHeight));
+        food.put("sushi2", new Food(1502, 1697, maxHeight - 207 + 25, maxHeight));
 
-        food.put("burger", new Food(4, 281, 1000 - 207+25, 1000));
-        food.put("fries", new Food(273, 488, 1000 - 267+25, 1000));
-        food.put("donut", new Food(488, 688, 1000 - 200+25, 1000));
-        food.put("cupNoodle", new Food(665, 886, 1000 - 330+25, 1000));
-        food.put("cola",new Food(889, 1104, 1000 - 455+25, 1000));
-        food.put("kfc",new Food(1104, 1360, 1000 - 297+25, 1000));
-        food.put("sushi1",new Food(1322, 1502, 1000 - 72+25, 1000));
-        food.put("sushi2", new Food(1502, 1697, 1000 - 207+25, 1000));
-
-        canHitGrid = new boolean[1000][1700];
+        canHitGrid = new boolean[maxHeight][maxWidth];
         makeGround();
 
     }
 
     public void makeGround() {
-        for (int i = height - 3; i < height; i++) {
-            for (int j = 0; j < width; j++) {
+        for (int i = maxHeight - 3; i < maxHeight; i++) {
+            for (int j = 0; j < maxWidth; j++) {
                 canHitGrid[i][j] = true;
             }
         }

@@ -1,13 +1,13 @@
-package ApplicationClasses;
+package ApplicationClasses.Biomes.Jungle;
 
-public class Food{
+public class Tree{
 
     private int start_x;
     private int start_y;
     private int end_x;
     private int end_y;
 
-    public Food(int start_x, int end_x, int start_y, int end_y) {
+    public Tree(int start_x, int end_x, int start_y, int end_y) {
         this.start_x = start_x;
         this.end_x = end_x;
         this.start_y = start_y;

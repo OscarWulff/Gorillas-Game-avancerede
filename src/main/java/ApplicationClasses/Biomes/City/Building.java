@@ -1,4 +1,4 @@
-package ApplicationClasses;
+package ApplicationClasses.Biomes.City;
 
 public class Building {
 
