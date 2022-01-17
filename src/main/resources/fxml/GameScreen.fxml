@@ -261,42 +261,42 @@
          <Image url="@images/pixel_mad/beskårede%20kopier/pixel_fries%20(kopi).png" />
       </image>
    </ImageView>
-   <ImageView fitHeight="340.0" fitWidth="262.0" layoutX="1243.0" layoutY="665.0">
+   <ImageView fitHeight="340.0" fitWidth="262.0" layoutX="1243.0" layoutY="665.0" visible="false">
       <image>
          <Image url="@images/bygning1.png" />
       </image>
    </ImageView>
-   <ImageView fitHeight="310.0" fitWidth="221.0" layoutX="9.0" layoutY="690.0">
+   <ImageView fitHeight="310.0" fitWidth="221.0" layoutX="9.0" layoutY="690.0" visible="false">
       <image>
          <Image url="@images/bygning2.png" />
       </image>
    </ImageView>
-   <ImageView fitHeight="340.0" fitWidth="221.0" layoutX="388.0" layoutY="662.0">
+   <ImageView fitHeight="340.0" fitWidth="221.0" layoutX="388.0" layoutY="662.0" visible="false">
       <image>
          <Image url="@images/bygning3.png" />
       </image>
    </ImageView>
-   <ImageView fitHeight="468.0" fitWidth="158.0" layoutX="230.0" layoutY="534.0">
+   <ImageView fitHeight="468.0" fitWidth="158.0" layoutX="230.0" layoutY="534.0" visible="false">
       <image>
          <Image url="@images/bygning4.png" />
       </image>
    </ImageView>
-   <ImageView fitHeight="690.0" fitWidth="229.0" layoutX="604.0" layoutY="311.0">
+   <ImageView fitHeight="690.0" fitWidth="229.0" layoutX="604.0" layoutY="311.0" visible="false">
       <image>
          <Image url="@images/bygning5.png" />
       </image>
    </ImageView>
-   <ImageView fitHeight="569.0" fitWidth="248.0" layoutX="1000.0" layoutY="432.0">
+   <ImageView fitHeight="569.0" fitWidth="248.0" layoutX="1000.0" layoutY="432.0" visible="false">
       <image>
          <Image url="@images/bygning6.png" />
       </image>
    </ImageView>
-   <ImageView fitHeight="501.0" fitWidth="195.0" layoutX="1505.0" layoutY="501.0">
+   <ImageView fitHeight="501.0" fitWidth="195.0" layoutX="1505.0" layoutY="501.0" visible="false">
       <image>
          <Image url="@images/bygning7.png" />
       </image>
    </ImageView>
-   <ImageView fitHeight="431.0" fitWidth="169.0" layoutX="833.0" layoutY="569.0">
+   <ImageView fitHeight="431.0" fitWidth="169.0" layoutX="833.0" layoutY="569.0" visible="false">
       <image>
          <Image url="@images/bygning8.png" />
       </image>
