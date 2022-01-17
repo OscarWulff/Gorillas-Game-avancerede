@@ -1,5 +1,6 @@
 package ApplicationClasses;
 
+import ApplicationClasses.Biomes.Jungle.Jungle;
 import Exceptions.IllegalInputException;
 
 public class Game {

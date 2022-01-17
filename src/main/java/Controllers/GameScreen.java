@@ -2,6 +2,8 @@ package Controllers;
 
 
 import ApplicationClasses.*;
+import ApplicationClasses.Biomes.Jungle.Jungle;
+import ApplicationClasses.Biomes.Jungle.Tree;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -87,6 +89,9 @@ public class GameScreen {
     public boolean stop = false;
     private int fluctuatingVelocity;
     private static int savedWind = MainScene.modstand;
+    public static final int maxHeight = 1000;
+    public static final int maxWidth = 1700;
+
 
     public void timer() {
         timer = new Timer();
@@ -179,14 +184,14 @@ public class GameScreen {
         monkeyOneImg.setLayoutY(monkey1.getStart_y());
         monkeyTwoImg.setLayoutX(monkey2.getStart_x());
         monkeyTwoImg.setLayoutY(monkey2.getStart_y());
-        barLeft.setLayoutX((int)((1700 - world.getWidth()) / 2));
+        barLeft.setLayoutX((int)((maxWidth - world.getWidth()) / 2));
         barLeft.setLayoutY(0);
         barLeft.setFitHeight(world.getHeight());
         barLeft.isSmooth();
         barLower.setLayoutX(monkey1.getStart_x());
         barLower.setLayoutY(1000);
         barLower.setFitWidth(world.getWidth());
-        barRight.setLayoutX((int)(1700 - ((1700 - world.getWidth()) / 2)));
+        barRight.setLayoutX((int)(maxWidth - ((maxWidth - world.getWidth()) / 2)));
         barRight.setLayoutY(0);
         monkeyOneImg.setVisible(true);
         monkeyTwoImg.setVisible(true);
@@ -431,7 +436,7 @@ public class GameScreen {
         for (int j = (int) bananaImg.getLayoutY(); j < (int) bananaImg.getLayoutY() + bananaArr[0]; j++) {
             for (int k = (int) bananaImg.getLayoutX(); k < (int) bananaImg.getLayoutX() + bananaArr[1]; k++) {
                 if (player1.getTurn() && j >= 0 && k >= monkey1.getEnd_x() && j <
-                        1000 && k < 1700) {
+                        1000 && k < maxWidth) {
                     if(canHitGrid_world[j][k] || bananaExplosion(j, k) || canHitGrid_jungle[j][k]) {
                         bananaImg.setVisible(false);
                         explosion.setVisible(true);
@@ -480,9 +485,9 @@ public class GameScreen {
     }
 
     public boolean bananaExplosion(int y, int x) {
-        if((x + (1700 / 10)) < 1700 && (x - (1700 / 10)) > 0) {
-            return y > 1000 - 3 && ((canHitGrid_jungle[y][(x - (1700 / 10))]) ||
-                    (canHitGrid_jungle[y][(x + (1700 / 10))]));
+        if((x + (maxWidth / 10)) < maxWidth && (x - (maxWidth / 10)) > 0) {
+            return y > 1000 - 3 && ((canHitGrid_jungle[y][(x - (maxWidth / 10))]) ||
+                    (canHitGrid_jungle[y][(x + (maxWidth / 10))]));
         }
         return false;
     }

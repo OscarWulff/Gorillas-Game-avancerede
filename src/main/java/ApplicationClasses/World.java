@@ -2,6 +2,9 @@ package ApplicationClasses;
 
 import Exceptions.IllegalInputException;
 
+import static Controllers.GameScreen.maxHeight;
+import static Controllers.GameScreen.maxWidth;
+
 public class World {
     private int height;
     private int width;
@@ -17,7 +20,7 @@ public class World {
                 calculatePositionY(1), calculatePositionY(1) + 92);
         this.monkey2 = new Monkey(calculatePositionX(2),
                 calculatePositionX(2)+118 , calculatePositionY(2), calculatePositionY(2) + 92);
-        canHitGrid = new boolean[1000][1700];
+        canHitGrid = new boolean[maxHeight][maxWidth];
         makeGround();
         makeWorld();
     }
@@ -43,20 +46,20 @@ public class World {
     }
 
     public void makeGround() {
-        for (int i = height - 3; i < height; i++) {
-            for (int j = 0; j < width; j++) {
+        for (int i = maxHeight - 3; i < maxHeight; i++) {
+            for (int j = 0; j < maxWidth; j++) {
                 canHitGrid[i][j] = true;
             }
         }
     }
 
     public void makeWorld(){
-        for (int i = 0; i < 1000; i++) {
-            for (int j = 0; j < 1700; j++) {
-                if (j < (1700 - width) / 2) {
+        for (int i = 0; i < maxHeight; i++) {
+            for (int j = 0; j < maxWidth; j++) {
+                if (j < (maxWidth - width) / 2) {
                     canHitGrid[i][j] = true;
                 }
-                if (j > (1700 - ((1700 - width) / 2))) {
+                if (j > (maxWidth - ((maxWidth - width) / 2))) {
                     canHitGrid[i][j] = true;
                 }
             }
@@ -72,10 +75,10 @@ public class World {
                 else if(width >= 720) return 585;
                 return 590;
             case 2:
-                if(width >= 1450) return 1700 - 300;
-                else if(width >= 1200) return 1700 - 515;
-                else if(width >= 820) return 1700 - 645;
-                return 1700 - 750;
+                if(width >= 1450) return maxWidth - 300;
+                else if(width >= 1200) return maxWidth - 515;
+                else if(width >= 820) return maxWidth - 645;
+                return maxWidth - 750;
         }
         throw new IllegalInputException("Only takes values from 1 to 4");
     }
@@ -83,16 +86,15 @@ public class World {
     public int calculatePositionY(int y) throws IllegalInputException{
         switch (y) {
             case 1:
-                if(width >= 1550) return 1000 - 265 - 92 - 25;
-                else if(width >= 1200) return 1000 - 189 - 92 - 25;
-                else if(width >= 900) return 1000 - 384 - 92 - 25;
-                else if(width >= 720) return 1000 - 226 - 92 - 25;
-                return 1000 - 501 - 92 - 25;
+                if(width >= 1550) return maxHeight - 265 - 92 - 25;
+                else if(width >= 1200) return maxHeight - 189 - 92 - 25;
+                else if(width >= 900) return maxHeight - 384 - 92 - 25;
+                return maxHeight - 226 - 92 - 25;
             case 2:
-                if(width >= 1450) return 1000 - 406 - 92 - 25;
-                else if(width >= 1200) return 1000 - 175 - 92 - 25;
-                else if(width >= 820) return 1000 - 279 - 92 - 25;
-                return 1000 - 501 - 92 - 25;
+                if(width >= 1450) return maxHeight - 406 - 92 - 25;
+                else if(width >= 1200) return maxHeight - 175 - 92 - 25;
+                else if(width >= 820) return maxHeight - 279 - 92 - 25;
+                return maxHeight - 501 - 92 - 25;
         }
         throw new IllegalInputException("Only takes values from 1 to 2");
     }
