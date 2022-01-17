@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import java.util.Random;
 
 import java.io.IOException;
 import java.util.*;
@@ -75,6 +76,8 @@ public class GameScreen {
     public Timer timer;
     public TimeAdder timeAdder;
     public boolean stop = false;
+    private int fluctuatingVelocity;
+    private static int savedWind = MainScene.modstand;
 
     public void timer() {
         timer = new Timer();
@@ -141,6 +144,7 @@ public class GameScreen {
     }
 
     public void initGameValues(){
+        randomAdder();
         direction();
         this.player1 = game.getPlayer1();
         this.player2 = game.getPlayer2();
@@ -268,6 +272,8 @@ public class GameScreen {
     }
 
     public void doThrow(ActionEvent event) throws IOException {
+        randomAdder();
+        direction();
         bananaImg.setVisible(true);
         throwButton.setVisible(false);
         if (player1.getTurn()) {
@@ -279,6 +285,8 @@ public class GameScreen {
         }
         Thread thread = new Thread(this::runThread);
         thread.start();
+        MainScene.modstand = savedWind;
+
     }
 
     public void runThread() {
@@ -353,8 +361,18 @@ public class GameScreen {
         throwButton.setVisible(true);
     }
 
+    public void randomAdder(){
+        Random adder = new Random();
+        int spanMax = 5;
+        int spanMin = -5;
+        this.fluctuatingVelocity = adder.nextInt(spanMax - spanMin) + spanMin;
+
+
+    }
+
     public List<Integer> makeCurve(Banana banana) {
         MainScene.modstand *= -1;
+        MainScene.modstand += fluctuatingVelocity;
         int x = 0;
         while (banana.trajectory(x) > - 1000
                 && (x < (monkey2.getStart_x() - monkey1.getStart_x()) + (bananaImg.getFitWidth() / 2))) {
