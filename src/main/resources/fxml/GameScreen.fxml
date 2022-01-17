@@ -220,4 +220,45 @@
          <Image url="@images/tree2.png" />
       </image>
    </ImageView>
+   <ImageView fx:id="burger" fitHeight="207.0" fitWidth="277.0" layoutX="4.0" layoutY="798.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@images/pixel_mad/beskårede%20kopier/pixel_burger%20(kopi).png" />
+      </image>
+   </ImageView>
+   <ImageView fx:id="cola" fitHeight="455.0" fitWidth="215.0" layoutX="889.0" layoutY="546.0">
+      <image>
+         <Image url="@images/pixel_mad/beskårede%20kopier/pixel_cola%20(kopi).png" />
+      </image>
+   </ImageView>
+   <ImageView fx:id="donut" fitHeight="200.0" fitWidth="200.0" layoutX="488.0" layoutY="802.0">
+      <image>
+         <Image url="@images/pixel_mad/beskårede%20kopier/pixel_donut%20(kopi).png" />
+      </image>
+   </ImageView>
+   <ImageView fx:id="kfc" fitHeight="297.0" fitWidth="256.0" layoutX="1104.0" layoutY="703.0">
+      <image>
+         <Image url="@images/pixel_mad/beskårede%20kopier/pixel_kfc%20(kopi).png" />
+      </image>
+   </ImageView>
+   <ImageView fx:id="cupNoodle" fitHeight="330.0" fitWidth="221.0" layoutX="665.0" layoutY="672.0">
+      <image>
+         <Image url="@images/pixel_mad/beskårede%20kopier/pixel_noodle%20(kopi).png" />
+      </image>
+   </ImageView>
+   <ImageView fx:id="sushi2" fitHeight="207.0" fitWidth="195.0" layoutX="1502.0" layoutY="788.0">
+      <image>
+         <Image url="@images/pixel_mad/beskårede%20kopier/pixel_sushi1%20(kopi).png" />
+      </image>
+   </ImageView>
+   <ImageView fx:id="sushi1" fitHeight="72.0" fitWidth="180.0" layoutX="1322.0" layoutY="927.0">
+      <image>
+         <Image url="@images/pixel_mad/beskårede%20kopier/pixel_sushi2%20(kopi).png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="341.0" layoutY="721.0" pickOnBounds="true" preserveRatio="true" />
+   <ImageView fx:id="fries" fitHeight="267.0" fitWidth="215.0" layoutX="273.0" layoutY="733.0">
+      <image>
+         <Image url="@images/pixel_mad/beskårede%20kopier/pixel_fries%20(kopi).png" />
+      </image>
+   </ImageView>
 </AnchorPane>

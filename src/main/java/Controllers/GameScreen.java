@@ -42,8 +42,9 @@ public class GameScreen {
     public Label luftLabel;
     public Label minutes;
     public Label seconds;
-    public ImageView pauseButton;
-    public ImageView playButton;
+    public ImageView pauseButton; public ImageView playButton; public ImageView burger;
+    public ImageView cola; public ImageView donut; public ImageView kfc;
+    public ImageView cupNoodle; public ImageView sushi2; public ImageView sushi1;
 
 
     private Player player1; private Player player2;
