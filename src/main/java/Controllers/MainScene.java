@@ -29,7 +29,6 @@ public class MainScene {
     public TextField playerID2;
     public Button luftKnap;
 
-
     private int width_i;
     private int height_i;
     public String playerOneName;

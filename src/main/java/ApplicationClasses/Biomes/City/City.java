@@ -2,6 +2,9 @@ package ApplicationClasses.Biomes.City;
 
 import java.util.ArrayList;
 
+import static Controllers.GameScreen.maxHeight;
+import static Controllers.GameScreen.maxWidth;
+
 public class City {
         private int width;
         private int height;
@@ -46,8 +49,8 @@ public class City {
         }
 
         public void makeGround() {
-            for (int i = height - 3; i < height; i++) {
-                for (int j = 0; j < width; j++) {
+            for (int i = maxHeight - 3; i < maxHeight; i++) {
+                for (int j = 0; j < maxWidth; j++) {
                     canHitGrid[i][j] = true;
                 }
             }
