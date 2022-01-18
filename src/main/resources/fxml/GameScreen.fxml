@@ -127,52 +127,52 @@
    </ImageView>
    <ImageView fx:id="health100_pl1" fitHeight="92.0" fitWidth="184.0" layoutX="200.0" layoutY="27.0" visible="false">
       <image>
-         <Image url="@images/100%25.png" />
+         <Image url="@images/HealthBar/100%25.png" />
       </image>
    </ImageView>
    <ImageView fx:id="health100_pl2" fitHeight="92.0" fitWidth="184.0" layoutX="898.0" layoutY="25.0" visible="false">
       <image>
-         <Image url="@images/100%25.png" />
+         <Image url="@images/HealthBar/100%25.png" />
       </image>
    </ImageView>
    <ImageView fx:id="health75_pl1" fitHeight="92.0" fitWidth="184.0" layoutX="200.0" layoutY="27.0" visible="false">
       <image>
-         <Image url="@images/75%25.png" />
+         <Image url="@images/HealthBar/75%25.png" />
       </image>
    </ImageView>
    <ImageView fx:id="health50_pl1" fitHeight="92.0" fitWidth="184.0" layoutX="200.0" layoutY="27.0" visible="false">
       <image>
-         <Image url="@images/50%25.png" />
+         <Image url="@images/HealthBar/50%25.png" />
       </image>
    </ImageView>
    <ImageView fx:id="health25_pl1" fitHeight="92.0" fitWidth="184.0" layoutX="200.0" layoutY="27.0" visible="false">
       <image>
-         <Image url="@images/25%25.png" />
+         <Image url="@images/HealthBar/25%25.png" />
       </image>
    </ImageView>
    <ImageView fx:id="health0_pl1" fitHeight="92.0" fitWidth="184.0" layoutX="200.0" layoutY="27.0" visible="false">
       <image>
-         <Image url="@images/0%25.png" />
+         <Image url="@images/HealthBar/0%25.png" />
       </image>
    </ImageView>
    <ImageView fx:id="health75_pl2" fitHeight="92.0" fitWidth="184.0" layoutX="898.0" layoutY="25.0" visible="false">
       <image>
-         <Image url="@images/75%25.png" />
+         <Image url="@images/HealthBar/75%25.png" />
       </image>
    </ImageView>
    <ImageView fx:id="health50_pl2" fitHeight="92.0" fitWidth="184.0" layoutX="898.0" layoutY="25.0" visible="false">
       <image>
-         <Image url="@images/50%25.png" />
+         <Image url="@images/HealthBar/50%25.png" />
       </image>
    </ImageView>
    <ImageView fx:id="health25_pl2" fitHeight="92.0" fitWidth="184.0" layoutX="898.0" layoutY="25.0" visible="false">
       <image>
-         <Image url="@images/25%25.png" />
+         <Image url="@images/HealthBar/25%25.png" />
       </image>
    </ImageView>
    <ImageView fx:id="health0_pl2" fitHeight="92.0" fitWidth="184.0" layoutX="898.0" layoutY="25.0" visible="false">
       <image>
-         <Image url="@images/0%25.png" />
+         <Image url="@images/HealthBar/0%25.png" />
       </image>
    </ImageView>
    <ImageView fx:id="poof2" fitHeight="134.0" fitWidth="158.0" layoutX="1156.0" layoutY="485.0" visible="false">
