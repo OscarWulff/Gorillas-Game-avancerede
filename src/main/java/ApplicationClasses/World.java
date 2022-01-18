@@ -18,8 +18,8 @@ public class World {
         this.width = width;
         this.monkey1 = new Monkey(calculatePositionX(1), calculatePositionX(1) + 118,
                 calculatePositionY(1), calculatePositionY(1) + 92);
-        this.monkey2 = new Monkey(calculatePositionX(2),
-                calculatePositionX(2)+118 , calculatePositionY(2), calculatePositionY(2) + 92);
+        this.monkey2 = new Monkey(calculatePositionX(2), calculatePositionX(2) + 118 ,
+                calculatePositionY(2), calculatePositionY(2) + 92);
         canHitGrid = new boolean[maxHeight][maxWidth];
         makeGround();
         makeWorld();

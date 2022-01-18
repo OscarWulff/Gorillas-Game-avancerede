@@ -28,4 +28,15 @@ public class Monkey {
     public int getEnd_y() {
         return end_y;
     }
+
+    public void setStart_x(int i){this.start_x = i;}
+
+    public void setEnd_x (int i){ this.end_x = i;}
+
+    public void setStart_y(int i){this.start_y = i;}
+
+    public void setEnd_y(int end_y) {this.end_y = end_y;}
+
+
+
 }

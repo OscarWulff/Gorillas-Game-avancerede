@@ -68,6 +68,7 @@ public class GameScreen {
     public boolean canHitGrid_jungle[][];
     public boolean canHitGrid_city[][];
     public boolean canHitGrid_foodCourt[][];
+    public boolean canHitGrid_map[][] = new boolean[1000][1700];
 
     private int playerOneAngle; private int playerOneVelocity;
     private int playerTwoAngle; private int playerTwoVelocity;
@@ -148,6 +149,7 @@ public class GameScreen {
         player1.setTurn(true);
         player2.setTurn(false);
         makeBoardVisible();
+
     }
     /* if this method is called by pressing a button in the gamescreen, player 2 starts */
     public void pl2Start(ActionEvent actionEvent) {
@@ -155,12 +157,14 @@ public class GameScreen {
         player1.setTurn(false);
         player2.setTurn(true);
         makeBoardVisible();
+
         MainScene.modstand *= -1;
     }
 
     /* initGameValues() initializes game values eg. assigning the variables with their desired values  */
 
     public void initGameValues(){
+        restartGrid();
         direction();
         this.player1 = game.getPlayer1();
         this.player2 = game.getPlayer2();
@@ -174,12 +178,6 @@ public class GameScreen {
 
         poof2.setLayoutX(monkey2.getStart_x() - 50);
         poof2.setLayoutY(monkey2.getStart_y() - 50);
-
-        this.jungle = game.getJungle();
-        this.trees = jungle.Trees();
-        this.canHitGrid_jungle = jungle.getCantHitGrid();
-        jungle.hitBoxtrees();
-
 
         nameLabel1.setText(player1.getName());
         nameLabel2.setText(player2.getName());
@@ -231,7 +229,7 @@ public class GameScreen {
     }
 
     /* this method sets the healthbars to the correct health, eg. which case is being displayed, depending on how many times each monkey
-    * has been hit. */
+     * has been hit. */
     public void setHeart() {
         if(!player1.getTurn()) {
             pl1_hits++;
@@ -284,9 +282,40 @@ public class GameScreen {
                     break;
             }
         }
+        switchMap();
+    }
 
-        /*  */
-        if ((point1 == 1 && point2 == 0) || (point1 == 0 && point2 == 1)){
+    public void switchMap(){
+        if (point1 == 0 && point2 == 0) {
+            System.out.println("sovs");
+            this.jungle = game.getJungle();
+            this.trees = jungle.Trees();
+            jungle.hitBoxtrees();
+            this.canHitGrid_jungle = jungle.getCantHitGrid();
+
+            restartGrid();
+            setGridJungle();
+
+
+        } else if ((point1 == 1 && point2 == 0) || (point1 == 0 && point2 == 1)){
+            canHitGrid_map = new boolean[maxHeight][maxWidth];
+            System.out.println("pik");
+
+            monkey1.setStart_x(31);
+            monkey1.setStart_y(607);
+            monkey1.setEnd_x(31 + 118);
+            monkey1.setEnd_y(607 + 92);
+
+            monkey2.setStart_x(1301);
+            monkey2.setStart_y(573);
+            monkey2.setEnd_x(1301 + 118);
+            monkey2.setEnd_y(573 + 92);
+
+            monkeyOneImg.setLayoutX(monkey1.getStart_x());
+            monkeyOneImg.setLayoutY(monkey1.getStart_y());
+            monkeyTwoImg.setLayoutX(monkey2.getStart_x());
+            monkeyTwoImg.setLayoutY(monkey2.getStart_y());
+
             Tre1.setVisible(false); Tre2.setVisible(false); Tre3.setVisible(false); Tre4.setVisible(false);
             Tre5.setVisible(false); Tre6.setVisible(false); Tre7.setVisible(false); Tre8.setVisible(false);
 
@@ -295,9 +324,28 @@ public class GameScreen {
 
             this.city = game.getCity();
             this.buildings = city.buildings();
+            //city.hitBoxbuildings();
             this.canHitGrid_city = city.getCantHitGrid();
-            city.hitBoxbuildings();
+            setGridCity();
+
         } else if ((point1 == 1 && point2 == 1) || (point1 == 2 && point2 == 0) || (point1 == 0 && point2 == 2)){
+            restartGrid();
+            System.out.println("orange");
+            monkey1.setStart_x(309);
+            monkey1.setStart_y(644);
+            monkey1.setEnd_x(309 + 118);
+            monkey1.setEnd_y(644 + 92);
+
+            monkey2.setStart_x(1539);
+            monkey2.setStart_y(696);
+            monkey2.setEnd_x(1539 + 118);
+            monkey2.setEnd_y(696 + 92);
+
+            monkeyOneImg.setLayoutX(monkey1.getStart_x());
+            monkeyOneImg.setLayoutY(monkey1.getStart_y());
+            monkeyTwoImg.setLayoutX(monkey2.getStart_x());
+            monkeyTwoImg.setLayoutY(monkey2.getStart_y());
+
             building1.setVisible(false); building2.setVisible(false); building3.setVisible(false); building4.setVisible(false);
             building5.setVisible(false); building6.setVisible(false); building7.setVisible(false); building8.setVisible(false);
 
@@ -306,8 +354,43 @@ public class GameScreen {
 
             this.foodCourt = game.getfoodCourt();
             this.food = foodCourt.food();
-            this.canHitGrid_foodCourt = foodCourt.getCantHitGrid();
             foodCourt.hitBoxFood();
+            this.canHitGrid_foodCourt = foodCourt.getCantHitGrid();
+
+            setGridFoodCourt();
+
+        }
+    }
+
+    public void restartGrid(){
+        for (int i = 0; i < maxHeight; i++ ){
+            for (int k = 0; k < maxWidth; k++){
+                canHitGrid_map[i][k] = false;
+            }
+        }
+    }
+
+    public void setGridJungle() {
+        for (int i = 0; i < maxHeight; i++) {
+            for (int k = 0; k < maxWidth; k++) {
+                canHitGrid_map[i][k] = canHitGrid_jungle[i][k];
+            }
+        }
+    }
+
+    public void setGridCity() {
+        for (int i = 0; i < maxHeight; i++) {
+            for (int k = 0; k < maxWidth; k++) {
+                canHitGrid_map[i][k] = canHitGrid_city[i][k];
+            }
+        }
+    }
+
+    public void setGridFoodCourt() {
+        for (int i = 0; i < maxHeight; i++) {
+            for (int k = 0; k < maxWidth; k++) {
+                canHitGrid_map[i][k] = canHitGrid_foodCourt[i][k];
+            }
         }
     }
 
@@ -338,6 +421,7 @@ public class GameScreen {
     }
 
     public void runThread() {
+
         world.hitBox(player1);
         list = new ArrayList<>();
         if (player1.getTurn()) {
@@ -432,7 +516,8 @@ public class GameScreen {
 
     public List<Integer> makeCurve(Banana banana) {
         MainScene.modstand *= -1;
-        MainScene.modstand += fluctuatingVelocity;
+        if(MainScene.luftFlag) { MainScene.modstand += fluctuatingVelocity;}
+
         int x = 0;
         while (banana.trajectory(x) > - 1000
                 && (x < (monkey2.getStart_x() - monkey1.getStart_x()) + (bananaImg.getFitWidth() / 2))) {
@@ -466,7 +551,7 @@ public class GameScreen {
             for (int k = (int) bananaImg.getLayoutX(); k < (int) bananaImg.getLayoutX() + bananaImg.getFitWidth(); k++) {
                 if (player1.getTurn() && j >= 0 && k >= monkey1.getEnd_x() && j <
                         1000 && k < maxWidth) {
-                    if(canHitGrid_world[j][k] || bananaExplosion(j, k) || canHitGrid_jungle[j][k]) {
+                    if(canHitGrid_world[j][k] || bananaExplosion(j, k) || canHitGrid_map[j][k]) {
                         bananaImg.setVisible(false);
                         explosion.setVisible(true);
                         if (bananaImg.getLayoutX() > monkey2.getStart_x() - bananaImg.getFitWidth() &&
@@ -484,7 +569,7 @@ public class GameScreen {
                     }
                 } else if (!player1.getTurn() && j >= 0 && k >= 0 && j <
                         1000 && k < (monkey2.getStart_x())) {
-                    if(canHitGrid_world[j][k] || bananaExplosion(j, k) || canHitGrid_jungle[j][k]) {
+                    if(canHitGrid_world[j][k] || bananaExplosion(j, k) || canHitGrid_map[j][k]) {
                         bananaImg.setVisible(false);
                         explosion.setVisible(true);
                         if (bananaImg.getLayoutX() < monkey1.getEnd_x() + bananaImg.getFitWidth() &&
@@ -515,8 +600,8 @@ public class GameScreen {
 
     public boolean bananaExplosion(int y, int x) {
         if((x + (maxWidth / 10)) < maxWidth && (x - (maxWidth / 10)) > 0) {
-            return y > 1000 - 3 && ((canHitGrid_jungle[y][(x - (maxWidth / 10))]) ||
-                    (canHitGrid_jungle[y][(x + (maxWidth / 10))]));
+            return y > 1000 - 3 && ((canHitGrid_map[y][(x - (maxWidth / 10))]) ||
+                    (canHitGrid_map[y][(x + (maxWidth / 10))]));
         }
         return false;
     }

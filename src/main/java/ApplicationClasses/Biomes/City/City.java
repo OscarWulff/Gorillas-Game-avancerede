@@ -26,6 +26,7 @@ public class City {
 
             canHitGrid = new boolean[1000][1700];
             makeGround();
+            hitBoxbuildings();
         }
 
         public int getHeight() {
