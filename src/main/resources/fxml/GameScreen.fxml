@@ -92,37 +92,37 @@
    </ImageView>
    <ImageView fx:id="Tre3" fitHeight="409.0" fitWidth="195.0" layoutX="400.0" layoutY="591.0" visible="false">
       <image>
-         <Image url="@images/tree1.png" />
+         <Image url="@images/Trees/tree1.png" />
       </image>
    </ImageView>
    <ImageView fx:id="Tre2" fitHeight="214.0" fitWidth="203.0" layoutX="206.0" layoutY="785.0" visible="false">
       <image>
-         <Image url="@images/tree2.png" />
+         <Image url="@images/Trees/tree2.png" />
       </image>
    </ImageView>
    <ImageView fx:id="Tre1" fitHeight="290.0" fitWidth="229.0" layoutX="8.0" layoutY="710.0" visible="false">
       <image>
-         <Image url="@images/tree3.png" />
+         <Image url="@images/Trees/tree3.png" />
       </image>
    </ImageView>
    <ImageView fx:id="Tre7" fitHeight="200.0" fitWidth="184.0" layoutX="1154.0" layoutY="800.0" visible="false">
       <image>
-         <Image url="@images/tree4.png" />
+         <Image url="@images/Trees/tree4.png" />
       </image>
    </ImageView>
    <ImageView fx:id="Tre6" fitHeight="304.0" fitWidth="158.0" layoutX="992.0" layoutY="696.0" nodeOrientation="RIGHT_TO_LEFT" visible="false">
       <image>
-         <Image url="@images/tree3.png" />
+         <Image url="@images/Trees/tree3.png" />
       </image>
    </ImageView>
    <ImageView fx:id="Tre5" fitHeight="526.0" fitWidth="277.0" layoutX="726.0" layoutY="474.0" nodeOrientation="RIGHT_TO_LEFT" visible="false">
       <image>
-         <Image url="@images/tree2.png" />
+         <Image url="@images/Trees/tree2.png" />
       </image>
    </ImageView>
    <ImageView fx:id="Tre4" fitHeight="251.0" fitWidth="229.0" layoutX="570.0" layoutY="749.0" visible="false">
       <image>
-         <Image url="@images/tree1.png" />
+         <Image url="@images/Trees/tree1.png" />
       </image>
    </ImageView>
    <ImageView fx:id="health100_pl1" fitHeight="92.0" fitWidth="184.0" layoutX="200.0" layoutY="27.0" visible="false">
@@ -217,7 +217,7 @@
    </ImageView>
    <ImageView fx:id="Tre8" fitHeight="431.0" fitWidth="403.0" layoutX="1297.0" layoutY="569.0" visible="false">
       <image>
-         <Image url="@images/tree2.png" />
+         <Image url="@images/Trees/tree2.png" />
       </image>
    </ImageView>
    <ImageView fx:id="food1" fitHeight="207.0" fitWidth="277.0" layoutX="4.0" layoutY="798.0" pickOnBounds="true" preserveRatio="true" visible="false">
@@ -263,42 +263,42 @@
    </ImageView>
    <ImageView fx:id="building7" fitHeight="340.0" fitWidth="262.0" layoutX="1243.0" layoutY="665.0" visible="false">
       <image>
-         <Image url="@images/bygning1.png" />
+         <Image url="@images/Buildings/bygning1.png" />
       </image>
    </ImageView>
    <ImageView fx:id="building1" fitHeight="310.0" fitWidth="221.0" layoutX="9.0" layoutY="690.0" visible="false">
       <image>
-         <Image url="@images/bygning2.png" />
+         <Image url="@images/Buildings/bygning2.png" />
       </image>
    </ImageView>
    <ImageView fx:id="building3" fitHeight="340.0" fitWidth="221.0" layoutX="388.0" layoutY="662.0" visible="false">
       <image>
-         <Image url="@images/bygning3.png" />
+         <Image url="@images/Buildings/bygning3.png" />
       </image>
    </ImageView>
    <ImageView fx:id="building2" fitHeight="468.0" fitWidth="158.0" layoutX="230.0" layoutY="534.0" visible="false">
       <image>
-         <Image url="@images/bygning4.png" />
+         <Image url="@images/Buildings/bygning4.png" />
       </image>
    </ImageView>
    <ImageView fx:id="building4" fitHeight="690.0" fitWidth="229.0" layoutX="604.0" layoutY="311.0" visible="false">
       <image>
-         <Image url="@images/bygning5.png" />
+         <Image url="@images/Buildings/bygning5.png" />
       </image>
    </ImageView>
    <ImageView fx:id="building6" fitHeight="569.0" fitWidth="248.0" layoutX="1000.0" layoutY="432.0" visible="false">
       <image>
-         <Image url="@images/bygning6.png" />
+         <Image url="@images/Buildings/bygning6.png" />
       </image>
    </ImageView>
    <ImageView fx:id="building8" fitHeight="501.0" fitWidth="195.0" layoutX="1505.0" layoutY="501.0" visible="false">
       <image>
-         <Image url="@images/bygning7.png" />
+         <Image url="@images/Buildings/bygning7.png" />
       </image>
    </ImageView>
    <ImageView fx:id="building5" fitHeight="431.0" fitWidth="169.0" layoutX="833.0" layoutY="569.0" visible="false">
       <image>
-         <Image url="@images/bygning8.png" />
+         <Image url="@images/Buildings/bygning8.png" />
       </image>
    </ImageView>
 </AnchorPane>
