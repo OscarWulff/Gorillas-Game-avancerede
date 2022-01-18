@@ -255,7 +255,7 @@
          <Image url="@images/pixel_mad/beskårede%20kopier/pixel_sushi2%20(kopi).png" />
       </image>
    </ImageView>
-   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="341.0" layoutY="721.0" pickOnBounds="true" preserveRatio="true" />
+   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="341.0" layoutY="721.0" pickOnBounds="true" preserveRatio="true" visible="false" />
    <ImageView fx:id="food2" fitHeight="267.0" fitWidth="215.0" layoutX="273.0" layoutY="733.0" visible="false">
       <image>
          <Image url="@images/pixel_mad/beskårede%20kopier/pixel_fries%20(kopi).png" />

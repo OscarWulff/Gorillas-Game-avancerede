@@ -27,7 +27,9 @@ public class Jungle {
         trees.add(new Tree(1154, 1338, maxHeight - 175, maxHeight));
         trees.add(new Tree(1297, 1728, maxHeight - 406, maxHeight));
 
+
         canHitGrid = new boolean[maxHeight][maxWidth];
+        hitBoxtrees();
         makeGround();
     }
 
