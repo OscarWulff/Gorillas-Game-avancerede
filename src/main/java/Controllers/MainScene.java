@@ -39,8 +39,8 @@ public class MainScene {
     private Alert errorAlert = new Alert(Alert.AlertType.ERROR);
 
     /* this method ensures that, when the start button is pushed
-    * it will go to the gamescreen, as well as transferring the names of
-    * the players to the gamescreen */
+     * it will go to the gamescreen, as well as transferring the names of
+     * the players to the gamescreen */
 
     public void goToGameScreen() throws IOException, IllegalInputException {
         this.width_i = Integer.parseInt(length.getText());
@@ -62,8 +62,8 @@ public class MainScene {
     }
 
     /* switchingAirSpeed() is a button that can be pushed
-    * so the player can decide whether they would like to play
-    * with the wind-feature or not*/
+     * so the player can decide whether they would like to play
+     * with the wind-feature or not*/
     public void switchAirSpeed(ActionEvent actionEvent) {
 
         if(!luftFlag){

@@ -6,6 +6,7 @@ import ApplicationClasses.Biomes.Jungle.*;
 import ApplicationClasses.Biomes.FoodCourt.*;
 import ApplicationClasses.Biomes.City.*;
 
+import Exceptions.IllegalInputException;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -68,9 +69,6 @@ public class GameScreen {
     private Map<String, Food> food;
 
     private boolean canHitGrid[][];
-    public boolean canHitGrid_jungle[][];
-    public boolean canHitGrid_city[][];
-    public boolean canHitGrid_foodCourt[][];
     public boolean canHitGrid_map[][] = new boolean[1000][1700];
 
     private int playerOneAngle; private int playerOneVelocity;
@@ -95,6 +93,8 @@ public class GameScreen {
     public static final int maxHeight = 1000;
     public static final int maxWidth = 1700;
     public int currentTime;
+
+    Alert errorAlert = new Alert(Alert.AlertType.ERROR);
 
 
     public void timer(int time) {
@@ -176,7 +176,7 @@ public class GameScreen {
         this.jungle = game.getJungle();
         this.trees = jungle.Trees();
         this.jungle.hitBoxtrees();
-        this.canHitGrid = jungle.getCantHitGrid();
+        this.canHitGrid = jungle.getCanHitGrid();
 
         poof1.setLayoutX(monkey1.getStart_x() - 50);
         poof1.setLayoutY(monkey1.getStart_y() - 50);
@@ -324,7 +324,7 @@ public class GameScreen {
 
             this.city = game.getCity();
             this.city.hitBoxbuildings();
-            this.canHitGrid = city.getCantHitGrid();
+            this.canHitGrid = city.getCanHitGrid();
 
         } else if ((point1 + point2 == 2)){
             this.canHitGrid = new boolean[maxHeight][maxWidth];
@@ -358,7 +358,7 @@ public class GameScreen {
 
             this.foodCourt = game.getfoodCourt();
             this.foodCourt.hitBoxFood();
-            this.canHitGrid = foodCourt.getCantHitGrid();
+            this.canHitGrid = foodCourt.getCanHitGrid();
 
         }
     }
@@ -373,41 +373,58 @@ public class GameScreen {
      * the thread is then run and MainScene.modstand is restored to its original value
      *  */
 
-    public void doThrow(ActionEvent event) throws IOException {
+    public void doThrow(ActionEvent event) throws IOException, IllegalInputException {
         randomAdder();
         direction();
-        bananaImg.setVisible(true);
         throwButton.setVisible(false);
         if (player1.getTurn()) {
-            this.playerOneAngle = Integer.parseInt(pl1ang.getText());
-            this.playerOneVelocity = Integer.parseInt(pl1vec.getText());
-        } else {
-            this.playerTwoAngle = Integer.parseInt(pl2ang.getText());
-            this.playerTwoVelocity = Integer.parseInt(pl2vec.getText());
-        }
-        Thread thread = new Thread(this::runThread);
-        thread.start();
-        MainScene.modstand = savedWind;
-        if (point1 + point2 == 3) {
-            int winnerPoints;
-            String winnerName;
-            if (point1 > point2) {
-                winnerName = player1.getName();
-                winnerPoints = point1;
-            } else {
-                winnerName = player2.getName();
-                winnerPoints = point2;
+            if(pl1ang.getText().isEmpty() || pl1vec.getText().isEmpty()){
+                throwButton.setVisible(true);
+                errorAlert.setContentText("Actionfelterne må ikke være tomme");
+                errorAlert.showAndWait();
+                throw new IllegalInputException("Actionfelterne må ikke være tomme");
             }
-            informationAlert.setContentText("Congratulations! " + winnerName + " " +
-                    "won the game with " + winnerPoints + " points!");
-            informationAlert.showAndWait();
-            SceneManager.changeScene("fxml/MainScene.fxml");
+            if(Integer.parseInt(pl1vec.getText()) > 0 &&
+                    90 > Integer.parseInt(pl1ang.getText()) && Integer.parseInt(pl1ang.getText()) > 0) {
+                this.playerOneAngle = Integer.parseInt(pl1ang.getText());
+                this.playerOneVelocity = Integer.parseInt(pl1vec.getText());
+            } else {
+                makeBoardVisible();
+                bananaImg.setVisible(false);
+                errorAlert.setContentText("Farten skal væres større end 0 og vinklen skal være mellem 0 og 90");
+                errorAlert.showAndWait();
+                throw new IllegalInputException("Farten skal væres større end 0 og vinklen skal være mellem 0 og 90");
+            }
+        } else {
+            if (pl2ang.getText().isEmpty() || pl2vec.getText().isEmpty()){
+                throwButton.setVisible(true);
+                errorAlert.setContentText("Actionfelterne må ikke være tomme");
+                errorAlert.showAndWait();
+                throw new IllegalInputException("Actionfelterne må ikke være tomme");
+            }
+            if(Integer.parseInt(pl2vec.getText()) > 0 &&
+                    90 > Integer.parseInt(pl2ang.getText()) && Integer.parseInt(pl2ang.getText()) > 0) {
+                this.playerTwoAngle = Integer.parseInt(pl2ang.getText());
+                this.playerTwoVelocity = Integer.parseInt(pl2vec.getText());
+            } else {
+                makeBoardVisible();
+                bananaImg.setVisible(false);
+                errorAlert.setContentText("Farten skal væres større end 0 og vinklen skal være mellem 0 og 90");
+                errorAlert.showAndWait();
+                throw new IllegalInputException("Farten skal væres større end 0 og vinklen skal være mellem 0 og 90");
+            }
         }
         pl1ang.setText("");
         pl2ang.setText("");
         pl1vec.setText("");
         pl2vec.setText("");
+
+        bananaImg.setVisible(true);
+        Thread thread = new Thread(this::runThread);
+        thread.start();
+        MainScene.modstand = savedWind;
     }
+
 
     public void whichMonkey(Monkey monkey) {
         for (int i = monkey.getStart_y(); i < monkey.getEnd_y(); i++) {
@@ -418,6 +435,8 @@ public class GameScreen {
             }
         }
     }
+
+
 
     public void runThread() {
         list = new ArrayList<>();
@@ -489,8 +508,6 @@ public class GameScreen {
     public void restart() {
         if(player1.getTurn()) {
             bananaImg.setLayoutX(monkey1.getEnd_x());
-            System.out.print("monkey_x: " + monkey1.getEnd_x());
-            System.out.println(bananaImg.getLayoutX());
         } else {
             bananaImg.setLayoutX(world.getWidth() - monkeyTwoImg.getFitWidth());
         }

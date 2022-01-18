@@ -42,7 +42,7 @@ public class FoodCourt {
         return food;
     }
 
-    public boolean[][] getCantHitGrid() {
+    public boolean[][] getCanHitGrid() {
         return canHitGrid;
     }
 

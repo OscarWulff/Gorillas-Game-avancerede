@@ -44,7 +44,7 @@ public class City {
             return buildings;
         }
 
-        public boolean[][] getCantHitGrid() {
+        public boolean[][] getCanHitGrid() {
             return canHitGrid;
         }
 

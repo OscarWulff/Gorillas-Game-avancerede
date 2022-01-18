@@ -47,7 +47,7 @@ public class Jungle {
         return trees;
     }
 
-    public boolean[][] getCantHitGrid() {
+    public boolean[][] getCanHitGrid() {
         return canHitGrid;
     }
 

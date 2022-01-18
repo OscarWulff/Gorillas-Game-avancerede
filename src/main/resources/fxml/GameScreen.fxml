@@ -75,11 +75,6 @@
          <Image url="@images/pixel-poof.png" />
       </image>
    </ImageView>
-   <ImageView fx:id="barLeft" fitHeight="1000.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@images/bar_height.png" />
-      </image>
-   </ImageView>
    <ImageView fx:id="barLower" fitHeight="20.0" fitWidth="1700.0" layoutY="1000.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@images/bar_width.png" />
@@ -125,52 +120,52 @@
          <Image url="@images/Trees/tree1.png" />
       </image>
    </ImageView>
-   <ImageView fx:id="health100_pl1" fitHeight="92.0" fitWidth="184.0" layoutX="200.0" layoutY="27.0" visible="false">
+   <ImageView fx:id="health100_pl1" fitHeight="92.0" fitWidth="184.0" layoutX="486.0" layoutY="27.0" visible="false">
       <image>
          <Image url="@images/HealthBar/100%25.png" />
       </image>
    </ImageView>
-   <ImageView fx:id="health100_pl2" fitHeight="92.0" fitWidth="184.0" layoutX="898.0" layoutY="25.0" visible="false">
+   <ImageView fx:id="health100_pl2" fitHeight="92.0" fitWidth="184.0" layoutX="1012.0" layoutY="27.0" visible="false">
       <image>
          <Image url="@images/HealthBar/100%25.png" />
       </image>
    </ImageView>
-   <ImageView fx:id="health75_pl1" fitHeight="92.0" fitWidth="184.0" layoutX="200.0" layoutY="27.0" visible="false">
+   <ImageView fx:id="health75_pl1" fitHeight="92.0" fitWidth="184.0" layoutX="486.0" layoutY="27.0" visible="false">
       <image>
          <Image url="@images/HealthBar/75%25.png" />
       </image>
    </ImageView>
-   <ImageView fx:id="health50_pl1" fitHeight="92.0" fitWidth="184.0" layoutX="200.0" layoutY="27.0" visible="false">
+   <ImageView fx:id="health50_pl1" fitHeight="92.0" fitWidth="184.0" layoutX="486.0" layoutY="27.0" visible="false">
       <image>
          <Image url="@images/HealthBar/50%25.png" />
       </image>
    </ImageView>
-   <ImageView fx:id="health25_pl1" fitHeight="92.0" fitWidth="184.0" layoutX="200.0" layoutY="27.0" visible="false">
+   <ImageView fx:id="health25_pl1" fitHeight="92.0" fitWidth="184.0" layoutX="486.0" layoutY="27.0" visible="false">
       <image>
          <Image url="@images/HealthBar/25%25.png" />
       </image>
    </ImageView>
-   <ImageView fx:id="health0_pl1" fitHeight="92.0" fitWidth="184.0" layoutX="200.0" layoutY="27.0" visible="false">
+   <ImageView fx:id="health0_pl1" fitHeight="92.0" fitWidth="184.0" layoutX="486.0" layoutY="27.0" visible="false">
       <image>
          <Image url="@images/HealthBar/0%25.png" />
       </image>
    </ImageView>
-   <ImageView fx:id="health75_pl2" fitHeight="92.0" fitWidth="184.0" layoutX="898.0" layoutY="25.0" visible="false">
+   <ImageView fx:id="health75_pl2" fitHeight="92.0" fitWidth="184.0" layoutX="1012.0" layoutY="27.0" visible="false">
       <image>
          <Image url="@images/HealthBar/75%25.png" />
       </image>
    </ImageView>
-   <ImageView fx:id="health50_pl2" fitHeight="92.0" fitWidth="184.0" layoutX="898.0" layoutY="25.0" visible="false">
+   <ImageView fx:id="health50_pl2" fitHeight="92.0" fitWidth="184.0" layoutX="1012.0" layoutY="27.0" visible="false">
       <image>
          <Image url="@images/HealthBar/50%25.png" />
       </image>
    </ImageView>
-   <ImageView fx:id="health25_pl2" fitHeight="92.0" fitWidth="184.0" layoutX="898.0" layoutY="25.0" visible="false">
+   <ImageView fx:id="health25_pl2" fitHeight="92.0" fitWidth="184.0" layoutX="1012.0" layoutY="27.0" visible="false">
       <image>
          <Image url="@images/HealthBar/25%25.png" />
       </image>
    </ImageView>
-   <ImageView fx:id="health0_pl2" fitHeight="92.0" fitWidth="184.0" layoutX="898.0" layoutY="25.0" visible="false">
+   <ImageView fx:id="health0_pl2" fitHeight="92.0" fitWidth="184.0" layoutX="1012.0" layoutY="27.0" visible="false">
       <image>
          <Image url="@images/HealthBar/0%25.png" />
       </image>
@@ -185,27 +180,27 @@
          <Font name="System Bold" size="25.0" />
       </font>
    </Label>
-   <Label fx:id="minutes" layoutX="630.0" layoutY="30.0" text="00">
+   <Label fx:id="minutes" layoutX="847.0" layoutY="26.0" text="00">
       <font>
          <Font name="System Bold" size="17.0" />
       </font>
    </Label>
-   <Label fx:id="seconds" layoutX="660.0" layoutY="30.0" text="00">
+   <Label fx:id="seconds" layoutX="876.0" layoutY="26.0" text="00">
       <font>
          <Font name="System Bold" size="17.0" />
       </font>
    </Label>
-   <Label layoutX="649.0" layoutY="30.0" prefHeight="26.0" prefWidth="20.0" text=" :">
+   <Label layoutX="866.0" layoutY="26.0" prefHeight="26.0" prefWidth="20.0" text=" :">
       <font>
          <Font name="System Bold" size="15.0" />
       </font>
    </Label>
-   <ImageView fx:id="pauseButton" fitHeight="50.0" fitWidth="50.0" layoutX="1071.0" layoutY="14.0" onMouseClicked="#pauseButtonClicked">
+   <ImageView fx:id="pauseButton" fitHeight="50.0" fitWidth="50.0" layoutX="1216.0" layoutY="14.0" onMouseClicked="#pauseButtonClicked">
       <image>
          <Image url="@images/pause.png" />
       </image>
    </ImageView>
-   <ImageView fx:id="playButton" fitHeight="50.0" fitWidth="50.0" layoutX="1071.0" layoutY="14.0" onMouseClicked="#playButtonClicked" visible="false">
+   <ImageView fx:id="playButton" fitHeight="50.0" fitWidth="50.0" layoutX="1216.0" layoutY="14.0" onMouseClicked="#playButtonClicked" visible="false">
       <image>
          <Image url="@images/play.png" />
       </image>
@@ -289,6 +284,11 @@
    <ImageView fx:id="building6" fitHeight="569.0" fitWidth="248.0" layoutX="1000.0" layoutY="432.0" visible="false">
       <image>
          <Image url="@images/Buildings/bygning6.png" />
+      </image>
+   </ImageView>
+   <ImageView fx:id="barLeft" fitHeight="1000.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@images/bar_height.png" />
       </image>
    </ImageView>
    <ImageView fx:id="building8" fitHeight="501.0" fitWidth="195.0" layoutX="1505.0" layoutY="501.0" visible="false">
