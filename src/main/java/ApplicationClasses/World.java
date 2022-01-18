@@ -30,14 +30,12 @@ public class World {
         switch (x) {
             case 1: //x-coordinates where monkey 1 is standing in the jungle map, consider how big you choose the map to be.
                 if(width >= 1550) return 100;
-                else if(width >= 1200) return 250;
-                else if(width >= 900) return 450;
-                else if(width >= 720) return 585;
-                return 580;
+                else if(width >= 950) return 450;
+                return 716;
             case 2: //x-coordinates where monkey 2 is standing in the jungle map, consider how big you choose the map to be.
                 if(width >= 1450) return maxWidth - 300;
-                else if(width >= 900) return maxWidth - 515;
-                return maxWidth - 750;
+                else if(width >= 950) return maxWidth - 515;
+                return maxWidth - 644;
             case 3: //x-coordinates where monkey 1 is standing in the city map, consider how big you choose the map to be.
                 if(width >= 1500) return 249;
                 else if(width >= 950) return 400;
@@ -62,29 +60,28 @@ public class World {
         switch (y) {
             case 1: //y-coordinates where monkey 1 is standing in the jungle map, consider how big you choose the map to be.
                 if(width >= 1550) return maxHeight - 265 - 92 - 25;
-                else if(width >= 1200) return maxHeight - 189 - 92 - 25;
                 else if(width >= 900) return maxHeight - 384 - 92 - 25;
-                return maxHeight - 226 - 92 - 25;
+                return maxHeight - 529 - 92 + 4;
             case 2: //y-coordinates where monkey 2 is standing in the jungle map, consider how big you choose the map to be.
                 if(width >= 1450) return maxHeight - 406 - 92 - 25;
                 else if(width >= 900) return maxHeight - 175 - 92 - 25;
-                return maxHeight - 501 - 92 - 25;
+                return maxHeight - 304 - 92 + 4;
             case 3: //y-coordinates where monkey 1 is standing in the city map, consider how big you choose the map to be.
-                if(width >= 1500) return maxHeight - 468 - 92 + 5;
-                else if(width >= 950) return maxHeight - 340 - 92 + 5;
-                return maxHeight - 690 - 92 + 5;
+                if(width >= 1500) return maxHeight - 468 - 92 + 4;
+                else if(width >= 950) return maxHeight - 340 - 92 + 4;
+                return maxHeight - 690 - 92 + 4;
             case 4: //y-coordinates where monkey 2 is standing in the city map, consider how big you choose the map to be.
-                if(width >= 1500) return maxHeight - 340 - 92 + 5;
-                else if(width >= 950) return maxHeight - 569 - 92 + 5;
-                return maxHeight - 431 - 92 + 5;
+                if(width >= 1500) return maxHeight - 340 - 92 + 4;
+                else if(width >= 950) return maxHeight - 569 - 92 + 4;
+                return maxHeight - 431 - 92 + 4;
             case 5: //y-coordinates where monkey 1 is standing in the food map, consider how big you choose the map to be.
-                if(width >= 1500) return maxHeight - 207 - 92 + 5;
-                else if(width >= 1000) return maxHeight - 267 - 92 +5;
-                return maxHeight - 330 - 92 + 5;
+                if(width >= 1500) return maxHeight - 207 - 92 + 4;
+                else if(width >= 1000) return maxHeight - 267 - 92 + 4;
+                return maxHeight - 330 - 92 + 4;
             case 6: //y-coordinates where monkey 2 is standing in the food map, consider how big you choose the map to be.
-                if(width >= 1500) return maxHeight - 207 - 92 + 5;
-                else if(width >= 1000) return maxHeight - 297 - 92 + 5;
-                return maxHeight - 455 - 92 + 5;
+                if(width >= 1500) return maxHeight - 207 - 92 + 4;
+                else if(width >= 1000) return maxHeight - 297 - 92 + 4;
+                return maxHeight - 455 - 92 + 4;
         }
         return 0;
     }

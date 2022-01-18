@@ -32,6 +32,7 @@ public class Jungle {
         hitBoxtrees();
         makeGround();
         hitBoxtrees();
+        makeWorld();
     }
 
     public int getHeight() {
@@ -48,6 +49,19 @@ public class Jungle {
 
     public boolean[][] getCantHitGrid() {
         return canHitGrid;
+    }
+
+    public void makeWorld(){
+        for (int i = 0; i < maxHeight; i++) {
+            for (int j = 0; j < maxWidth; j++) {
+                if (j < (maxWidth - width) / 2) {
+                    canHitGrid[i][j] = true;
+                }
+                if (j > (maxWidth - ((maxWidth - width) / 2))) {
+                    canHitGrid[i][j] = true;
+                }
+            }
+        }
     }
 
     public void makeGround() {

@@ -9,6 +9,7 @@ import ApplicationClasses.Biomes.City.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -54,6 +55,8 @@ public class GameScreen {
     public Label minutes;
     public Label seconds;
     public ImageView pauseButton; public ImageView playButton;
+
+    private Alert informationAlert = new Alert(Alert.AlertType.INFORMATION);
 
     private Player player1; private Player player2;
     private World world;
@@ -189,13 +192,14 @@ public class GameScreen {
         monkeyTwoImg.setLayoutY(monkey2.getStart_y());
         barLeft.setLayoutX((int)((maxWidth - world.getWidth()) / 2));
         barLeft.setLayoutY(0);
-        barLeft.setFitHeight(world.getHeight());
+        barLeft.setFitHeight(maxHeight);
         barLeft.isSmooth();
         barLower.setLayoutX(monkey1.getStart_x());
         barLower.setLayoutY(1000);
         barLower.setFitWidth(world.getWidth());
         barRight.setLayoutX((int)(maxWidth - ((maxWidth - world.getWidth()) / 2)));
         barRight.setLayoutY(0);
+        barRight.setFitHeight(maxHeight);
         monkeyOneImg.setVisible(true);
         monkeyTwoImg.setVisible(true);
         Tre1.setVisible(true); Tre2.setVisible(true); Tre3.setVisible(true); Tre4.setVisible(true);
@@ -384,7 +388,25 @@ public class GameScreen {
         Thread thread = new Thread(this::runThread);
         thread.start();
         MainScene.modstand = savedWind;
-
+        if (point1 + point2 == 3) {
+            int winnerPoints;
+            String winnerName;
+            if (point1 > point2) {
+                winnerName = player1.getName();
+                winnerPoints = point1;
+            } else {
+                winnerName = player2.getName();
+                winnerPoints = point2;
+            }
+            informationAlert.setContentText("Congratulations! " + winnerName + " " +
+                    "won the game with " + winnerPoints + " points!");
+            informationAlert.showAndWait();
+            SceneManager.changeScene("fxml/MainScene.fxml");
+        }
+        pl1ang.setText("");
+        pl2ang.setText("");
+        pl1vec.setText("");
+        pl2vec.setText("");
     }
 
     public void whichMonkey(Monkey monkey) {
@@ -499,7 +521,7 @@ public class GameScreen {
 
         int x = 0;
         while (banana.trajectory(x) > - 1000
-                && (x < (monkey2.getStart_x() - monkey1.getStart_x()) + (bananaImg.getFitWidth() / 2))) {
+                && (x < (monkey2.getEnd_x() - monkey1.getStart_x()) + (bananaImg.getFitWidth() / 2))) {
             this.list.add(banana.trajectory(x));
             x++;
         }
@@ -508,8 +530,10 @@ public class GameScreen {
 
     /* simulateSlow() is a method that can be called for slowing down the code */
     public void simulateSlow(int x) {
+
         try {
             Thread.sleep(x + 3);
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

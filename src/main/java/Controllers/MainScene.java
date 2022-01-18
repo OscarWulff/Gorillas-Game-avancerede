@@ -47,15 +47,15 @@ public class MainScene {
         this.height_i = Integer.parseInt(height.getText());
         this.playerOneName = playerID1.getText();
         this.playerTwoName = playerID2.getText();
-        if (height_i >= 550 && height_i <= 1000 && width_i >= 550 && width_i <= 1700) {
+        if (height_i >= 600 && height_i <= 1000 && width_i >= 600 && width_i <= 1700) {
             this.game = new Game(playerOneName, playerTwoName,
                     height_i, width_i);
         } else {
-            errorAlert.setContentText("Height must be between 550 and 1000, " +
-                    "and width between 550 and 1700");
+            errorAlert.setContentText("Height must be between 600 and 1000, " +
+                    "and width between 600 and 1700");
             errorAlert.showAndWait();
-            throw new IllegalInputException("Height must be between 550 and 1000, " +
-                    "and width between 550 and 1700");
+            throw new IllegalInputException("Height must be between 600 and 1000, " +
+                    "and width between 600 and 1700");
         }
         GameScreen.setGame(game);
         SceneManager.changeScene("fxml/GameScreen.fxml");
