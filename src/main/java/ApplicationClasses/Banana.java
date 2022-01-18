@@ -11,14 +11,14 @@ public class Banana {
     private double gravity;
     private int angle;
 
-
+/* constructs a banana */
     public Banana(int velocity, double gravity, int angle){
         this.velocity = velocity;
         this.gravity = gravity;
         this.angle = angle;
     }
 
-
+    /* the trajectory() method is returning the y-values of the curve ("skråt kast" formula) */
     public int trajectory(int x) {
 
         return (int) (-(gravity * Math.pow(x, 2)) /

@@ -4,11 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FoodCourt {
+
     private Map<String, Food> food;
     private int width;
     private int height;
 
-    private boolean[][] canHitGrid;
+    public static boolean[][] canHitGrid;
 
     public FoodCourt(int height, int width){
         food = new HashMap<>();
