@@ -20,7 +20,7 @@ public class Game {
         player2 = new Player(player2Name);
         world = new World(height, length);
         jungle = new Jungle(height, length);
-        city = new City(height, length);
+        city = new City();
         foodCourt = new FoodCourt(height, length);
     }
 

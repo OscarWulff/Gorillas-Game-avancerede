@@ -13,11 +13,12 @@ public class City {
 
         private boolean[][] canHitGrid;
 
-        public City(int height, int width) {
-            buildings = new ArrayList<>();
-            this.height = 1000;
-            this.width = 1700;
+        public City() { //In this method I initialize the City map with the buildings
+            buildings = new ArrayList<>(); //An empty arraylist and the height and width are declared
+            this.height = maxHeight;
+            this.width = maxWidth;
 
+            //Defining all the buildings coordinates and adding all the buildings to the arraylist:
             buildings.add(new Building(9, 230, 1000 - 310 + 25, 1000));
             buildings.add(new Building(230, 388, 1000 - 468 + 25, 1000));
             buildings.add(new Building(388, 609, 1000 - 340 + 25, 1000));
@@ -27,28 +28,17 @@ public class City {
             buildings.add(new Building(1243, 1505, 1000 - 340 + 25, 1000));
             buildings.add(new Building(1505, 1700, 1000 - 501 + 25, 1000));
 
+            //Making a new grid for the map, that is set to max size, and is filled with a false boolean on every pixel.
             canHitGrid = new boolean[1000][1700];
-            makeGround();
-            hitBoxbuildings();
-        }
-
-        public int getHeight() {
-            return height;
-        }
-
-        public int getWidth() {
-            return width;
-        }
-
-        public ArrayList<Building> buildings() {
-            return buildings;
+            makeGround(); //calling the makeground method, so the banana won't fly through the ground of the map
+            hitBoxbuildings(); //calling the hitboxbuildings method, so the banana can't hit the buildings aswell
         }
 
         public boolean[][] getCanHitGrid() {
             return canHitGrid;
         }
 
-        public void makeGround() {
+        public void makeGround() { //If the banana hits the ground it stops and explode
             for (int i = maxHeight - 3; i < maxHeight; i++) {
                 for (int j = 0; j < maxWidth; j++) {
                     canHitGrid[i][j] = true;
@@ -57,21 +47,21 @@ public class City {
         }
 
 
-        public void hitBoxbuildings() {
-            for (int i = buildings.get(0).getStart_y(); i < buildings.get(0).getEnd_y(); i++) {
-                for (int k = buildings.get(0).getStart_x(); k < buildings.get(0).getEnd_x(); k++) {
-                    if (i >= 0 && k >= 0 && i < height && k < width) {
-                        canHitGrid[i][k] = true;
+        public void hitBoxbuildings() { //This method sets the grid to true for every building in the city map
+            for (int i = buildings.get(0).getStart_y(); i < buildings.get(0).getEnd_y(); i++) { //First building start y and end y coordinates
+                for (int k = buildings.get(0).getStart_x(); k < buildings.get(0).getEnd_x(); k++) { //First buildings start x and end x coordinates
+                    if (i >= 0 && k >= 0 && i < height && k < width) { //An if-statement that narrow it down to only building 1's pixels
+                        canHitGrid[i][k] = true; //Here it sets building 1's pixels to be true in the grid
                     }
                 }
             }
-            for (int i = buildings.get(1).getStart_y(); i < buildings.get(1).getEnd_y(); i++) {
+            for (int i = buildings.get(1).getStart_y(); i < buildings.get(1).getEnd_y(); i++) { //Does the same for the next building as above
                 for (int k = buildings.get(1).getStart_x(); k < buildings.get(1).getEnd_x(); k++) {
                     if (i >= 0 && k >= 0 && i < height && k < width) {
                         canHitGrid[i][k] = true;
                     }
                 }
-            }
+            } //Does this the all the way down, until all buildings are defined
             for (int i = buildings.get(2).getStart_y(); i < buildings.get(2).getEnd_y(); i++) {
                 for (int k = buildings.get(2).getStart_x(); k < buildings.get(2).getEnd_x(); k++) {
                     if (i >= 0 && k >= 0 && i < height && k < width) {
