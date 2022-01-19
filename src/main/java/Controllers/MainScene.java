@@ -50,7 +50,7 @@ public class MainScene {
         if (height_i >= 600 && height_i <= 1000 && width_i >= 600 && width_i <= 1700) {
             this.game = new Game(playerOneName, playerTwoName,
                     height_i, width_i);
-        } else {
+        } else { // throws an illegalinputexception if the criteria is not met
             errorAlert.setContentText("Height must be between 600 and 1000, " +
                     "and width between 600 and 1700");
             errorAlert.showAndWait();

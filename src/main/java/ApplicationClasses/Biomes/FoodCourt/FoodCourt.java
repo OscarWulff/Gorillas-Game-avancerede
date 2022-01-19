@@ -11,6 +11,7 @@ public class FoodCourt {
 
     public static boolean[][] canHitGrid;
 
+    // construct a foodcourt
     public FoodCourt(int height, int width){
         food = new HashMap<>();
 
@@ -55,7 +56,8 @@ public class FoodCourt {
     }
 
 
-
+    /* in hitBoxFood() all the for- loops int his method creates a hitbox for each food
+     * this is done by getting their x and y values  */
 
     public void hitBoxFood() {
         for (int i = food.get("burger").getStart_y(); i < food.get("burger").getEnd_y(); i++) {
