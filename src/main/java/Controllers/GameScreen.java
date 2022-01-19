@@ -6,6 +6,7 @@ import ApplicationClasses.Biomes.Jungle.*;
 import ApplicationClasses.Biomes.FoodCourt.*;
 import ApplicationClasses.Biomes.City.*;
 
+import Exceptions.IllegalInputException;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -57,27 +58,21 @@ public class GameScreen {
     public ImageView clouds3; public ImageView clouds4;
 
     private Alert informationAlert = new Alert(Alert.AlertType.INFORMATION);
+    Alert errorAlert = new Alert(Alert.AlertType.ERROR);
 
     private Player player1; private Player player2;
     private World world;
     private Jungle jungle;
     private City city;
     private FoodCourt foodCourt;
-    private ArrayList<Tree> trees;
-    private ArrayList<Building> buildings;
-    private Map<String, Food> food;
 
     private boolean canHitGrid[][];
-    public boolean canHitGrid_jungle[][];
-    public boolean canHitGrid_city[][];
-    public boolean canHitGrid_foodCourt[][];
     public boolean canHitGrid_map[][] = new boolean[1000][1700];
 
     private int playerOneAngle; private int playerOneVelocity;
     private int playerTwoAngle; private int playerTwoVelocity;
 
     private List<Integer> list = new ArrayList<>();
-    private int[] bananaArr;
     private int point1 = 0;
     private int point2 = 0;
     private Monkey monkey1;
@@ -86,7 +81,6 @@ public class GameScreen {
     private boolean flag;
     private int pl1_hits = 0;
     private int pl2_hits = 0;
-    private static int airResistance;
     public Timer timer;
     public TimeAdder timeAdder;
     public boolean stop = false;
@@ -142,9 +136,6 @@ public class GameScreen {
         GameScreen.game = game;
     }
 
-    public static void setAirresistance(int airResistance){
-        GameScreen.airResistance = airResistance;
-    }
 
     /* if this method is called by pressing a button in the gamescreen, player 1 starts */
     public void pl1Start(ActionEvent actionEvent) {
@@ -174,9 +165,8 @@ public class GameScreen {
         this.monkey1 = world.getMonkey1();
         this.monkey2 = world.getMonkey2();
         this.jungle = game.getJungle();
-        this.trees = jungle.Trees();
         this.jungle.hitBoxtrees();
-        this.canHitGrid = jungle.getCantHitGrid();
+        this.canHitGrid = jungle.getCanHitGrid();
 
         poof1.setLayoutX(monkey1.getStart_x() - 50);
         poof1.setLayoutY(monkey1.getStart_y() - 50);
@@ -263,7 +253,14 @@ public class GameScreen {
                     simulateSlow(1000);
                     health0_pl2.setVisible(false);
                     health100_pl2.setVisible(true);
+
+                    health25_pl1.setVisible(false);
+                    health50_pl1.setVisible(false);
+                    health75_pl1.setVisible(false);
+                    health100_pl1.setVisible(true);
+
                     pl1_hits = 0;
+                    pl2_hits = 0;
                     break;
             }
         } else if(player1.getTurn()) {
@@ -288,17 +285,28 @@ public class GameScreen {
                     simulateSlow(1000);
                     health0_pl1.setVisible(false);
                     health100_pl1.setVisible(true);
+
+                    health25_pl2.setVisible(false);
+                    health50_pl2.setVisible(false);
+                    health75_pl2.setVisible(false);
+                    health100_pl2.setVisible(true);
+                    pl1_hits = 0;
                     pl2_hits = 0;
                     break;
             }
         }
         switchMap();
     }
+   /* changes the map, from one to another, also changes the boolean-grid
+   * it works by checking the points scored by each player. If a point by
+   * any player is gained the map will change*/
 
     public void switchMap() {
         if ((point1 + point2 == 1)){
             this.canHitGrid = new boolean[maxHeight][maxWidth];
 
+            /*  calculates the new position of the monkeys
+            * as well as the poof animation */
             monkey1.setStart_x(world.calculatePositionX(3));
             monkey1.setEnd_x(world.calculatePositionX((3) )+ 118);
             monkey1.setStart_y(world.calculatePositionY(3));
@@ -328,7 +336,7 @@ public class GameScreen {
 
             this.city = game.getCity();
             this.city.hitBoxbuildings();
-            this.canHitGrid = city.getCantHitGrid();
+            this.canHitGrid = city.getCanHitGrid();
 
         } else if ((point1 + point2 == 2)){
             this.canHitGrid = new boolean[maxHeight][maxWidth];
@@ -362,7 +370,7 @@ public class GameScreen {
 
             this.foodCourt = game.getfoodCourt();
             this.foodCourt.hitBoxFood();
-            this.canHitGrid = foodCourt.getCantHitGrid();
+            this.canHitGrid = foodCourt.getCanHitGrid();
 
         }
     }
@@ -377,41 +385,73 @@ public class GameScreen {
      * the thread is then run and MainScene.modstand is restored to its original value
      *  */
 
-    public void doThrow(ActionEvent event) throws IOException {
-        randomAdder();
-        direction();
-        bananaImg.setVisible(true);
+    public void doThrow(ActionEvent event) throws IOException, IllegalInputException {
+        randomAdder(); // executes the method, so that it can be used later
+        direction(); // updates the wind direction, so it is visible to the user
         throwButton.setVisible(false);
-        if (player1.getTurn()) {
-            this.playerOneAngle = Integer.parseInt(pl1ang.getText());
-            this.playerOneVelocity = Integer.parseInt(pl1vec.getText());
-        } else {
-            this.playerTwoAngle = Integer.parseInt(pl2ang.getText());
-            this.playerTwoVelocity = Integer.parseInt(pl2vec.getText());
-        }
-        Thread thread = new Thread(this::runThread);
-        thread.start();
-        MainScene.modstand = savedWind;
-        if (point1 + point2 == 3) {
-            int winnerPoints;
-            String winnerName;
-            if (point1 > point2) {
-                winnerName = player1.getName();
-                winnerPoints = point1;
-            } else {
-                winnerName = player2.getName();
-                winnerPoints = point2;
+        if (player1.getTurn()) { // these if statements throws an exception if the textfields are empty
+            if(pl1ang.getText().isEmpty() || pl1vec.getText().isEmpty()){
+                throwButton.setVisible(true);
+                errorAlert.setContentText("Actionfelterne må ikke være tomme");
+                errorAlert.showAndWait();
+                throw new IllegalInputException("Actionfelterne må ikke være tomme");
             }
-            informationAlert.setContentText("Congratulations! " + winnerName + " " +
-                    "won the game with " + winnerPoints + " points!");
-            informationAlert.showAndWait();
-            SceneManager.changeScene("fxml/MainScene.fxml");
-        }
+            if(Integer.parseInt(pl1vec.getText()) > 0 &&
+                    90 > Integer.parseInt(pl1ang.getText()) && Integer.parseInt(pl1ang.getText()) > 0) {
+                this.playerOneAngle = Integer.parseInt(pl1ang.getText());
+                this.playerOneVelocity = Integer.parseInt(pl1vec.getText());
+            } else { // throws an exception if the textfields has an illegal input
+                makeBoardVisible();
+                bananaImg.setVisible(false);
+                errorAlert.setContentText("Farten skal væres større end 0 og vinklen skal være mellem 0 og 90");
+                errorAlert.showAndWait();
+                throw new IllegalInputException("Farten skal væres større end 0 og vinklen skal være mellem 0 og 90");
+            }
+        } else { // does the same as line 386, but for the other player
+            if (pl2ang.getText().isEmpty() || pl2vec.getText().isEmpty()){
+                throwButton.setVisible(true);
+                errorAlert.setContentText("Actionfelterne må ikke være tomme");
+                errorAlert.showAndWait();
+                throw new IllegalInputException("Actionfelterne må ikke være tomme");
+            }
+            if(Integer.parseInt(pl2vec.getText()) > 0 &&
+                    90 > Integer.parseInt(pl2ang.getText()) && Integer.parseInt(pl2ang.getText()) > 0) {
+                this.playerTwoAngle = Integer.parseInt(pl2ang.getText());
+                this.playerTwoVelocity = Integer.parseInt(pl2vec.getText());
+            } else { // does the same as 397, but for the other player
+                makeBoardVisible();
+                bananaImg.setVisible(false);
+                errorAlert.setContentText("Farten skal væres større end 0 og vinklen skal være mellem 0 og 90");
+                errorAlert.showAndWait();
+                throw new IllegalInputException("Farten skal væres større end 0 og vinklen skal være mellem 0 og 90");
+            }
+            if (point1 + point2 == 3) { // checks for points and makes a pop-up screen that displayes the winner
+                int winnerPoints;
+                String winnerName;
+                if (point1 > point2) {
+                    winnerName = player1.getName();
+                    winnerPoints = point1;
+                } else {
+                    winnerName = player2.getName();
+                    winnerPoints = point2;
+                }
+                informationAlert.setContentText("Congratulations! " + winnerName + " " +
+                        "won the game with " + winnerPoints + " points!");
+                informationAlert.showAndWait();
+                SceneManager.changeScene("fxml/MainScene.fxml");
+            }
+        } // resets the textfields
         pl1ang.setText("");
         pl2ang.setText("");
         pl1vec.setText("");
         pl2vec.setText("");
+
+        bananaImg.setVisible(true);
+        Thread thread = new Thread(this::runThread);
+        thread.start();
+        MainScene.modstand = savedWind; // saves the desired wind so it can be used again
     }
+
 
     public void whichMonkey(Monkey monkey) {
         for (int i = monkey.getStart_y(); i < monkey.getEnd_y(); i++) {
@@ -422,6 +462,8 @@ public class GameScreen {
             }
         }
     }
+
+
 
     public void runThread() {
         list = new ArrayList<>();
@@ -450,7 +492,7 @@ public class GameScreen {
             whichMonkey(monkey1);
             Banana banana = new Banana(playerTwoVelocity, 9.82, playerTwoAngle);
             list = makeCurve(banana);
-            for (int i = 0; i < list.size(); i++) {
+            for (int i = 0; i < list.size(); i++) { // this for-loop changes the location of the banana image
                 bananaImg.setLayoutY(monkey2.getStart_y() - monkeyTwoImg.getFitHeight() - (list.get(i)));
                 bananaImg.setLayoutX(monkey2.getStart_x() - i);
                 explosion.setLayoutX(bananaImg.getLayoutX() - (explosion.getFitWidth()/2));
@@ -493,8 +535,6 @@ public class GameScreen {
     public void restart() {
         if(player1.getTurn()) {
             bananaImg.setLayoutX(monkey1.getEnd_x());
-            System.out.print("monkey_x: " + monkey1.getEnd_x());
-            System.out.println(bananaImg.getLayoutX());
         } else {
             bananaImg.setLayoutX(world.getWidth() - monkeyTwoImg.getFitWidth());
         }
@@ -551,9 +591,9 @@ public class GameScreen {
 
     public void bananaHit(ImageView monkey) {
         explosion.setVisible(false);
-        flag = false;
-        stop = false;
-        STOP:
+        flag = false; // the boolean flag is an indicator for the setHearts() method
+        stop = false; // boolean value for stopping the for loop, when desired
+        STOP: // makes the thread stop
         for (int j = (int) bananaImg.getLayoutY(); j < (int) bananaImg.getLayoutY() + bananaImg.getFitHeight(); j++) {
             for (int k = (int) bananaImg.getLayoutX(); k < (int) bananaImg.getLayoutX() + bananaImg.getFitWidth(); k++) {
                 if (player1.getTurn() && j >= 0 && k >= monkey1.getEnd_x() && j <
@@ -569,7 +609,7 @@ public class GameScreen {
                             poof2.setVisible(true);
                             flag = true;
                         }
-                        stop = true;
+                        stop = true; // stop set to true
                         break STOP;
                     }
                 } else if (!player1.getTurn() && j >= 0 && k >= 0 && j <
@@ -595,8 +635,8 @@ public class GameScreen {
 
     public boolean bananaExplosion(int y, int x) {
         if((x + (maxWidth / 10)) < maxWidth && (x - (maxWidth / 10)) > 0) {
-            return y > 1000 - 3 && ((canHitGrid_map[y][(x - (maxWidth / 10))]) ||
-                    (canHitGrid_map[y][(x + (maxWidth / 10))]));
+            return y > 1000 - 3 && ((canHitGrid[y][(x - (maxWidth / 10))]) ||
+                    (canHitGrid[y][(x + (maxWidth / 10))]));
         }
         return false;
     }
@@ -618,15 +658,16 @@ public class GameScreen {
     /* the point() method adds a point to a players score and updates the label on the gamescreen
     if the method is run */
     public void point(){
-        if (!player1.getTurn()){
-            this.point1++;
+        if (!player1.getTurn()){ // checks whose turn it is.
+            this.point1++; // gives a point if the if-statement is true
             Platform.runLater(new Runnable(){
                 @Override
                 public void run() {
                     score1.setText(String.valueOf(point1));
                 }
+                /* updates the score1-label without the need of an actionevent  */
             });
-        } else {
+        } else { // this is exactly the same
             this.point2++;
             Platform.runLater(new Runnable(){
                 @Override
