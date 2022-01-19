@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="1000.0" prefWidth="1700.0" style="-fx-background-color: #5fCde4;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainScene">
-   <Button fx:id="btnChange" layoutX="774.0" layoutY="543.0" onAction="#goToGameScreen" prefHeight="43.0" prefWidth="122.0" text="Start">
+   <Button fx:id="btnChange" layoutX="917.0" layoutY="550.0" onAction="#goToGameScreen" prefHeight="43.0" prefWidth="122.0" text="Start">
       <font>
          <Font size="20.0" />
       </font></Button>
@@ -46,12 +46,12 @@
    <TextField fx:id="length" layoutX="903.0" layoutY="467.0" />
    <Label layoutX="714.0" layoutY="197.0" prefHeight="17.0" prefWidth="46.0" text="Player 1" />
    <Label layoutX="714.0" layoutY="238.0" prefHeight="17.0" prefWidth="46.0" text="Player 2" />
-   <Button fx:id="luftKnap" layoutX="498.0" layoutY="552.0" onAction="#switchAirSpeed" prefHeight="43.0" prefWidth="122.0" text="No">
+   <Button fx:id="luftKnap" layoutX="653.0" layoutY="550.0" onAction="#switchAirSpeed" prefHeight="43.0" prefWidth="122.0" text="No">
       <font>
          <Font size="20.0" />
       </font>
    </Button>
-   <Label layoutX="532.0" layoutY="528.0" text="Air speed:" />
+   <Label layoutX="688.0" layoutY="526.0" text="Air speed:" />
    <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="760.0" layoutY="293.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@images/banana.gif" />
