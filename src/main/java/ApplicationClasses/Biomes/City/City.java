@@ -30,7 +30,7 @@ public class City {
 
             //Making a new grid for the map, that is set to max size, and is filled with a false boolean on every pixel.
             canHitGrid = new boolean[maxHeight][maxWidth];
-            hitBoxbuildings(); //calling the hitboxbuildings method, so the banana can't hit the buildings aswell
+            hitBoxbuildings(); //calling the hitboxbuildings method, so the banana can't hit the buildings aswell.
         }
 
         public boolean[][] getCanHitGrid() {
@@ -38,11 +38,11 @@ public class City {
         }
 
 
-        public void hitBoxbuildings() { //This method sets the grid to true for every building in the city map
-            for (int i = buildings.get(0).getStart_y(); i < buildings.get(0).getEnd_y(); i++) { //First building start y and end y coordinates
-                for (int k = buildings.get(0).getStart_x(); k < buildings.get(0).getEnd_x(); k++) { //First buildings start x and end x coordinates
-                    if (i >= 0 && k >= 0 && i < height && k < width) { //An if-statement that narrow it down to only building 1's pixels
-                        canHitGrid[i][k] = true; //Here it sets building 1's pixels to be true in the grid
+        public void hitBoxbuildings() { //This method sets the grid to true for every building in the city map.
+            for (int i = buildings.get(0).getStart_y(); i < buildings.get(0).getEnd_y(); i++) { //First building start y and end y coordinates.
+                for (int k = buildings.get(0).getStart_x(); k < buildings.get(0).getEnd_x(); k++) { //First buildings start x and end x coordinates.
+                    if (i >= 0 && k >= 0 && i < height && k < width) { //An if-statement that narrow it down to only building 1's pixels.
+                        canHitGrid[i][k] = true; //Here it sets building 1's pixels to be true in the grid.
                     }
                 }
             }
@@ -52,7 +52,7 @@ public class City {
                         canHitGrid[i][k] = true;
                     }
                 }
-            } //Does this the all the way down, until all buildings are defined
+            } //Does this the all the way down, until all buildings are defined.
             for (int i = buildings.get(2).getStart_y(); i < buildings.get(2).getEnd_y(); i++) {
                 for (int k = buildings.get(2).getStart_x(); k < buildings.get(2).getEnd_x(); k++) {
                     if (i >= 0 && k >= 0 && i < height && k < width) {

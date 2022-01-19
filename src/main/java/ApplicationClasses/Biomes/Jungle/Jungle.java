@@ -13,8 +13,8 @@ public class Jungle {
 
     private boolean[][] canHitGrid;
 
-    public Jungle(int height, int width) { //In this method I initialize the Jungle map with the Trees
-        trees = new ArrayList<>(); //An empty arraylist and the height and width are declared
+    public Jungle(int height, int width) { //In this method I initialize the Jungle map with the Trees.
+        trees = new ArrayList<>(); //An empty arraylist and the height and width are declared.
         this.height = height;
         this.width = width;
 
@@ -30,18 +30,18 @@ public class Jungle {
 
         //Making a new grid for the map, that is set to max size, and is filled with a false boolean on every pixel.
         canHitGrid = new boolean[maxHeight][maxWidth];
-        makeGround(); //calling the makeground method, so the banana won't fly through the ground of the map
-        hitBoxtrees(); //calling the hitboxtrees method, so the banana can't hit the buildings aswell
-        makeWorld(); //If you choose the world to be smaller it will limit the hitboxes to the left and right bar u choose
+        makeGround(); //calling the makeground method, so the banana won't fly through the ground of the map.
+        hitBoxtrees(); //calling the hitboxtrees method, so the banana can't hit the buildings aswell.
+        makeWorld(); //If you choose the world to be smaller it will limit the hitboxes to the left and right bar u choose.
     }
 
     public boolean[][] getCanHitGrid() {
         return canHitGrid;
     }
 
-    public void makeWorld(){ //Makes the world and so you can choose the world to be smaller
-        for (int i = 0; i < maxHeight; i++) { //Takes every pixel in the height
-            for (int j = 0; j < maxWidth; j++) { //takes every pixel in the max width
+    public void makeWorld(){ //Makes the world and so you can choose the world to be smaller.
+        for (int i = 0; i < maxHeight; i++) { //Takes every pixel in the height.
+            for (int j = 0; j < maxWidth; j++) { //takes every pixel in the max width.
                 if (j < (maxWidth - width) / 2) {
                     canHitGrid[i][j] = true; //limits the width of the left side of the world consider what you choose the width to be.
                 }
@@ -61,11 +61,11 @@ public class Jungle {
     }
 
 
-    public void hitBoxtrees() { //This method sets the grid to true for every tree in the jungle map
-        for (int i = trees.get(0).getStart_y(); i < trees.get(0).getEnd_y(); i++) { //First trees start y and end y coordinates
-            for (int k = trees.get(0).getStart_x(); k < trees.get(0).getEnd_x(); k++) { //First trees start x and end x coordinates
-                if (i >= 0 && k >= 0 && i < maxHeight && k < maxWidth) { //An if-statement that narrow it down to only tree 1's pixels
-                    canHitGrid[i][k] = true; //Here it sets tree 1's pixels to be true in the grid
+    public void hitBoxtrees() { //This method sets the grid to true for every tree in the jungle map.
+        for (int i = trees.get(0).getStart_y(); i < trees.get(0).getEnd_y(); i++) { //First trees start y and end y coordinates.
+            for (int k = trees.get(0).getStart_x(); k < trees.get(0).getEnd_x(); k++) { //First trees start x and end x coordinates.
+                if (i >= 0 && k >= 0 && i < maxHeight && k < maxWidth) { //An if-statement that narrow it down to only tree 1's pixels.
+                    canHitGrid[i][k] = true; //Here it sets tree 1's pixels to be true in the grid.
                 }
             }
         }
@@ -75,7 +75,7 @@ public class Jungle {
                     canHitGrid[i][k] = true;
                 }
             }
-        } //Does this the all the way down, until all trees are defined
+        } //Does this the all the way down, until all trees are defined.
         for (int i = trees.get(2).getStart_y(); i < trees.get(2).getEnd_y(); i++) {
             for (int k = trees.get(2).getStart_x(); k < trees.get(2).getEnd_x(); k++) {
                 if (i >= 0 && k >= 0 && i < maxHeight && k < maxWidth) {
