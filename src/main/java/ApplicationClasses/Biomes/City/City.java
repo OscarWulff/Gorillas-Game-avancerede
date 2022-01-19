@@ -13,7 +13,7 @@ public class City {
 
         private boolean[][] canHitGrid;
 
-        public City() { //In this method I initialize the City map with the buildings
+        public City(int height, int width) { //In this method I initialize the City map with the buildings
             buildings = new ArrayList<>(); //An empty arraylist and the height and width are declared
             this.height = maxHeight;
             this.width = maxWidth;

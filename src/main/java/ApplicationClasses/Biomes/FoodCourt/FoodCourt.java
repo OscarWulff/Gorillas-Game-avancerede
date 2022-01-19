@@ -15,7 +15,7 @@ public class FoodCourt {
     public static boolean[][] canHitGrid;
 
     // construct a foodcourt
-    public FoodCourt(){ //In this method I initialize the foodcourt map with food
+    public FoodCourt(int height, int width){ //In this method I initialize the foodcourt map with food
         food = new HashMap<>(); // an empty hashmap and the height and width are declared
 
         this.height = maxHeight;
