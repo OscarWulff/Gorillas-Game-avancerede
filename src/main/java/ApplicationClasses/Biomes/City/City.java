@@ -29,21 +29,12 @@ public class City {
             buildings.add(new Building(1505, 1700, 1000 - 501 + 25, 1000));
 
             //Making a new grid for the map, that is set to max size, and is filled with a false boolean on every pixel.
-            canHitGrid = new boolean[1000][1700];
-            makeGround(); //calling the makeground method, so the banana won't fly through the ground of the map
+            canHitGrid = new boolean[maxHeight][maxWidth];
             hitBoxbuildings(); //calling the hitboxbuildings method, so the banana can't hit the buildings aswell
         }
 
         public boolean[][] getCanHitGrid() {
             return canHitGrid;
-        }
-
-        public void makeGround() { //If the banana hits the ground it stops and explode
-            for (int i = maxHeight - 3; i < maxHeight; i++) {
-                for (int j = 0; j < maxWidth; j++) {
-                    canHitGrid[i][j] = true;
-                }
-            }
         }
 
 
@@ -55,7 +46,7 @@ public class City {
                     }
                 }
             }
-            for (int i = buildings.get(1).getStart_y(); i < buildings.get(1).getEnd_y(); i++) { //Does the same for the next building as above
+            for (int i = buildings.get(1).getStart_y(); i < buildings.get(1).getEnd_y(); i++) { //Does the same as above for the next building.
                 for (int k = buildings.get(1).getStart_x(); k < buildings.get(1).getEnd_x(); k++) {
                     if (i >= 0 && k >= 0 && i < height && k < width) {
                         canHitGrid[i][k] = true;
