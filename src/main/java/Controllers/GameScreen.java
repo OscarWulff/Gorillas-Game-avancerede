@@ -52,10 +52,10 @@ public class GameScreen {
     public ImageView food1; public ImageView food2; public ImageView food3; public ImageView food4;
     public ImageView food5; public ImageView food6; public ImageView food7; public ImageView food8;
 
-    public Label luftLabel;
-    public Label minutes;
-    public Label seconds;
+    public Label luftLabel; public Label minutes; public Label seconds;
     public ImageView pauseButton; public ImageView playButton;
+    public ImageView clouds1; public ImageView clouds2;
+    public ImageView clouds3; public ImageView clouds4;
 
     private Alert informationAlert = new Alert(Alert.AlertType.INFORMATION);
     Alert errorAlert = new Alert(Alert.AlertType.ERROR);
@@ -194,6 +194,10 @@ public class GameScreen {
         monkeyTwoImg.setVisible(true);
         Tre1.setVisible(true); Tre2.setVisible(true); Tre3.setVisible(true); Tre4.setVisible(true);
         Tre5.setVisible(true); Tre6.setVisible(true); Tre7.setVisible(true); Tre8.setVisible(true);
+        if(world.getHeight() <= 900) clouds1.setVisible(true);
+        if(world.getHeight() <= 800) clouds2.setVisible(true);
+        if(world.getHeight() <= 700) clouds3.setVisible(true);
+        if(world.getHeight() == 600) clouds4.setVisible(true);
         timer(0);
     }
 
