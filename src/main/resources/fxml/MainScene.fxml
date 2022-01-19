@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="1000.0" prefWidth="1700.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainScene">
+<AnchorPane prefHeight="1000.0" prefWidth="1700.0" style="-fx-background-color: #5fCde4;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainScene">
    <Button fx:id="btnChange" layoutX="774.0" layoutY="543.0" onAction="#goToGameScreen" prefHeight="43.0" prefWidth="122.0" text="Start">
       <font>
          <Font size="20.0" />
