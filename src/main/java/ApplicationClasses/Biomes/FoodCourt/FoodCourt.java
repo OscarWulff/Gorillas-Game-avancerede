@@ -33,7 +33,7 @@ public class FoodCourt {
 
         // making a new grid, that is set to the max size, and is filled with false boolean values
         canHitGrid = new boolean[1000][1700];
-
+        makeGround(); // calling the makeground, so the banana will not fall through the ground
     }
 
     public boolean[][] getCanHitGrid() {
