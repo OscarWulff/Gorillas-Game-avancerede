@@ -130,19 +130,19 @@ public class World {
     }
 
 
-    public void hitBox(Player player) {
+    public void hitBox(Player player, boolean[][] grid) {
         if (!player.getTurn()) {
-            whichMonkey(monkey1);
+            whichMonkey(monkey1, grid);
         } else {
-            whichMonkey(monkey2);
+            whichMonkey(monkey2, grid);
         }
     }
 
-    public void whichMonkey(Monkey monkey) {
+    public void whichMonkey(Monkey monkey, boolean[][] grid) {
         for (int i = monkey.getStart_y(); i < monkey.getEnd_y(); i++) {
             for (int k = monkey.getStart_x(); k < monkey.getEnd_x(); k++) {
                 if (i >= 0 && k >= 0 && i < height && k < width) {
-                    canHitGrid[i][k] = true;
+                    grid[i][k] = true;
                 }
             }
         }
