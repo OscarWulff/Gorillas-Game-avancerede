@@ -37,6 +37,5 @@ public class Monkey {
 
     public void setEnd_y(int end_y) {this.end_y = end_y;}
 
-
-
 }
+
