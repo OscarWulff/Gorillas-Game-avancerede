@@ -29,7 +29,6 @@ public class Jungle {
 
 
         canHitGrid = new boolean[maxHeight][maxWidth];
-        hitBoxtrees();
         makeGround();
         hitBoxtrees();
         makeWorld();
