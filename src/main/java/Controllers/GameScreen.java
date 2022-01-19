@@ -585,13 +585,14 @@ public class GameScreen {
         explosion.setVisible(false);
         flag = false; // the boolean flag is an indicator for the setHearts() method
         stop = false; // boolean value for stopping the for loop, when desired
-        STOP: // makes the thread stop
+        STOP:
+        // makes the thread stop
         //The for-for-loop iterates through every pixel in that our bananaImg contains
         for (int j = (int) bananaImg.getLayoutY(); j < (int) bananaImg.getLayoutY() + bananaImg.getFitHeight(); j++) {
             for (int k = (int) bananaImg.getLayoutX(); k < (int) bananaImg.getLayoutX() + bananaImg.getFitWidth(); k++) {
                 if (player1.getTurn() && j >= 0 && k >= monkey1.getEnd_x() && j <
                         maxHeight && k < maxWidth) {
-                    if(canHitGrid[j][k]) {//the if-statemt checks if there is any obstacles or monkey in that pixel {
+                    if (canHitGrid[j][k] || bananaExplosion(j, k)) {//the if-statemt checks if there is any obstacles or monkey in that pixel {
                         bananaImg.setVisible(false);
                         explosion.setVisible(true);
                         //if statement checks whether the banana exploded close enough to the monkey
@@ -608,14 +609,14 @@ public class GameScreen {
                     }
                 } else if (!player1.getTurn() && j >= 0 && k >= 0 && j <
                         1000 && k < (monkey2.getStart_x())) {
-                    if(canHitGrid[j][k])//the if-statemt checks if there is any obstacles or monkey in that pixel {
+                    if (canHitGrid[j][k] || bananaExplosion(j, k)) {//the if-statemt checks if there is any obstacles or monkey in that pixel
                         bananaImg.setVisible(false);
                         explosion.setVisible(true);
-                    //if statement checks whether the banana exploded close enough to the monkey
+                        //if statement checks whether the banana exploded close enough to the monkey
                         if (bananaImg.getLayoutX() < monkey1.getEnd_x() + bananaImg.getFitWidth() &&
                                 bananaImg.getLayoutX() > monkey1.getStart_x() - bananaImg.getFitWidth() &&
                                 bananaImg.getLayoutY() > monkey1.getStart_y() - bananaImg.getFitWidth() &&
-                                bananaImg.getLayoutY() < monkey1.getEnd_y() + bananaImg.getFitWidth()){
+                                bananaImg.getLayoutY() < monkey1.getEnd_y() + bananaImg.getFitWidth()) {
                             monkey.setVisible(false);
                             poof1.setVisible(true);
                             flag = true;//the boolean-variable makes monkey loose a life through setHeart()
@@ -626,6 +627,15 @@ public class GameScreen {
                 }
             }
         }
+    }
+
+    public boolean bananaExplosion(int y, int x) {
+        if((x + (maxWidth / 10)) < maxWidth && (x - (maxWidth / 10)) > 0) {
+            return y > 1000 - 3 && ((canHitGrid[y][(x - (maxWidth / 10))]) ||
+                    (canHitGrid[y][(x + (maxWidth / 10))]));
+        }
+        return false;
+    }
 
     /* switchVisibility() switches the visibilty of the action-boxes of each player */
 
