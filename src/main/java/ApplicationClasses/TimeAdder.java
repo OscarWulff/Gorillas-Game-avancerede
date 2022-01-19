@@ -5,7 +5,7 @@ import Controllers.GameScreen;
 
 import java.util.TimerTask;
 
-
+//The variable 'i' holds how many seconds have gone since the game started.
 public class TimeAdder extends TimerTask{
     int i;
 
@@ -14,7 +14,7 @@ public class TimeAdder extends TimerTask{
     }
 
     public void run() {
-        i++;
+        i++; //adds one "second" every time it is run
     }
 
     public int getTime() {

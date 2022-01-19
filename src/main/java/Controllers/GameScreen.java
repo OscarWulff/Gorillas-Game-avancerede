@@ -458,22 +458,10 @@ public class GameScreen {
     }
 
 
-    public void whichMonkey(Monkey monkey) {
-        for (int i = monkey.getStart_y(); i < monkey.getEnd_y(); i++) {
-            for (int k = monkey.getStart_x(); k < monkey.getEnd_x(); k++) {
-                if (i >= 0 && k >= 0 && i < 1000 && k < 1700) {
-                    canHitGrid[i][k] = true;
-                }
-            }
-        }
-    }
-
-
-
     public void runThread() {
+        world.hitBox(player1, canHitGrid);
         list = new ArrayList<>();
         if (player1.getTurn()) {
-            whichMonkey(monkey2);
             Banana banana = new Banana(playerOneVelocity, 9.82, playerOneAngle);
             list = makeCurve(banana);
             for (int i = 0; i < list.size(); i++) {
@@ -494,7 +482,6 @@ public class GameScreen {
             player1.setTurn(false);
 
         } else {
-            whichMonkey(monkey1);
             Banana banana = new Banana(playerTwoVelocity, 9.82, playerTwoAngle);
             list = makeCurve(banana);
             for (int i = 0; i < list.size(); i++) { // this for-loop changes the location of the banana image
@@ -683,16 +670,16 @@ public class GameScreen {
         }
     }
 
-    public void pauseButtonClicked(MouseEvent mouseEvent) { //actionevent når pausebutton er klikket
+    public void pauseButtonClicked(MouseEvent mouseEvent) { //actionevent when pausebutton is clicked
         pauseButton.setVisible(false);
         playButton.setVisible(true);
-        currentTime = timeAdder.getTime(); //gemmer tiden i variablen currentTime
-        timer.cancel(); //stopper tiden
+        currentTime = timeAdder.getTime();  //hides the current time in the variable currentTime
+        timer.cancel(); //stops the time
     }
 
-    public void playButtonClicked(MouseEvent mouseEvent) { //actioevent når playbutton er klikket
+    public void playButtonClicked(MouseEvent mouseEvent) { //actionevent when playbutton is clicked
         playButton.setVisible(false);
         pauseButton.setVisible(true);
-        timer(currentTime); //opretter tiden ved start for currentTime
+        timer(currentTime); //creates the time again with starttime from currentTime
     }
 }
