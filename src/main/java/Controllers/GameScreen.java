@@ -156,7 +156,6 @@ public class GameScreen {
     }
 
     /* initGameValues() initializes game values eg. assigning the variables with their desired values  */
-
     public void initGameValues(){
         direction();
         this.player1 = game.getPlayer1();
@@ -236,7 +235,7 @@ public class GameScreen {
     /* this method sets the healthbars to the correct health, eg. which case is being displayed, depending on how many times each monkey
      * has been hit. */
     public void setHeart() {
-        if(!player1.getTurn()) {
+        if (!player1.getTurn()) {
             pl1_hits++;
             switch (pl1_hits) {
                 case 1:
@@ -268,7 +267,7 @@ public class GameScreen {
                     pl2_hits = 0;
                     break;
             }
-        } else if(player1.getTurn()) {
+        } else if (player1.getTurn()) {
             pl2_hits++;
             switch (pl2_hits) {
                 case 1:
@@ -305,7 +304,6 @@ public class GameScreen {
    /* changes the map, from one to another, also changes the boolean-grid
    * it works by checking the points scored by each player. If a point by
    * any player is gained the map will change*/
-
     public void switchMap() {
         if ((point1 + point2 == 1)){
             this.canHitGrid = new boolean[maxHeight][maxWidth];
@@ -459,9 +457,9 @@ public class GameScreen {
 
 
     public void runThread() {
-        world.hitBox(player1, canHitGrid);
         list = new ArrayList<>();
         if (player1.getTurn()) {
+            world.hitBoxMonkey(monkey2, canHitGrid);
             Banana banana = new Banana(playerOneVelocity, 9.82, playerOneAngle);
             list = makeCurve(banana);
             for (int i = 0; i < list.size(); i++) {
@@ -482,6 +480,8 @@ public class GameScreen {
             player1.setTurn(false);
 
         } else {
+
+            world.hitBoxMonkey(monkey1, canHitGrid);
             Banana banana = new Banana(playerTwoVelocity, 9.82, playerTwoAngle);
             list = makeCurve(banana);
             for (int i = 0; i < list.size(); i++) { // this for-loop changes the location of the banana image
