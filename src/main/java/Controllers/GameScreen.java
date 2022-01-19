@@ -174,8 +174,13 @@ public class GameScreen {
         poof2.setLayoutX(monkey2.getStart_x() - 50);
         poof2.setLayoutY(monkey2.getStart_y() - 50);
 
-        nameLabel1.setText(player1.getName());
-        nameLabel2.setText(player2.getName());
+        if (player1.getName().isEmpty()){
+            nameLabel1.setText("Player 1");
+        } else{ nameLabel1.setText(player1.getName());}
+        if (player2.getName().isEmpty()){
+            nameLabel2.setText("Player 2");
+        } else{ nameLabel2.setText(player2.getName());}
+
         monkeyOneImg.setLayoutX(monkey1.getStart_x());
         monkeyOneImg.setLayoutY(monkey1.getStart_y());
         monkeyTwoImg.setLayoutX(monkey2.getStart_x());
