@@ -259,7 +259,14 @@ public class GameScreen {
                     simulateSlow(1000);
                     health0_pl2.setVisible(false);
                     health100_pl2.setVisible(true);
+
+                    health25_pl1.setVisible(false);
+                    health50_pl1.setVisible(false);
+                    health75_pl1.setVisible(false);
+                    health100_pl1.setVisible(true);
+
                     pl1_hits = 0;
+                    pl2_hits = 0;
                     break;
             }
         } else if(player1.getTurn()) {
@@ -284,6 +291,12 @@ public class GameScreen {
                     simulateSlow(1000);
                     health0_pl1.setVisible(false);
                     health100_pl1.setVisible(true);
+
+                    health25_pl2.setVisible(false);
+                    health50_pl2.setVisible(false);
+                    health75_pl2.setVisible(false);
+                    health100_pl2.setVisible(true);
+                    pl1_hits = 0;
                     pl2_hits = 0;
                     break;
             }

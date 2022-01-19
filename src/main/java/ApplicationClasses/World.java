@@ -60,11 +60,11 @@ public class World {
         switch (y) {
             case 1: //y-coordinates where monkey 1 is standing in the jungle map, consider how big you choose the map to be.
                 if(width >= 1550) return maxHeight - 265 - 92 - 25;
-                else if(width >= 900) return maxHeight - 384 - 92 - 25;
+                else if(width >= 950) return maxHeight - 384 - 92 - 25;
                 return maxHeight - 529 - 92 + 4;
             case 2: //y-coordinates where monkey 2 is standing in the jungle map, consider how big you choose the map to be.
                 if(width >= 1450) return maxHeight - 406 - 92 - 25;
-                else if(width >= 900) return maxHeight - 175 - 92 - 25;
+                else if(width >= 950) return maxHeight - 175 - 92 - 25;
                 return maxHeight - 304 - 92 + 4;
             case 3: //y-coordinates where monkey 1 is standing in the city map, consider how big you choose the map to be.
                 if(width >= 1500) return maxHeight - 468 - 92 + 4;
