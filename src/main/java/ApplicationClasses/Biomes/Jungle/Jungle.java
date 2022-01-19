@@ -13,7 +13,7 @@ public class Jungle {
 
     private boolean[][] canHitGrid;
 
-    public Jungle(int height, int width) { //In this method I initialize the Jungle map with the Trees.
+    public Jungle() { //In this method I initialize the Jungle map with the Trees.
         trees = new ArrayList<>(); //An empty arraylist and the height and width are declared.
         this.height = height;
         this.width = width;

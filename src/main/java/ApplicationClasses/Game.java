@@ -15,13 +15,13 @@ public class Game {
     private FoodCourt foodCourt;
 
 
-    public Game(String player1Name, String player2Name, int height, int length) throws IllegalInputException {
+    public Game(String player1Name, String player2Name, int height, int length) throws IllegalInputException { // Initializing the Game with the players and maps.
         player1 = new Player(player1Name);
         player2 = new Player(player2Name);
         world = new World(height, length);
-        jungle = new Jungle(height, length);
+        jungle = new Jungle();
         city = new City();
-        foodCourt = new FoodCourt(height, length);
+        foodCourt = new FoodCourt();
     }
 
     public Player getPlayer1(){
