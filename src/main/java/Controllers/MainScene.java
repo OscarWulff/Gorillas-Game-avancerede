@@ -84,6 +84,5 @@ public class MainScene {
         int spanMax = 30;
         int spanMin = -30;
         this.modstand = rand.nextInt(spanMax - spanMin) + spanMin;
-        GameScreen.setAirresistance(modstand);
     }
 }

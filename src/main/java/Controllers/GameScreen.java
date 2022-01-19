@@ -58,15 +58,13 @@ public class GameScreen {
     public ImageView pauseButton; public ImageView playButton;
 
     private Alert informationAlert = new Alert(Alert.AlertType.INFORMATION);
+    Alert errorAlert = new Alert(Alert.AlertType.ERROR);
 
     private Player player1; private Player player2;
     private World world;
     private Jungle jungle;
     private City city;
     private FoodCourt foodCourt;
-    private ArrayList<Tree> trees;
-    private ArrayList<Building> buildings;
-    private Map<String, Food> food;
 
     private boolean canHitGrid[][];
     public boolean canHitGrid_map[][] = new boolean[1000][1700];
@@ -75,7 +73,6 @@ public class GameScreen {
     private int playerTwoAngle; private int playerTwoVelocity;
 
     private List<Integer> list = new ArrayList<>();
-    private int[] bananaArr;
     private int point1 = 0;
     private int point2 = 0;
     private Monkey monkey1;
@@ -84,7 +81,6 @@ public class GameScreen {
     private boolean flag;
     private int pl1_hits = 0;
     private int pl2_hits = 0;
-    private static int airResistance;
     public Timer timer;
     public TimeAdder timeAdder;
     public boolean stop = false;
@@ -93,8 +89,6 @@ public class GameScreen {
     public static final int maxHeight = 1000;
     public static final int maxWidth = 1700;
     public int currentTime;
-
-    Alert errorAlert = new Alert(Alert.AlertType.ERROR);
 
 
     public void timer(int time) {
@@ -142,9 +136,6 @@ public class GameScreen {
         GameScreen.game = game;
     }
 
-    public static void setAirresistance(int airResistance){
-        GameScreen.airResistance = airResistance;
-    }
 
     /* if this method is called by pressing a button in the gamescreen, player 1 starts */
     public void pl1Start(ActionEvent actionEvent) {
@@ -174,7 +165,6 @@ public class GameScreen {
         this.monkey1 = world.getMonkey1();
         this.monkey2 = world.getMonkey2();
         this.jungle = game.getJungle();
-        this.trees = jungle.Trees();
         this.jungle.hitBoxtrees();
         this.canHitGrid = jungle.getCanHitGrid();
 
@@ -425,6 +415,21 @@ public class GameScreen {
                 errorAlert.setContentText("Farten skal væres større end 0 og vinklen skal være mellem 0 og 90");
                 errorAlert.showAndWait();
                 throw new IllegalInputException("Farten skal væres større end 0 og vinklen skal være mellem 0 og 90");
+            }
+            if (point1 + point2 == 3) {
+                int winnerPoints;
+                String winnerName;
+                if (point1 > point2) {
+                    winnerName = player1.getName();
+                    winnerPoints = point1;
+                } else {
+                    winnerName = player2.getName();
+                    winnerPoints = point2;
+                }
+                informationAlert.setContentText("Congratulations! " + winnerName + " " +
+                        "won the game with " + winnerPoints + " points!");
+                informationAlert.showAndWait();
+                SceneManager.changeScene("fxml/MainScene.fxml");
             }
         }
         pl1ang.setText("");
