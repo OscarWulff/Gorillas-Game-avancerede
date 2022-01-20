@@ -406,6 +406,17 @@ public class GameScreen {
     public void doThrow(ActionEvent event) throws IOException, IllegalInputException {
 
         throwButton.setVisible(false);
+        try {
+            Integer.parseInt(pl1vec.getText());
+            Integer.parseInt(pl1ang.getText());
+            Integer.parseInt(pl2vec.getText());
+            Integer.parseInt(pl2ang.getText());
+        }
+        catch (NumberFormatException e){
+            informationAlert.setContentText("Not a valid input");
+            informationAlert.showAndWait();
+            throwButton.setVisible(true);
+        }
         if (player1.getTurn()) { // these if statements throws an exception if the textfields are empty
             if(pl1ang.getText().isEmpty() || pl1vec.getText().isEmpty()){
                 throwButton.setVisible(true);
@@ -424,6 +435,7 @@ public class GameScreen {
                 errorAlert.showAndWait();
                 throw new IllegalInputException("Farten skal væres større end 0 og vinklen skal være mellem 0 og 90");
             }
+
         } else { // does the same as line 386, but for the other player
             if (pl2ang.getText().isEmpty() || pl2vec.getText().isEmpty()){
                 throwButton.setVisible(true);
