@@ -374,7 +374,6 @@ public class GameScreen {
             this.foodCourt = game.getfoodCourt();
             this.foodCourt.hitBoxFood();
             this.canHitGrid = foodCourt.getCanHitGrid();
-
         }
     }
 

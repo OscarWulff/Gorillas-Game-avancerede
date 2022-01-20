@@ -23,8 +23,6 @@ public class World {
         canHitGrid = new boolean[maxHeight][maxWidth];
         makeGround();
         makeWorld();
-        System.out.println(monkey1.getStart_x());
-        System.out.println(monkey1.getStart_y());
     }
 
 
@@ -67,21 +65,21 @@ public class World {
             case 2: //y-coordinates where monkey 2 is standing in the jungle map, consider how big you choose the map to be.
                 if(width >= 1450) return maxHeight - 406 - 92 - 25;
                 else if(width >= 950) return maxHeight - 175 - 92 - 25;
-                return maxHeight - 304 - 92 + 4;
+                return maxHeight - 304 - 92;
             case 3: //y-coordinates where monkey 1 is standing in the city map, consider how big you choose the map to be.
                 if(width >= 1500) return maxHeight - 468 - 92 + 4;
                 else if(width >= 950) return maxHeight - 340 - 92 + 4;
                 return maxHeight - 690 - 92 + 4;
             case 4: //y-coordinates where monkey 2 is standing in the city map, consider how big you choose the map to be.
-                if(width >= 1500) return maxHeight - 340 - 92 + 4;
+                if(width >= 1500) return maxHeight - 340 - 92 + 6;
                 else if(width >= 950) return maxHeight - 569 - 92 + 4;
-                return maxHeight - 431 - 92 + 4;
+                return maxHeight - 431 - 92 + 2;
             case 5: //y-coordinates where monkey 1 is standing in the food map, consider how big you choose the map to be.
-                if(width >= 1500) return maxHeight - 207 - 92 + 4;
+                if(width >= 1500) return maxHeight - 207 - 92 + 8;
                 else if(width >= 1000) return maxHeight - 267 - 92 + 4;
-                return maxHeight - 330 - 92 + 4;
+                return maxHeight - 330 - 92 + 6;
             case 6: //y-coordinates where monkey 2 is standing in the food map, consider how big you choose the map to be.
-                if(width >= 1500) return maxHeight - 207 - 92 + 4;
+                if(width >= 1500) return maxHeight - 207 - 92 - 2;
                 else if(width >= 1000) return maxHeight - 297 - 92 + 4;
                 return maxHeight - 455 - 92 + 4;
         }
