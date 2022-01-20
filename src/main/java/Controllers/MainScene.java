@@ -69,20 +69,14 @@ public class MainScene {
         if(!luftFlag){
             luftKnap.setText("Yes");
             luftFlag = true;
-            airResistance();
-        } else if (luftFlag) {
+
+        } else {
             luftKnap.setText("No");
             modstand=0;
             luftFlag = false;
         }
     }
 
-    /* airResistance() creates a random number */
 
-    public void airResistance(){
-        Random rand = new Random();
-        int spanMax = 30;
-        int spanMin = -30;
-        this.modstand = rand.nextInt(spanMax - spanMin) + spanMin;
-    }
+
 }

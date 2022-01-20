@@ -18,11 +18,11 @@ public class Banana {
         this.angle = angle;
     }
 
-    /* the trajectory() method is returning the y-values of the curve ("skråt kast" formula) */
-    public int trajectory(int x) {
+    // the trajectory() method is returning the y-values of the curve ("skråt kast" formula) */
+    public int trajectory(int x, int airresistance) {
 
         return (int) (-(gravity * Math.pow(x, 2)) /
-                (2 * Math.pow((velocity + MainScene.modstand), 2)  * Math.pow(Math.cos(Math.toRadians(angle)), 2))
+                (2 * Math.pow((velocity + airresistance), 2)  * Math.pow(Math.cos(Math.toRadians(angle)), 2))
                 + Math.abs(Math.tan(Math.toRadians(angle))) * x);
     }
 }

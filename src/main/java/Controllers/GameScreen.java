@@ -38,7 +38,7 @@ public class GameScreen {
     public ImageView poof2;
     public ImageView explosion;
     public ImageView barLeft; public ImageView barLower;
-    public ImageView barUpper; public ImageView barRight;
+    public ImageView barRight;
 
     public ImageView health100_pl1; public ImageView health100_pl2; public ImageView health75_pl1; public ImageView health50_pl1; public ImageView health25_pl1;
     public ImageView health0_pl1; public ImageView health75_pl2; public ImageView health50_pl2; public ImageView health25_pl2; public ImageView health0_pl2;
@@ -67,7 +67,6 @@ public class GameScreen {
     private FoodCourt foodCourt;
 
     private boolean canHitGrid[][];
-    public boolean canHitGrid_map[][] = new boolean[1000][1700];
 
     private int playerOneAngle; private int playerOneVelocity;
     private int playerTwoAngle; private int playerTwoVelocity;
@@ -85,10 +84,10 @@ public class GameScreen {
     public TimeAdder timeAdder;
     public boolean stop = false;
     private int fluctuatingVelocity;
-    private static int savedWind = MainScene.modstand;
     public static final int maxHeight = 1000;
     public static final int maxWidth = 1700;
     public int currentTime;
+    public int airResistance = new Random().nextInt(30 - (-30)) - 30;
 
     //The method initialize a Timer, TimeTask and updates them every second
     public void timer(int time) {
@@ -144,6 +143,7 @@ public class GameScreen {
         player2.setTurn(false);
         makeBoardVisible();
 
+
     }
     /* if this method is called by pressing a button in the gamescreen, player 2 starts */
     public void pl2Start(ActionEvent actionEvent) {
@@ -152,11 +152,13 @@ public class GameScreen {
         player2.setTurn(true);
         makeBoardVisible();
 
-        MainScene.modstand *= -1;
+        airResistance *= -1;
+
     }
 
     /* initGameValues() initializes game values eg. assigning the variables with their desired values  */
     public void initGameValues(){
+
         direction();
         this.player1 = game.getPlayer1();
         this.player2 = game.getPlayer2();
@@ -241,18 +243,26 @@ public class GameScreen {
                 case 1:
                     health100_pl2.setVisible(false);
                     health75_pl2.setVisible(true);
+                    direction(); // updates the wind direction, so it is visible to the user
+                    randomAdder();
                     break;
                 case 2:
                     health75_pl2.setVisible(false);
                     health50_pl2.setVisible(true);
+                    direction(); // updates the wind direction, so it is visible to the user
+                    randomAdder();
                     break;
                 case 3:
                     health50_pl2.setVisible(false);
                     health25_pl2.setVisible(true);
+                    direction(); // updates the wind direction, so it is visible to the user
+                    randomAdder();
                     break;
                 case 4:
                     health25_pl2.setVisible(false);
                     health0_pl2.setVisible(true);
+                    direction(); // updates the wind direction, so it is visible to the user
+                    randomAdder();
                     point();
                     simulateSlow(1000);
                     health0_pl2.setVisible(false);
@@ -265,7 +275,6 @@ public class GameScreen {
 
                     pl1_hits = 0;
                     pl2_hits = 0;
-                    break;
             }
         } else if (player1.getTurn()) {
             pl2_hits++;
@@ -273,18 +282,26 @@ public class GameScreen {
                 case 1:
                     health100_pl1.setVisible(false);
                     health75_pl1.setVisible(true);
+                    direction(); // updates the wind direction, so it is visible to the user
+                    randomAdder();
                     break;
                 case 2:
                     health75_pl1.setVisible(false);
                     health50_pl1.setVisible(true);
+                    direction(); // updates the wind direction, so it is visible to the user
+                    randomAdder();
                     break;
                 case 3:
                     health50_pl1.setVisible(false);
                     health25_pl1.setVisible(true);
+                    direction(); // updates the wind direction, so it is visible to the user
+                    randomAdder();
                     break;
                 case 4:
                     health25_pl1.setVisible(false);
                     health0_pl1.setVisible(true);
+                    direction(); // updates the wind direction, so it is visible to the user
+                    randomAdder();
                     point();
                     simulateSlow(1000);
                     health0_pl1.setVisible(false);
@@ -296,20 +313,19 @@ public class GameScreen {
                     health100_pl2.setVisible(true);
                     pl1_hits = 0;
                     pl2_hits = 0;
-                    break;
             }
         }
         switchMap();
     }
-   /* changes the map, from one to another, also changes the boolean-grid
-   * it works by checking the points scored by each player. If a point by
-   * any player is gained the map will change*/
+    /* changes the map, from one to another, also changes the boolean-grid
+     * it works by checking the points scored by each player. If a point by
+     * any player is gained the map will change*/
     public void switchMap() {
         if ((point1 + point2 == 1)){
             this.canHitGrid = new boolean[maxHeight][maxWidth];
 
             /*  calculates the new position of the monkeys
-            * as well as the poof animation */
+             * as well as the poof animation */
             monkey1.setStart_x(world.calculatePositionX(3));
             monkey1.setEnd_x(world.calculatePositionX((3) )+ 118);
             monkey1.setStart_y(world.calculatePositionY(3));
@@ -384,13 +400,22 @@ public class GameScreen {
      * secondly direction is executed, which displays and arrow and windspeed on the gamescreen.
      * then the banana is set to visible and the throwbutton is set to invisible.
      * The angle and velocity is then assigned to the variables depending on which turn it is.
-     * the thread is then run and MainScene.modstand is restored to its original value
      *  */
 
     public void doThrow(ActionEvent event) throws IOException, IllegalInputException {
-        randomAdder(); // executes the method, so that it can be used later
-        direction(); // updates the wind direction, so it is visible to the user
+
         throwButton.setVisible(false);
+        try {
+            Integer.parseInt(pl1vec.getText());
+            Integer.parseInt(pl1ang.getText());
+            Integer.parseInt(pl2vec.getText());
+            Integer.parseInt(pl2ang.getText());
+        }
+        catch (NumberFormatException e){
+            informationAlert.setContentText("Not a valid input");
+            informationAlert.showAndWait();
+            throwButton.setVisible(true);
+        }
         if (player1.getTurn()) { // these if statements throws an exception if the textfields are empty
             if(pl1ang.getText().isEmpty() || pl1vec.getText().isEmpty()){
                 throwButton.setVisible(true);
@@ -409,6 +434,7 @@ public class GameScreen {
                 errorAlert.showAndWait();
                 throw new IllegalInputException("Farten skal væres større end 0 og vinklen skal være mellem 0 og 90");
             }
+
         } else { // does the same as line 386, but for the other player
             if (pl2ang.getText().isEmpty() || pl2vec.getText().isEmpty()){
                 throwButton.setVisible(true);
@@ -451,7 +477,6 @@ public class GameScreen {
         bananaImg.setVisible(true);
         Thread thread = new Thread(this::runThread);
         thread.start();
-        MainScene.modstand = savedWind; // saves the desired wind so it can be used again
     }
 
 
@@ -508,16 +533,28 @@ public class GameScreen {
     }
 
     /* direction() is used to display the direction of the wind
-     * this is done with an if/else if statement if MainScene.modstand
+     * this is done with an if/else if statement if vindmodstand
      * is lesser than 0 and luftflag is true then the arrow will turn right, otherwise
      * it will turn left - this all depends on luftflag which is assigned af boolean value in
      * MainScene*/
 
     public void direction(){
-        if (MainScene.modstand < 0 && MainScene.luftFlag){
-            luftLabel.setText("\u2192 " + Math.abs(MainScene.modstand) + " m/s");
+        if (airResistance < 0 && MainScene.luftFlag){
+            Platform.runLater(new Runnable(){
+                @Override
+                public void run() {
+                    luftLabel.setText("\u2192 " + Math.abs(airResistance) + " m/s");
+                }
+            });
+
         } else if(MainScene.luftFlag) {
-            luftLabel.setText("\u2190" + Math.abs(MainScene.modstand) + " m/s");
+            Platform.runLater(new Runnable(){
+                @Override
+                public void run() {
+                    luftLabel.setText("\u2190" + Math.abs(airResistance) + " m/s");
+                }
+            });
+
         }
     }
 
@@ -544,6 +581,7 @@ public class GameScreen {
         int spanMax = 5;
         int spanMin = -5;
         this.fluctuatingVelocity = adder.nextInt(spanMax - spanMin) + spanMin;
+        if(MainScene.luftFlag) { airResistance += fluctuatingVelocity;}
     }
 
     /* makecurve generates the values of the curve, so they can be used to update the location of the banana
@@ -551,13 +589,12 @@ public class GameScreen {
      * fluctuate (see RandomAdder() line 381) */
 
     public List<Integer> makeCurve(Banana banana) {
-        MainScene.modstand *= -1;
-        if(MainScene.luftFlag) { MainScene.modstand += fluctuatingVelocity;}
-
+        airResistance = (-1) * airResistance;
+        System.out.println(airResistance);
         int x = 0;
-        while (banana.trajectory(x) > - 1000
+        while (banana.trajectory(x, airResistance) > - 1000
                 && (x < (monkey2.getEnd_x() - monkey1.getStart_x()) + (bananaImg.getFitWidth() / 2))) {
-            this.list.add(banana.trajectory(x));
+            this.list.add(banana.trajectory(x, airResistance));
             x++;
         }
         return this.list;
@@ -568,7 +605,6 @@ public class GameScreen {
 
         try {
             Thread.sleep(x + 3);
-
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
