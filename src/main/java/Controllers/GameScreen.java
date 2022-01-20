@@ -405,17 +405,20 @@ public class GameScreen {
     public void doThrow(ActionEvent event) throws IOException, IllegalInputException {
 
         throwButton.setVisible(false);
-        try {
-            Integer.parseInt(pl1vec.getText());
-            Integer.parseInt(pl1ang.getText());
-            Integer.parseInt(pl2vec.getText());
-            Integer.parseInt(pl2ang.getText());
-        }
-        catch (NumberFormatException e){
-            informationAlert.setContentText("Not a valid input");
-            informationAlert.showAndWait();
-            throwButton.setVisible(true);
-        }
+            try {
+                if(player1.getTurn()){
+                    Integer.parseInt(pl1vec.getText());
+                    Integer.parseInt(pl1ang.getText());
+                } else {
+                    Integer.parseInt(pl2vec.getText());
+                    Integer.parseInt(pl2ang.getText());
+                }
+
+            } catch (NumberFormatException e) {
+                informationAlert.setContentText("Not a valid input");
+                informationAlert.showAndWait();
+                throwButton.setVisible(true);
+            }
         if (player1.getTurn()) { // these if statements throws an exception if the textfields are empty
             if(pl1ang.getText().isEmpty() || pl1vec.getText().isEmpty()){
                 throwButton.setVisible(true);
@@ -589,6 +592,9 @@ public class GameScreen {
      * fluctuate (see RandomAdder() line 381) */
 
     public List<Integer> makeCurve(Banana banana) {
+        if (!MainScene.luftFlag){
+            airResistance = 0;
+        }
         airResistance = (-1) * airResistance;
         System.out.println(airResistance);
         int x = 0;
