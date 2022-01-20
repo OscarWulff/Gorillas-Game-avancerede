@@ -25,6 +25,27 @@ public class World {
         makeWorld();
     }
 
+    //The method inserts the floor as true values into our grid
+    public void makeGround() {
+        for (int i = maxHeight - 3; i < maxHeight; i++) {
+            for (int j = 0; j < maxWidth; j++) {
+                canHitGrid[i][j] = true;
+            }
+        }
+    }
+    //The method makes every pixel which is not part of the initialised game true
+    public void makeWorld(){
+        for (int i = 0; i < maxHeight; i++) {
+            for (int j = 0; j < maxWidth; j++) {
+                if (j < (maxWidth - width) / 2) {//if-statement making every pixel true on the left side of the game
+                    canHitGrid[i][j] = true;
+                }
+                if (j > (maxWidth - ((maxWidth - width) / 2))) {//if-statement making every pixel true on right side
+                    canHitGrid[i][j] = true;
+                }
+            }
+        }
+    }
 
     public int calculatePositionX(int x)  {
         switch (x) {
@@ -85,6 +106,16 @@ public class World {
         }
         return 0;
     }
+    //A method who inserts the monkeys hitboxes as true-values into our grid
+    public void hitBoxMonkey(Monkey monkey, boolean[][] grid) {
+        for (int i = monkey.getStart_y(); i < monkey.getEnd_y(); i++) {
+            for (int k = monkey.getStart_x(); k < monkey.getEnd_x(); k++) {
+                if (i >= 0 && k >= 0 && i < height && k < width) {
+                    grid[i][k] = true;
+                }
+            }
+        }
+    }
 
     public int getHeight() {
         return height;
@@ -106,37 +137,4 @@ public class World {
         return canHitGrid;
     }
 
-    //The method inserts the floor as true values into our grid
-    public void makeGround() {
-        for (int i = maxHeight - 3; i < maxHeight; i++) {
-            for (int j = 0; j < maxWidth; j++) {
-                canHitGrid[i][j] = true;
-            }
-        }
-    }
-
-    //The method makes every pixel which is not part of the initialised game true
-    public void makeWorld(){
-        for (int i = 0; i < maxHeight; i++) {
-            for (int j = 0; j < maxWidth; j++) {
-                if (j < (maxWidth - width) / 2) {//if-statement making every pixel true on the left side of the game
-                    canHitGrid[i][j] = true;
-                }
-                if (j > (maxWidth - ((maxWidth - width) / 2))) {//if-statement making every pixel true on right side
-                    canHitGrid[i][j] = true;
-                }
-            }
-        }
-    }
-
-    //A method who inserts the monkeys hitboxes as true-values into our grid
-    public void hitBoxMonkey(Monkey monkey, boolean[][] grid) {
-        for (int i = monkey.getStart_y(); i < monkey.getEnd_y(); i++) {
-            for (int k = monkey.getStart_x(); k < monkey.getEnd_x(); k++) {
-                if (i >= 0 && k >= 0 && i < height && k < width) {
-                    grid[i][k] = true;
-                }
-            }
-        }
-    }
 }

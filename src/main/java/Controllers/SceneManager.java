@@ -9,7 +9,7 @@ public class SceneManager {
     private static Scene mainScene;
 
     /**
-     * Used to chage what is display on the primary stage
+     * Used to change what is display on the primary stage
      * @param fxml the file name of the FXML file (including .fxml)
      * @throws IOException if file is not found or cannot be read
      */

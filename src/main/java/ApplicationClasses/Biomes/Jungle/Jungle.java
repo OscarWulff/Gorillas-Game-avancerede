@@ -8,9 +8,7 @@ import static Controllers.GameScreen.maxWidth;
 public class Jungle {
     private int width;
     private int height;
-
     private ArrayList<Tree> trees;
-
     private boolean[][] canHitGrid;
 
     public Jungle(int height, int width) { //In this method I initialize the Jungle map with the Trees.
@@ -31,7 +29,7 @@ public class Jungle {
         //Making a new grid for the map, that is set to max size, and is filled with a false boolean on every pixel.
         canHitGrid = new boolean[maxHeight][maxWidth];
         makeGround(); //calling the makeground method, so the banana won't fly through the ground of the map.
-        hitBoxtrees(); //calling the hitboxtrees method, so the banana can't hit the buildings aswell.
+        hitBoxTrees(); //calling the hitboxtrees method, so the banana can't hit the buildings aswell.
         makeWorld(); //If you choose the world to be smaller it will limit the hitboxes to the left and right bar u choose.
     }
 
@@ -61,7 +59,7 @@ public class Jungle {
     }
 
 
-    public void hitBoxtrees() { //This method sets the grid to true for every tree in the jungle map.
+    public void hitBoxTrees() { //This method sets the grid to true for every tree in the jungle map.
         for (int i = trees.get(0).getStart_y(); i < trees.get(0).getEnd_y(); i++) { //First trees start y and end y coordinates.
             for (int k = trees.get(0).getStart_x(); k < trees.get(0).getEnd_x(); k++) { //First trees start x and end x coordinates.
                 if (i >= 0 && k >= 0 && i < maxHeight && k < maxWidth) { //An if-statement that narrow it down to only tree 1's pixels.

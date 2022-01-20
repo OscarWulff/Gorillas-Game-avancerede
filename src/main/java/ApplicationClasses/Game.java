@@ -42,5 +42,5 @@ public class Game {
 
     public City getCity() { return city; }
 
-    public FoodCourt getfoodCourt() { return foodCourt; }
+    public FoodCourt getFoodCourt() { return foodCourt; }
 }
