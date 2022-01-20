@@ -65,7 +65,6 @@ public class MainScene {
      * so the player can decide whether they would like to play
      * with the wind-feature or not*/
     public void switchAirSpeed(ActionEvent actionEvent) {
-
         if(!luftFlag){
             luftKnap.setText("Yes");
             luftFlag = true;

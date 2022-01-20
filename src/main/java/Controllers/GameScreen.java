@@ -88,6 +88,7 @@ public class GameScreen {
     public static final int maxWidth = 1700;
     public int currentTime;
     public int airResistance = new Random().nextInt(30 - (-30)) - 30;
+    public final int savedWind = airResistance;
 
     //The method initialize a Timer, TimeTask and updates them every second
     public void timer(int time) {
@@ -143,17 +144,14 @@ public class GameScreen {
         player2.setTurn(false);
         makeBoardVisible();
 
-
     }
     /* if this method is called by pressing a button in the gamescreen, player 2 starts */
     public void pl2Start(ActionEvent actionEvent) {
+        airResistance *= -1;
         initGameValues();
         player1.setTurn(false);
         player2.setTurn(true);
         makeBoardVisible();
-
-        airResistance *= -1;
-
     }
 
     /* initGameValues() initializes game values eg. assigning the variables with their desired values  */
@@ -243,26 +241,26 @@ public class GameScreen {
                 case 1:
                     health100_pl2.setVisible(false);
                     health75_pl2.setVisible(true);
-                    direction(); // updates the wind direction, so it is visible to the user
                     randomAdder();
+                    direction(); // updates the wind direction, so it is visible to the user
                     break;
                 case 2:
                     health75_pl2.setVisible(false);
                     health50_pl2.setVisible(true);
-                    direction(); // updates the wind direction, so it is visible to the user
                     randomAdder();
+                    direction(); // updates the wind direction, so it is visible to the user
                     break;
                 case 3:
                     health50_pl2.setVisible(false);
                     health25_pl2.setVisible(true);
-                    direction(); // updates the wind direction, so it is visible to the user
                     randomAdder();
+                    direction(); // updates the wind direction, so it is visible to the user
                     break;
                 case 4:
                     health25_pl2.setVisible(false);
                     health0_pl2.setVisible(true);
-                    direction(); // updates the wind direction, so it is visible to the user
                     randomAdder();
+                    direction(); // updates the wind direction, so it is visible to the user
                     point();
                     simulateSlow(1000);
                     health0_pl2.setVisible(false);
@@ -282,26 +280,26 @@ public class GameScreen {
                 case 1:
                     health100_pl1.setVisible(false);
                     health75_pl1.setVisible(true);
-                    direction(); // updates the wind direction, so it is visible to the user
                     randomAdder();
+                    direction(); // updates the wind direction, so it is visible to the user
                     break;
                 case 2:
                     health75_pl1.setVisible(false);
                     health50_pl1.setVisible(true);
-                    direction(); // updates the wind direction, so it is visible to the user
                     randomAdder();
+                    direction(); // updates the wind direction, so it is visible to the user
                     break;
                 case 3:
                     health50_pl1.setVisible(false);
                     health25_pl1.setVisible(true);
-                    direction(); // updates the wind direction, so it is visible to the user
                     randomAdder();
+                    direction(); // updates the wind direction, so it is visible to the user
                     break;
                 case 4:
                     health25_pl1.setVisible(false);
                     health0_pl1.setVisible(true);
-                    direction(); // updates the wind direction, so it is visible to the user
                     randomAdder();
+                    direction(); // updates the wind direction, so it is visible to the user
                     point();
                     simulateSlow(1000);
                     health0_pl1.setVisible(false);
@@ -542,11 +540,11 @@ public class GameScreen {
      * MainScene*/
 
     public void direction(){
-        if (airResistance < 0 && MainScene.luftFlag){
+        if (savedWind > 0 && MainScene.luftFlag){
             Platform.runLater(new Runnable(){
                 @Override
                 public void run() {
-                    luftLabel.setText("\u2192 " + Math.abs(airResistance) + " m/s");
+                    luftLabel.setText("\u2192" + Math.abs(airResistance) + " m/s");
                 }
             });
 
@@ -595,14 +593,13 @@ public class GameScreen {
         if (!MainScene.luftFlag){
             airResistance = 0;
         }
-        airResistance = (-1) * airResistance;
-        System.out.println(airResistance);
         int x = 0;
         while (banana.trajectory(x, airResistance) > - 1000
                 && (x < (monkey2.getEnd_x() - monkey1.getStart_x()) + (bananaImg.getFitWidth() / 2))) {
             this.list.add(banana.trajectory(x, airResistance));
             x++;
         }
+        airResistance = (-1) * airResistance;
         return this.list;
     }
 
