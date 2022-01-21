@@ -1,3 +1,5 @@
+/* Shared responsibility: s.nr. 204197 Gideon Wade, s.nr. 214927 Morten Lindhardt Helsø,
+* s.nr. 214925 Rasmus Søndergaard, s.nr. 216163 */
 package Controllers;
 
 
@@ -84,8 +86,8 @@ public class GameScreen {
     public TimeAdder timeAdder;
     public boolean stop = false;
     private int fluctuatingVelocity;
-    public static final int maxHeight = 1000;
-    public static final int maxWidth = 1700;
+    public static final int MAX_HEIGHT = 1000;
+    public static final int MAX_WIDTH = 1700;
     public int currentTime;
     public int airResistance = new Random().nextInt(30 - (-30)) - 30;
     public final int savedWind = airResistance;
@@ -184,16 +186,16 @@ public class GameScreen {
         monkeyOneImg.setLayoutY(monkey1.getStart_y());
         monkeyTwoImg.setLayoutX(monkey2.getStart_x());
         monkeyTwoImg.setLayoutY(monkey2.getStart_y());
-        barLeft.setLayoutX((int)((maxWidth - world.getWidth()) / 2));
+        barLeft.setLayoutX((int)((MAX_WIDTH - world.getWidth()) / 2));
         barLeft.setLayoutY(0);
-        barLeft.setFitHeight(maxHeight);
+        barLeft.setFitHeight(MAX_HEIGHT);
         barLeft.isSmooth();
         barLower.setLayoutX(monkey1.getStart_x());
         barLower.setLayoutY(1000);
         barLower.setFitWidth(world.getWidth());
-        barRight.setLayoutX((int)(maxWidth - ((maxWidth - world.getWidth()) / 2)));
+        barRight.setLayoutX((int)(MAX_WIDTH - ((MAX_WIDTH - world.getWidth()) / 2)));
         barRight.setLayoutY(0);
-        barRight.setFitHeight(maxHeight);
+        barRight.setFitHeight(MAX_HEIGHT);
         monkeyOneImg.setVisible(true);
         monkeyTwoImg.setVisible(true);
         Tre1.setVisible(true); Tre2.setVisible(true); Tre3.setVisible(true); Tre4.setVisible(true);
@@ -320,7 +322,7 @@ public class GameScreen {
      * any player is gained the map will change*/
     public void switchMap() {
         if ((point1 + point2 == 1)){
-            this.canHitGrid = new boolean[maxHeight][maxWidth];
+            this.canHitGrid = new boolean[MAX_HEIGHT][MAX_WIDTH];
 
             /*  calculates the new position of the monkeys
              * as well as the poof animation */
@@ -356,7 +358,7 @@ public class GameScreen {
             this.canHitGrid = city.getCanHitGrid();
 
         } else if ((point1 + point2 == 2)){
-            this.canHitGrid = new boolean[maxHeight][maxWidth];
+            this.canHitGrid = new boolean[MAX_HEIGHT][MAX_WIDTH];
 
             monkey1.setStart_x(world.calculatePositionX(5));
             monkey1.setEnd_x(world.calculatePositionX((5)) + 118);
@@ -629,7 +631,7 @@ public class GameScreen {
         for (int j = (int) bananaImg.getLayoutY(); j < (int) bananaImg.getLayoutY() + bananaImg.getFitHeight(); j++) {
             for (int k = (int) bananaImg.getLayoutX(); k < (int) bananaImg.getLayoutX() + bananaImg.getFitWidth(); k++) {
                 if (player1.getTurn() && j >= 0 && k >= monkey1.getEnd_x() && j <
-                        maxHeight && k < maxWidth) {
+                        MAX_HEIGHT && k < MAX_WIDTH) {
                     if (canHitGrid[j][k] || bananaExplosion(j, k)) {//the if-statemt checks if there is any obstacles or monkey in that pixel {
                         bananaImg.setVisible(false);
                         explosion.setVisible(true);
@@ -668,9 +670,9 @@ public class GameScreen {
     }
 
     public boolean bananaExplosion(int y, int x) {
-        if((x + (maxWidth / 10)) < maxWidth && (x - (maxWidth / 10)) > 0) {
-            return y > 1000 - 3 && ((canHitGrid[y][(x - (maxWidth / 10))]) ||
-                    (canHitGrid[y][(x + (maxWidth / 10))]));
+        if((x + (MAX_WIDTH / 10)) < MAX_WIDTH && (x - (MAX_WIDTH / 10)) > 0) {
+            return y > 1000 - 3 && ((canHitGrid[y][(x - (MAX_WIDTH / 10))]) ||
+                    (canHitGrid[y][(x + (MAX_WIDTH / 10))]));
         }
         return false;
     }

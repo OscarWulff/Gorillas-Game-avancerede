@@ -1,10 +1,10 @@
+/* s.nr. 214927 Morten Lindhardt Helsø */
 package ApplicationClasses.Biomes.FoodCourt;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static Controllers.GameScreen.maxHeight;
-import static Controllers.GameScreen.maxWidth;
+import static Controllers.GameScreen.MAX_HEIGHT;
+import static Controllers.GameScreen.MAX_WIDTH;
 
 public class FoodCourt {
 
@@ -18,8 +18,8 @@ public class FoodCourt {
     public FoodCourt(int height, int width){ //In this method I initialize the foodcourt map with food
         food = new HashMap<>(); // an empty hashmap and the height and width are declared
 
-        this.height = maxHeight;
-        this.width = maxWidth;
+        this.height = MAX_HEIGHT;
+        this.width = MAX_WIDTH;
 
         //defining all the food coordinates and adding them to the hashmap
         food.put("burger", new Food(4, 281, 1000 - 207 + 25, 1000));

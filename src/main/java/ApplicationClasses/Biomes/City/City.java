@@ -1,9 +1,10 @@
+/* s.nr. 204197 Gideon Wade */
 package ApplicationClasses.Biomes.City;
 
 import java.util.ArrayList;
 
-import static Controllers.GameScreen.maxHeight;
-import static Controllers.GameScreen.maxWidth;
+import static Controllers.GameScreen.MAX_HEIGHT;
+import static Controllers.GameScreen.MAX_WIDTH;
 
 public class City {
         private int width;
@@ -15,8 +16,8 @@ public class City {
 
         public City(int height, int width) { //In this method I initialize the City map with the buildings
             buildings = new ArrayList<>(); //An empty arraylist and the height and width are declared
-            this.height = maxHeight;
-            this.width = maxWidth;
+            this.height = MAX_HEIGHT;
+            this.width = MAX_WIDTH;
 
             //Defining all the buildings coordinates and adding all the buildings to the arraylist:
             buildings.add(new Building(9, 230, 1000 - 310 + 25, 1000));
@@ -29,7 +30,7 @@ public class City {
             buildings.add(new Building(1505, 1700, 1000 - 501 + 25, 1000));
 
             //Making a new grid for the map, that is set to max size, and is filled with a false boolean on every pixel.
-            canHitGrid = new boolean[maxHeight][maxWidth];
+            canHitGrid = new boolean[MAX_HEIGHT][MAX_WIDTH];
             hitBoxbuildings(); //calling the hitboxbuildings method, so the banana can't hit the buildings aswell.
         }
 

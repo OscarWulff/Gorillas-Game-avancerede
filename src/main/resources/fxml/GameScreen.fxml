@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="1000.0" prefWidth="1700.0" style="-fx-background-color: #5fCde4;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.GameScreen">
+<AnchorPane prefHeight="1000.0" prefWidth="1700.0" style="-fx-background-color: #5fCde4;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.GameScreen">
    <ImageView fx:id="monkeyOneImg" fitHeight="92.0" fitWidth="118.0" layoutY="708.0" pickOnBounds="true" preserveRatio="true" visible="false">
       <image>
          <Image url="@images/monkey.jpg" />
@@ -304,7 +304,7 @@
          <Image url="@images/play.png" />
       </image>
    </ImageView>
-   <Label fx:id="luftLabel" layoutX="600.0" layoutY="126.0" prefHeight="36.0" prefWidth="118.0" text="" textAlignment="CENTER" visible="false">
+   <Label fx:id="luftLabel" layoutX="776.0" layoutY="117.0" prefHeight="36.0" prefWidth="118.0" text="" textAlignment="CENTER" visible="false">
       <font>
          <Font name="System Bold" size="25.0" />
       </font>
