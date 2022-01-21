@@ -1,3 +1,4 @@
+/* s.nr. 214927 Morten Lindhardt Helsø */
 package Exceptions;
 
 public class ErrorMessageHolder {

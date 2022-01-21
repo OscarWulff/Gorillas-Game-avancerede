@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Gorillas-Game-avancerede:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Gorillas_Game_avancerede_jar</output-path>
+    <root id="archive" name="Gorillas-Game-avancerede.jar">
+      <element id="module-output" name="Gorillas_Game" />
+      <element id="module-source" name="Gorillas_Game" />
+    </root>
+  </artifact>
+</component>
