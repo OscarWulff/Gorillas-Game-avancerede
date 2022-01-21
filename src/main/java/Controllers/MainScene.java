@@ -27,7 +27,7 @@ public class MainScene {
     public TextField height;
     public TextField playerID1;
     public TextField playerID2;
-    public Button luftKnap;
+    public Button airBtn;
 
     private int width_i;
     private int height_i;
@@ -41,7 +41,6 @@ public class MainScene {
     /* this method ensures that, when the start button is pushed
      * it will go to the gamescreen, as well as transferring the names of
      * the players to the gamescreen */
-
     public void goToGameScreen() throws IOException, IllegalInputException {
         this.width_i = Integer.parseInt(length.getText());
         this.height_i = Integer.parseInt(height.getText());
@@ -66,11 +65,11 @@ public class MainScene {
      * with the wind-feature or not*/
     public void switchAirSpeed(ActionEvent actionEvent) {
         if(!luftFlag){
-            luftKnap.setText("Yes");
+            airBtn.setText("Yes");
             luftFlag = true;
 
         } else {
-            luftKnap.setText("No");
+            airBtn.setText("No");
             modstand=0;
             luftFlag = false;
         }
